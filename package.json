@@ -1,0 +1,11 @@
+{
+  "name": "vanilla-nui",
+  "version": "1.0.0",
+  "description": "SPA mit vanilla JS und nativem UI (OnsenUI)",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Björn Saja",
+  "license": "ISC"
+}
