@@ -1,0 +1,3 @@
+ons-page:not([shown]) {
+    opacity: 0;
+}
