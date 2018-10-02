@@ -7,7 +7,7 @@
         <link rel="stylesheet" type="text/css" href="./node_modules/onsenui/css/onsen-css-components.css">
     </head>
     <body>
-        <ons-page>
+        <ons-page id="page">
             <ons-toolbar>
                 <div class="left">
                     <ons-toolbar-button>
@@ -18,10 +18,13 @@
                 <div class="center">Title</div>
 
                 <div class="right">
+                    <ons-toolbar-button>
+                        <ons-icon icon="ion-plus, material:md-plus"></ons-icon>
+                    </ons-toolbar-button>
                 </div>
             </ons-toolbar>
-
-            <p style="text-align: center">Some content.</p>
+            <ons-list id="list">
+            </ons-list>
         </ons-page>
         <script src="/dist/bundle.js"></script>
     </body>
