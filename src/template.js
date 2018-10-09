@@ -1,3 +1,5 @@
+import {TemplateGenerator} from "./helper";
+
 export class Template {
     /**
      * Sets up defaults for all the Template methods such as a default template
@@ -5,10 +7,9 @@ export class Template {
      * @constructor
      */
     constructor() {
-        this.defaultTemplate
-            = '<ons-list-item data-id="${i}" modifier="chevron" tappable>'
-            + '${title}'
-            + '</ons-list-item>';
+        this.defaultTemplate = TemplateGenerator(() => `
+            <ons-list-item data-id="${id}" modifier="chevron" tappable>${title}</ons-list-item>
+        `);
     }
 
     static escapeHtmlChar(chr) {
@@ -28,10 +29,6 @@ export class Template {
             ? string.replace(reUnescapedHtml, Template.escapeHtmlChar)
             : string;
     };
-
-    static fillTemplate(templateString, templateVars) {
-        return new Function("return `" + templateString + "`;").call(templateVars);
-    }
 
     /**
      * Creates an <li> HTML string and returns it for placement in your app.
@@ -54,6 +51,7 @@ export class Template {
         let view = '';
 
         for (const templateVars of data) {
+            templateVars.id = templateVars.id + '';
             templateVars.title = Template.escape(templateVars.title);
             /*if (templateVars.completed) {
                 templateVars.completed = 'completed';
@@ -62,7 +60,7 @@ export class Template {
                 templateVars.completed = '';
                 templateVars.checked = '';
             }*/
-            view += Template.fillTemplate(this.defaultTemplate, templateVars);
+            view += this.defaultTemplate(templateVars);
         }
         return view;
     };

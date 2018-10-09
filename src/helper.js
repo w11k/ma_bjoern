@@ -56,3 +56,16 @@ export function getCodeFromEvent(event) {
 
     return code;
 }
+
+export function TemplateGenerator(cb) {
+    return (data) => {
+        const dataKeys = [];
+        const dataVals = [];
+        for (let key in data) {
+            dataKeys.push(key);
+            dataVals.push(data[key]);
+        }
+        let func = new Function(...dataKeys, 'return (' + cb + ')();');
+        return func(...dataVals);
+    }
+}
