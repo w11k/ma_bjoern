@@ -1,33 +1,44 @@
+// noinspection ES6UnusedImports
 import ons from 'onsenui/esm';
+import 'onsenui/esm/elements/ons-navigator';
+import 'onsenui/esm/elements/ons-splitter';
+import 'onsenui/esm/elements/ons-splitter-side';
+import 'onsenui/esm/elements/ons-splitter-content';
 import 'onsenui/esm/elements/ons-page';
 import 'onsenui/esm/elements/ons-toolbar';
 import 'onsenui/esm/elements/ons-toolbar-button';
+import 'onsenui/esm/elements/ons-if';
+import 'onsenui/esm/elements/ons-fab';
 import 'onsenui/esm/elements/ons-icon';
 import 'onsenui/esm/elements/ons-list';
 import 'onsenui/esm/elements/ons-list-item';
 import 'onsenui/esm/elements/ons-list-header';
+import 'onsenui/esm/elements/ons-tabbar';
+import 'onsenui/esm/elements/ons-tab';
+import {Store} from "./store";
+import {Model} from "./model";
+import {Template} from "./template";
+import {$on} from "./helper";
+import {Controller} from "./controller";
 
-function createElementFromHTML(htmlString) {
-    const div = document.createElement('div');
-    div.innerHTML = htmlString.trim();
-    return div.firstChild;
-}
-
-ons.ready(() => {
-    const page = document.getElementById('page');
-    const list = page.querySelector('#list');
-    const self = this;
-    for (let i = 0; i < 11; i++) {
-        const item = createElementFromHTML(
-            `<ons-list-item data-id='${i}' modifier='chevron' tappable>
-                Test ${i}
-             </ons-list-item>`
-        );
-        item.addEventListener("click", (e) => (function () {return onItemSelect(e.currentTarget.dataset.id);})());
-        list.appendChild(item);
+class Todo {
+    constructor(name) {
+        this.storage = new Store(name);
+        this.model = new Model(this.storage);
+        this.template = new Template();
+        this.controller = new Controller(this.model, this.template);
     }
-});
-
-function onItemSelect(id) {
-    console.log(id);
 }
+
+const todo = new Todo('vanilla-nui');
+
+function setView(event) {
+    console.log('init');
+    if (event.target.id) {
+        console.log(event.target.id);
+        todo.controller.setView(event.target);
+    }
+}
+
+$on(document, 'init', setView);
+// $on(window, 'hashchange', setView);

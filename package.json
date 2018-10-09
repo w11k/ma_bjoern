@@ -5,17 +5,19 @@
   "main": "dist/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --watch --config webpack.config.js --devtool source-map ./src/index.js",
-    "build:prod": "webpack --mode=production"
+    "build": "webpack --watch --config webpack.config.js --devtool source-map ./src/app.js",
+    "build:prod": "webpack --mode=production",
+    "postinstall": "cp node_modules/ionicons/dist/css/* node_modules/onsenui/css/ionicons/css/; cp node_modules/ionicons/dist/fonts/* node_modules/onsenui/css/ionicons/fonts/;"
   },
   "author": "Björn Saja",
   "license": "ISC",
   "dependencies": {
+    "ionicons": "^4.4.4",
     "onsenui": "^2.10.4"
   },
   "devDependencies": {
     "babel-runtime": "^6.26.0",
-    "http-server": "^0.11.1",
+    "spa-http-server": "^0.9.0",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
     "webpack-livereload-plugin": "^2.1.1"
