@@ -18,6 +18,9 @@ export class TabView {
             },
             setTab: () => {
                 return self._setActiveTab(parameter);
+            },
+            changeTab: () => {
+                return self._changeActiveTab(parameter);
             }
         };
 
@@ -41,6 +44,15 @@ export class TabView {
     };
 
     _setActiveTab(currentPage) {
+        const tabIndices = {
+            All: 0,
+            Active: 1,
+            Completed: 2
+        };
+        return this.$tabBar.setActiveTab(tabIndices[currentPage] || 0, {animation: 'none'});
+    };
+
+    _changeActiveTab(currentPage) {
         const tabIndices = {
             All: 0,
             Active: 1,

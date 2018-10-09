@@ -32,18 +32,18 @@ export class Controller {
             case 'completed':
                 this._createListView(pageName, component);
                 this._fillListView(pageName);
+                this._setTabByRoute(this._activeRoute);
                 break;
             case 'tabbar':
                 this._createTabView(component);
                 this._updateCount();
-                this._setTab(this._activeRoute);
                 break;
             case 'menu':
                 this._createMenuView(component);
                 break;
             case 'splitter':
                 this._createSplitterView(component);
-                this._loadContentByRoute(this._activeRoute, false);
+                this._setContentByRoute(this._activeRoute, false);
                 break;
             case 'settings':
                 this._createSettingsView(component);
@@ -86,7 +86,7 @@ export class Controller {
         self.tabView = new TabView(component);
 
         self.tabView.bind('openMenu', () => {
-            self.openMenu();
+            self._openMenu();
         });
 
         self.tabView.bind('newTodo', () => {
@@ -104,17 +104,17 @@ export class Controller {
 
         self.menuView.bind('openHome', () => {
             this._setActiveRoute('All');
-            this._loadContentByRoute(this._activeRoute);
+            this._setContentByRoute(this._activeRoute);
         });
 
         self.menuView.bind('openSettings', () => {
             this._setActiveRoute('Settings');
-            this._loadContentByRoute(this._activeRoute);
+            this._setContentByRoute(this._activeRoute);
         });
 
         self.menuView.bind('openAbout', () => {
             this._setActiveRoute('About');
-            this._loadContentByRoute(this._activeRoute);
+            this._setContentByRoute(this._activeRoute);
         });
     }
 
@@ -126,7 +126,7 @@ export class Controller {
         this.settingsView = new SettingsView(component);
 
         this.settingsView.bind('openMenu', () => {
-            this.openMenu();
+            this._openMenu();
         });
     }
 
@@ -134,7 +134,7 @@ export class Controller {
         this.aboutView = new AboutView(component);
 
         this.aboutView.bind('openMenu', () => {
-            this.openMenu();
+            this._openMenu();
         });
     }
 
@@ -262,8 +262,12 @@ export class Controller {
         });
     };
 
-    _setTab(pageName) {
-        this.tabView.render('setTab', pageName);
+    _setTabByRoute(pageName) {
+        let command = 'changeTab';
+        if (!this.allView || !this.activeView || !this.completedView) {
+            command = 'setTab';
+        }
+        this.tabView.render(command, pageName);
     }
 
     _setActiveRoute(newRoute) {
@@ -280,11 +284,11 @@ export class Controller {
         document.title = `Todo-App – ${title} Todos`;
     }
 
-    openMenu() {
+    _openMenu() {
         this.menuView.render('openMenu');
     }
 
-    _loadContentByRoute(route, forceLoad = true) {
+    _setContentByRoute(route, forceLoad = true) {
         const command = forceLoad ? 'loadPage' : 'setPage';
         switch (route) {
             case 'All':
@@ -307,7 +311,7 @@ export class Controller {
                 break;
         }
     }
-    
+
     _closeMenu() {
         if (this.menuView) {
             this.menuView.render('closeMenu');
