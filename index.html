@@ -7,17 +7,14 @@
     <link rel="stylesheet" type="text/css" href="./theme/onsen-css-components.min.css">
 </head>
 <body>
-<ons-navigator page="splitter.html"></ons-navigator>
-
-
-<template id="splitter.html">
-    <ons-page id="page/splitter">
-        <ons-splitter>
-            <ons-splitter-side page="menu.html" side="left" collapse swipeable></ons-splitter-side>
-            <ons-splitter-content></ons-splitter-content>
-        </ons-splitter>
-    </ons-page>
-</template>
+<ons-page id="page/splitter">
+    <ons-splitter>
+        <ons-splitter-side page="menu.html" side="left" collapse swipeable></ons-splitter-side>
+        <ons-splitter-content>
+            <ons-navigator></ons-navigator>
+        </ons-splitter-content>
+    </ons-splitter>
+</ons-page>
 
 <template id="menu.html">
     <ons-page id="overlay/menu">

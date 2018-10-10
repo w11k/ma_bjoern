@@ -2,29 +2,35 @@ import {qs} from "./helper";
 
 export class SplitterView {
     constructor(page) {
-        this.$content = qs('ons-splitter-content', page);
+        this.$navigator = qs('ons-navigator', page);
     }
 
     render(viewCmd, parameter) {
         const self = this;
         const viewCommands = {
-            setPage: () => {
-                return self._setPage(parameter);
+            pushPage: () => {
+                return self._pushPage(parameter);
             },
             loadPage: () => {
                 return self._loadPage(parameter);
+            },
+            popPage: () => {
+                return self._popPage();
             }
         };
 
         return viewCommands[viewCmd]();
     };
 
-    _setPage(pageID) {
-        this.$content.page = pageID;
-        return Promise.resolve();
+    _pushPage(pageID) {
+        return this.$navigator.pushPage(pageID);
     }
 
     _loadPage(pageID) {
-        return this.$content.load(pageID);
+        return this.$navigator.bringPageTop(pageID, {animation: 'none'});
+    }
+
+    _popPage() {
+        return this.$navigator.popPage().then((component) => component.id);
     }
 }

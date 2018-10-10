@@ -41,4 +41,4 @@ function setView(event) {
 }
 
 $on(document, 'init', setView);
-// $on(window, 'hashchange', setView);
+$on(window, 'hashchange', () => todo.controller.handleManualHashChange());

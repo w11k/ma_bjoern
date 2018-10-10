@@ -43,7 +43,7 @@ export class Controller {
                 break;
             case 'splitter':
                 this._createSplitterView(component);
-                this._setContentByRoute(this._activeRoute, false);
+                this._setContentByRoute(this._activeRoute);
                 break;
             case 'settings':
                 this._createSettingsView(component);
@@ -270,10 +270,12 @@ export class Controller {
         this.tabView.render(command, pageName);
     }
 
-    _setActiveRoute(newRoute) {
+    _setActiveRoute(newRoute, addHistoryState = true) {
         this._activeRoute = newRoute;
         this._setPageTitle(newRoute);
-        window.history.pushState(this._getStateToSave(), newRoute, `#/${newRoute.toLowerCase()}`);
+        if (addHistoryState) {
+            window.history.pushState(this._getStateToSave(), newRoute, `#/${newRoute.toLowerCase()}`);
+        }
     }
 
     _getStateToSave() {
@@ -288,8 +290,8 @@ export class Controller {
         this.menuView.render('openMenu');
     }
 
-    _setContentByRoute(route, forceLoad = true) {
-        const command = forceLoad ? 'loadPage' : 'setPage';
+    _setContentByRoute(route, animate = false) {
+        const command = animate ? 'pushPage' : 'loadPage';
         switch (route) {
             case 'All':
             case 'Active':
@@ -316,5 +318,25 @@ export class Controller {
         if (this.menuView) {
             this.menuView.render('closeMenu');
         }
+    }
+
+    handleManualHashChange() {
+        const oldRoute = this._activeRoute;
+        this._setActiveRoute(this._extractActiveRoute(document.location.hash), false);
+        if (this._activeRoute === oldRoute) {
+            return;
+        }
+        if (oldRoute === 'New') {
+            return this._closeDetailView();
+        }
+        if (this._activeRoute === 'New') {
+            return this._setContentByRoute(this._activeRoute, true);
+        }
+        return this._setContentByRoute(this._activeRoute);
+    }
+
+    _closeDetailView(isBackAction) {
+        this.splitterView.render('popPage')
+            .then((oldRoute) => this._setActiveRoute(this._extractActiveRoute(oldRoute), !isBackAction));
     }
 }
