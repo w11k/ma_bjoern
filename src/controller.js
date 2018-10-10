@@ -27,7 +27,7 @@ export class Controller {
      * @param {Object} component
      */
     setView(component) {
-        const pageName = component.id.split('/')[1];
+        const pageName = component.id.split('_')[1];
         switch (pageName) {
             case 'all':
             case 'active':
@@ -83,7 +83,7 @@ export class Controller {
         });
 
         self[pageName + 'View'].bind('itemToggle', (item) => {
-            self.toggleComplete(item.id, item.completed);
+            self.updateItem(item);
         });
     }
 
@@ -150,46 +150,37 @@ export class Controller {
      */
     _fillListView(page) {
         const self = this;
-        const query = {};
-        switch (page) {
-            case 'active':
-                query.completed = false;
-                break;
-            case 'completed':
-                query.completed = true;
-                break;
-        }
-        self.model.read(query, (data) => {
-            self[page + 'View'].render('showEntries', data);
+        self.model.read({}, (data) => {
+            self[page + 'View'].render('showItems', data);
         });
     };
 
     selectItem(id) {
-            this.ons.openActionSheet({
-                cancelable: true,
-                buttons: [
-                    'Edit',
-                    {
-                        label: 'Delete',
-                        modifier: 'destructive'
-                    },
-                    {
-                        label: 'Cancel',
-                        icon: 'md-close'
-                    }
-                ]
-            }).then((index) => {
-                switch (index) {
-                    case 0:
-                        this.editItem(id);
-                        break;
-                    case 1:
-                        this.removeItem(id);
-                        break;
-                    default:
-                        break;
+        this.ons.openActionSheet({
+            cancelable: true,
+            buttons: [
+                'Edit',
+                {
+                    label: 'Delete',
+                    modifier: 'destructive'
+                },
+                {
+                    label: 'Cancel',
+                    icon: 'md-close'
                 }
-            });
+            ]
+        }).then((index) => {
+            switch (index) {
+                case 0:
+                    this.editItem(id);
+                    break;
+                case 1:
+                    this.removeItem(id);
+                    break;
+                default:
+                    break;
+            }
+        });
     }
 
     /**
@@ -204,9 +195,8 @@ export class Controller {
             return;
         }
 
-        self.model.create(title, () => {
-            self.view.render('clearNewTodo');
-            self._filter(true);
+        self.model.create(title, (item) => {
+            self.view.render('addItem', item);
         });
     };
 
@@ -214,35 +204,19 @@ export class Controller {
      * Triggers the item editing mode.
      */
     editItem(id) {
-        const self = this;
-        self.model.read(id, (data) => {
-            self.view.render('editItem', {id: id, title: data[0].title});
-        });
+        // TODO: open dialog
     };
 
     /*
      * Finishes the item editing mode successfully.
      */
-    editItemSave(id, title) {
+    updateItem(item) {
         const self = this;
-        title = title.trim();
-
-        if (title.length !== 0) {
-            self.model.update(id, {title: title}, () => {
-                self.view.render('editItemDone', {id: id, title: title});
-            });
-        } else {
-            self.removeItem(id);
-        }
-    };
-
-    /*
-     * Cancels the item editing mode.
-     */
-    editItemCancel(id) {
-        const self = this;
-        self.model.read(id, (data) => {
-            self.view.render('editItemDone', {id: id, title: data[0].title});
+        self.model.update(item.id, item, (updatedItem) => {
+            self.allView.render('updateItem', updatedItem);
+            self.activeView.render('updateItem', updatedItem);
+            self.completedView.render('updateItem', updatedItem);
+            self._updateCount();
         });
     };
 
@@ -261,29 +235,6 @@ export class Controller {
             self.completedView.render('removeItem', id);
             this._updateCount();
         });
-    };
-
-    /**
-     * Give it an ID of a model and a checkbox and it will update the item
-     * in storage based on the checkbox's state.
-     *
-     * @param {number} id The ID of the element to complete or uncomplete
-     * @param {object} completed The checkbox to check the state of complete
-     *                          or not
-     * @param {boolean|undefined} silent Prevent re-filtering the todo items
-     */
-    toggleComplete(id, completed, silent = false) {
-        const self = this;
-        self.model.update(id, {completed: completed}, () => {
-            self.view.render('elementComplete', {
-                id: id,
-                completed: completed
-            });
-        });
-
-        if (!silent) {
-            self._filter();
-        }
     };
 
     /**

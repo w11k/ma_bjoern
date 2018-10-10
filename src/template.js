@@ -8,7 +8,7 @@ export class Template {
      */
     constructor() {
         this.defaultTemplate = TemplateGenerator(() => `
-            <ons-list-item data-id="${id}" tappable>
+            <ons-list-item data-id="${id}" tappable class="${completed}">
                 <div class="left">
                     <ons-checkbox ${checked}></ons-checkbox>
                 </div>
@@ -60,8 +60,10 @@ export class Template {
         for (const templateVars of data) {
             templateVars.title = Template.escape(templateVars.title);
             if (templateVars.completed) {
+                templateVars.completed = 'completed';
                 templateVars.checked = 'checked';
             } else {
+                templateVars.completed = 'active';
                 templateVars.checked = '';
             }
             view += this.defaultTemplate(templateVars);

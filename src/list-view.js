@@ -23,7 +23,29 @@ export class ListView {
         }
     };
 
-    _elementComplete(id, completed) {
+    _updateItem(item) {
+        const listItem = qs('[data-id="' + item.id + '"]', this.$todoList);
+        if (!listItem) {
+            return;
+        }
+
+        const check = qs('ons-checkbox', listItem);
+        const title = qs('label.center', listItem);
+
+        if (item.completed) {
+            listItem.classList.add('completed');
+            listItem.classList.remove('active');
+            check.setAttribute('checked', '');
+        } else {
+            listItem.classList.add('active');
+            listItem.classList.remove('completed');
+            check.removeAttribute('checked');
+        }
+
+        title.innerHTML = item.title;
+    };
+
+    _toggleItem(id, completed) {
         let listItem = qs('[data-id="' + id + '"]', this.$todoList);
 
         if (!listItem) {
@@ -54,20 +76,17 @@ export class ListView {
     render(viewCmd, parameter) {
         const self = this;
         const viewCommands = {
-            showEntries: () => {
+            showItems: () => {
                 self.$todoList.innerHTML = self.template.show(parameter);
             },
             removeItem: () => {
                 self._removeItem(parameter);
             },
-            clearNewTodo: () => {
-                self.$newTodo.value = '';
+            addItem: () => {
+                self.$todoList.appendChild(self.template.show(item));
             },
-            elementComplete: () => {
-                self._elementComplete(parameter.id, parameter.completed);
-            },
-            editItem: () => {
-                self._editItem(parameter.id, parameter.title);
+            updateItem: () => {
+                self._updateItem(parameter);
             }
         };
 
@@ -86,7 +105,7 @@ export class ListView {
                 handler({id: self._itemId(this)});
             });
         } else if (event === 'itemToggle') {
-            $delegate(self.$todoList, 'ons-list-item ons-checkbox', 'click', function () {
+            $delegate(self.$todoList, 'ons-list-item ons-checkbox input', 'click', function () {
                 handler({
                     id: self._itemId(this),
                     completed: this.checked

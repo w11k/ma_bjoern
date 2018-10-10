@@ -2,3 +2,16 @@
 ons-page:not([shown]) {
     opacity: 0;
 }*/
+
+#page_all .todo-list ons-list-item, #page_active .todo-list ons-list-item, #page_completed .todo-list ons-list-item {
+    max-height: 500px;
+    transition: max-height 0.15s ease-out;
+}
+
+#page_active .todo-list .completed {
+    max-height: 0;
+}
+
+#page_completed .todo-list .active {
+    max-height: 0;
+}

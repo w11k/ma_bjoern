@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="./theme/onsen-css-components.min.css">
 </head>
 <body>
-<ons-page id="page/splitter">
+<ons-page id="page_splitter">
     <ons-splitter>
         <ons-splitter-side page="menu.html" side="left" collapse swipeable></ons-splitter-side>
         <ons-splitter-content>
@@ -17,7 +17,7 @@
 </ons-page>
 
 <template id="menu.html">
-    <ons-page id="overlay/menu">
+    <ons-page id="page_menu">
         <ons-list>
             <ons-list-item action="open-home" tappable>
                 Home
@@ -33,7 +33,7 @@
 </template>
 
 <template id="tabbar.html">
-    <ons-page id="page/tabbar">
+    <ons-page id="page_tabbar">
         <ons-toolbar>
             <div class="left">
                 <ons-toolbar-button action="open-menu">
@@ -69,25 +69,25 @@
 </template>
 
 <template id="all.html">
-    <ons-page id="page/all">
+    <ons-page id="page_all">
         <ons-list class="todo-list"></ons-list>
     </ons-page>
 </template>
 
 <template id="active.html">
-    <ons-page id="page/active">
+    <ons-page id="page_active">
         <ons-list class="todo-list"></ons-list>
     </ons-page>
 </template>
 
 <template id="completed.html">
-    <ons-page id="page/completed">
+    <ons-page id="page_completed">
         <ons-list class="todo-list"></ons-list>
     </ons-page>
 </template>
 
 <template id="settings.html">
-    <ons-page id="page/settings">
+    <ons-page id="page_settings">
         <ons-toolbar>
             <div class="left">
                 <ons-toolbar-button action="open-menu">
@@ -105,7 +105,7 @@
 </template>
 
 <template id="about.html">
-    <ons-page id="page/about">
+    <ons-page id="page_about">
         <ons-toolbar>
             <div class="left">
                 <ons-toolbar-button action="open-menu">

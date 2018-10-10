@@ -76,7 +76,8 @@ export class Store {
 
         // If an ID was actually given, find the item and update each property
         if (id) {
-            for (let i = 0; i < todos.length; i++) {
+            let i;
+            for (i = 0; i < todos.length; i++) {
                 if (todos[i].id === id) {
                     for (const key in updateData) {
                         todos[i][key] = updateData[key];
@@ -86,14 +87,14 @@ export class Store {
             }
 
             localStorage.setItem(this._dbName, JSON.stringify(todos));
-            callback.call(this, todos);
+            callback.call(this, todos[i]);
         } else {
             // Generate an ID
             updateData.id = new Date().getTime();
 
             todos.push(updateData);
             localStorage.setItem(this._dbName, JSON.stringify(todos));
-            callback.call(this, [updateData]);
+            callback.call(this, updateData);
         }
     };
 
