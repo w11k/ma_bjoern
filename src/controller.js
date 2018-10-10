@@ -12,10 +12,12 @@ export class Controller {
      * @constructor
      * @param {object} model The model instance
      * @param {object} template The template instance
+     * @param {object} ons onsen ui object
      */
-    constructor(model, template) {
+    constructor(model, template, ons) {
         this.model = model;
         this.template = template;
+        this.ons = ons;
         this._setActiveRoute(this._extractActiveRoute(document.location.hash));
     }
 
@@ -58,7 +60,7 @@ export class Controller {
 
     _extractActiveRoute(locationHash) {
         const route = locationHash.split('/')[1] || '';
-        if (route === '') {
+        if (['all', 'active', 'completed', 'settings', 'about'].indexOf(route) < 0) {
             return 'All';
         }
         return route.charAt(0).toUpperCase() + route.substr(1);
@@ -70,6 +72,10 @@ export class Controller {
 
         self[pageName + 'View'].bind('itemEdit', (item) => {
             self.editItem(item.id);
+        });
+
+        self[pageName + 'View'].bind('itemSelect', (item) => {
+            self.selectItem(item.id);
         });
 
         self[pageName + 'View'].bind('itemRemove', (item) => {
@@ -158,6 +164,34 @@ export class Controller {
         });
     };
 
+    selectItem(id) {
+            this.ons.openActionSheet({
+                cancelable: true,
+                buttons: [
+                    'Edit',
+                    {
+                        label: 'Delete',
+                        modifier: 'destructive'
+                    },
+                    {
+                        label: 'Cancel',
+                        icon: 'md-close'
+                    }
+                ]
+            }).then((index) => {
+                switch (index) {
+                    case 0:
+                        this.editItem(id);
+                        break;
+                    case 1:
+                        this.removeItem(id);
+                        break;
+                    default:
+                        break;
+                }
+            });
+    }
+
     /**
      * An event to fire whenever you want to add an item. Simply pass in the event
      * object and it'll handle the DOM insertion and saving of the new item.
@@ -222,10 +256,11 @@ export class Controller {
     removeItem(id) {
         const self = this;
         self.model.remove(id, () => {
-            self.view.render('removeItem', id);
+            self.allView.render('removeItem', id);
+            self.activeView.render('removeItem', id);
+            self.completedView.render('removeItem', id);
+            this._updateCount();
         });
-
-        self._filter();
     };
 
     /**
@@ -299,10 +334,6 @@ export class Controller {
                 this.splitterView.render(command, 'tabbar.html')
                     .then(() => this._closeMenu());
                 break;
-            case 'Detail':
-                this.splitterView.render(command, 'detail.html')
-                    .then(() => this._closeMenu());
-                break;
             case 'Settings':
                 this.splitterView.render(command, 'settings.html')
                     .then(() => this._closeMenu());
@@ -326,17 +357,6 @@ export class Controller {
         if (this._activeRoute === oldRoute) {
             return;
         }
-        if (oldRoute === 'New') {
-            return this._closeDetailView();
-        }
-        if (this._activeRoute === 'New') {
-            return this._setContentByRoute(this._activeRoute, true);
-        }
         return this._setContentByRoute(this._activeRoute);
-    }
-
-    _closeDetailView(isBackAction) {
-        this.splitterView.render('popPage')
-            .then((oldRoute) => this._setActiveRoute(this._extractActiveRoute(oldRoute), !isBackAction));
     }
 }

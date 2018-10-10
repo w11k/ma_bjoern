@@ -13,9 +13,6 @@ export class SplitterView {
             },
             loadPage: () => {
                 return self._loadPage(parameter);
-            },
-            popPage: () => {
-                return self._popPage();
             }
         };
 
@@ -28,9 +25,5 @@ export class SplitterView {
 
     _loadPage(pageID) {
         return this.$navigator.bringPageTop(pageID, {animation: 'none'});
-    }
-
-    _popPage() {
-        return this.$navigator.popPage().then((component) => component.id);
     }
 }
