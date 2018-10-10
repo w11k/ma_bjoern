@@ -13,8 +13,11 @@ import 'onsenui/esm/elements/ons-icon';
 import 'onsenui/esm/elements/ons-list';
 import 'onsenui/esm/elements/ons-list-item';
 import 'onsenui/esm/elements/ons-list-header';
+import 'onsenui/esm/elements/ons-checkbox';
 import 'onsenui/esm/elements/ons-tabbar';
 import 'onsenui/esm/elements/ons-tab';
+import 'onsenui/esm/elements/ons-action-sheet';
+import 'onsenui/esm/elements/ons-action-sheet-button';
 import {Store} from "./store";
 import {Model} from "./model";
 import {Template} from "./template";
@@ -26,7 +29,7 @@ class Todo {
         this.storage = new Store(name);
         this.model = new Model(this.storage);
         this.template = new Template();
-        this.controller = new Controller(this.model, this.template);
+        this.controller = new Controller(this.model, this.template, ons);
     }
 }
 

@@ -16,7 +16,7 @@ export class ListView {
     }
 
     _removeItem(id) {
-        const elem = qs('[data-id="' + id + '"]');
+        const elem = qs('[data-id="' + id + '"]', this.$todoList);
 
         if (elem) {
             this.$todoList.removeChild(elem);
@@ -30,14 +30,12 @@ export class ListView {
             return;
         }
 
-        listItem.className = completed ? 'completed' : '';
-
         // In case it was toggled from an event and not by clicking the checkbox
-        qs('input', listItem).checked = completed;
+        listItem.checked = completed;
     };
 
     _editItem(id, title) {
-        let listItem = qs('[data-id="' + id + '"]');
+        let listItem = qs('[data-id="' + id + '"]', this.$todoList);
 
         if (!listItem) {
             return;
@@ -62,9 +60,6 @@ export class ListView {
             removeItem: () => {
                 self._removeItem(parameter);
             },
-            setFilter: () => {
-                return self._setFilter(parameter);
-            },
             clearNewTodo: () => {
                 self.$newTodo.value = '';
             },
@@ -80,24 +75,18 @@ export class ListView {
     };
 
     _itemId(element) {
-        const li = $parent(element, 'li');
+        const li = $parent(element, 'ons-list-item');
         return parseInt(li.dataset.id, 10);
     };
 
     bind(event, handler) {
         const self = this;
-        if (event === 'itemEdit') {
-            $delegate(self.$todoList, 'li label', 'dblclick', () => {
+        if (event === 'itemSelect') {
+            $delegate(self.$todoList, 'ons-list-item label', 'click', function () {
                 handler({id: self._itemId(this)});
             });
-
-        } else if (event === 'itemRemove') {
-            $delegate(self.$todoList, '.destroy', 'click', () => {
-                handler({id: self._itemId(this)});
-            });
-
         } else if (event === 'itemToggle') {
-            $delegate(self.$todoList, '.toggle', 'click', () => {
+            $delegate(self.$todoList, 'ons-list-item ons-checkbox', 'click', function () {
                 handler({
                     id: self._itemId(this),
                     completed: this.checked
