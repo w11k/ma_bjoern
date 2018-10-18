@@ -1,4 +1,4 @@
-import {$on, qs} from "./helper";
+import {$on, qs} from './helper';
 
 export class AboutView {
     constructor(page) {

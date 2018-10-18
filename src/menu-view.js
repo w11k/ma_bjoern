@@ -1,26 +1,24 @@
-import {$on, qs} from "./helper";
+import {$on, qs} from './helper';
 
 export class MenuView {
     constructor(page) {
-        const self = this;
-        self.$slidingMenu = page.parentNode;
-        self.$openHome = qs('[action="open-home"]', page);
-        self.$openSettings = qs('[action="open-settings"]', page);
-        self.$openAbout = qs('[action="open-about"]', page);
+        this.$slidingMenu = page.parentNode;
+        this.$openHome = qs('[action="open-home"]', page);
+        this.$openSettings = qs('[action="open-settings"]', page);
+        this.$openAbout = qs('[action="open-about"]', page);
 
-        $on(self.$slidingMenu.nextElementSibling.nextElementSibling, 'click', () => {
+        $on(this.$slidingMenu.nextElementSibling.nextElementSibling, 'click', () => {
             this._closeMenu();
         });
     }
 
     render(viewCmd, parameter) {
-        const self = this;
         const viewCommands = {
             openMenu: () => {
-                self._openMenu();
+                this._openMenu();
             },
             closeMenu: () => {
-                self._closeMenu();
+                this._closeMenu();
             }
         };
 

@@ -11,16 +11,15 @@ export class TabView {
     }
 
     render(viewCmd, parameter) {
-        const self = this;
         const viewCommands = {
             updateElementCount: () => {
-                self._setTabBadges(parameter);
+                this._setTabBadges(parameter);
             },
             setTab: () => {
-                return self._setActiveTab(parameter);
+                return this._setActiveTab(parameter);
             },
             changeTab: () => {
-                return self._changeActiveTab(parameter);
+                return this._changeActiveTab(parameter);
             }
         };
 
@@ -28,16 +27,15 @@ export class TabView {
     };
 
     bind(event, handler) {
-        const self = this;
         if (event === 'openMenu') {
-            $on(self.$openMenu, 'click', handler);
+            $on(this.$openMenu, 'click', handler);
         } else if (event === 'newTodo') {
-            $delegate(self.$page, '[action="new-todo"]', 'click', handler);
+            $delegate(this.$page, '[action="new-todo"]', 'click', handler);
         } else if (event === 'switchTab') {
             const tabIndices = {
                 0: 'All',
                 1: 'Active',
-                2: 'Completed',
+                2: 'Completed'
             };
             $on(this.$tabBar, 'prechange', (event) => handler(tabIndices[event.index]));
         }

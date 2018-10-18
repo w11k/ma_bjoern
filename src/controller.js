@@ -6,24 +6,12 @@ import {SplitterView} from './splitter-view';
 import {TabView} from './tab-view';
 
 export class Controller {
-    /**
-     * Takes a model and view and acts as the controller between them
-     *
-     * @constructor
-     * @param {object} model The model instance
-     * @param {object} template The template instance
-     */
     constructor(model, template) {
         this.model = model;
         this.template = template;
         this._setActiveRoute(this._extractActiveRoute(document.location.hash));
     }
 
-    /**
-     * Loads and initialises the view
-     *
-     * @param {Object} component
-     */
     setView(component) {
         const pageName = component.id.split('_')[1];
         switch (pageName) {
@@ -65,50 +53,47 @@ export class Controller {
     }
 
     _createListView(pageName, component) {
-        const self = this;
-        self[pageName + 'View'] = new ListView(component, self.template);
+        this[pageName + 'View'] = new ListView(component, this.template);
 
-        self[pageName + 'View'].bind('itemSelect', (item) => {
-            self.selectItem(item.id);
+        this[pageName + 'View'].bind('itemSelect', (item) => {
+            this._selectItem(item.id);
         });
 
-        self[pageName + 'View'].bind('itemToggle', (item) => {
-            self.updateItem(item);
+        this[pageName + 'View'].bind('itemToggle', (item) => {
+            this._updateItem(item);
         });
     }
 
     _createTabView(component) {
-        const self = this;
-        self.tabView = new TabView(component);
+        this.tabView = new TabView(component);
 
-        self.tabView.bind('openMenu', () => {
-            self._openMenu();
+        this.tabView.bind('openMenu', () => {
+            this._openMenu();
         });
 
-        self.tabView.bind('newTodo', () => {
-            self.addItem();
+        this.tabView.bind('newTodo', () => {
+            this._addItem();
         });
 
-        self.tabView.bind('switchTab', (route) => {
-            self._setActiveRoute(route);
+        this.tabView.bind('switchTab', (route) => {
+            this._setActiveRoute(route);
         });
     }
 
     _createMenuView(component) {
-        const self = this;
-        self.menuView = new MenuView(component);
+        this.menuView = new MenuView(component);
 
-        self.menuView.bind('openHome', () => {
+        this.menuView.bind('openHome', () => {
             this._setActiveRoute('All');
             this._setContentByRoute(this._activeRoute);
         });
 
-        self.menuView.bind('openSettings', () => {
+        this.menuView.bind('openSettings', () => {
             this._setActiveRoute('Settings');
             this._setContentByRoute(this._activeRoute);
         });
 
-        self.menuView.bind('openAbout', () => {
+        this.menuView.bind('openAbout', () => {
             this._setActiveRoute('About');
             this._setContentByRoute(this._activeRoute);
         });
@@ -134,18 +119,13 @@ export class Controller {
         });
     }
 
-    /**
-     * An event to fire on load. Will get all items and display them in the
-     * todo-list
-     */
     _fillListView(page) {
-        const self = this;
-        self.model.read({}, (data) => {
-            self[page + 'View'].render('showItems', data);
+        this.model.read((data) => {
+            this[page + 'View'].render('showItems', data);
         });
     };
 
-    selectItem(id) {
+    _selectItem(id) {
         window.ons.openActionSheet({
             cancelable: true,
             buttons: [
@@ -162,10 +142,10 @@ export class Controller {
         }).then((index) => {
             switch (index) {
                 case 0:
-                    this.editItem(id);
+                    this._editItem(id);
                     break;
                 case 1:
-                    this.removeItem(id);
+                    this._removeItem(id);
                     break;
                 default:
                     break;
@@ -173,9 +153,15 @@ export class Controller {
         });
     }
 
-    createEditDialog(callback, oldTitle = '') {
-        const self = this;
-        window.ons.notification.prompt({title: oldTitle !== '' ? 'Edit Item' : 'Create Item', message: 'Title:', buttonLabels: ['Save', 'Cancel'], primaryButtonIndex: 0, cancelable: true, defaultValue: oldTitle})
+    _createEditDialog(callback, oldTitle = '') {
+        window.ons.notification.prompt({
+            title: oldTitle !== '' ? 'Edit Item' : 'Create Item',
+            message: 'Title:',
+            buttonLabels: ['Save', 'Cancel'],
+            primaryButtonIndex: 0,
+            cancelable: true,
+            defaultValue: oldTitle
+        })
             .then((newTitle) => {
                 if (typeof newTitle !== 'string') {
                     return;
@@ -186,72 +172,46 @@ export class Controller {
             });
     };
 
-    /**
-     * An event to fire whenever you want to add an item. Simply pass in the event
-     * object and it'll handle the DOM insertion and saving of the new item.
-     */
-    addItem() {
-        const self = this;
-        this.createEditDialog((newTitle) => {
-            self.model.create(newTitle, (item) => {
-                self.allView.render('addItem', item);
-                self.activeView.render('addItem', item);
-                self.completedView.render('addItem', item);
+    _addItem() {
+        this._createEditDialog((newTitle) => {
+            this.model.create(newTitle, (item) => {
+                this.allView.render('addItem', item);
+                this.activeView.render('addItem', item);
+                this.completedView.render('addItem', item);
             });
         });
     };
 
-    /*
-     * Triggers the item editing mode.
-     */
-    editItem(id) {
-        const self = this;
-        self.model.read(id, ([oldItem]) => {
-            this.createEditDialog((newTitle) => {
+    _editItem(id) {
+        this.model.read(id, ([oldItem]) => {
+            this._createEditDialog((newTitle) => {
                 oldItem.title = newTitle;
-                this.updateItem(oldItem);
+                this._updateItem(oldItem);
             }, oldItem.title);
         });
     };
 
-    /*
-     * Finishes the item editing mode successfully.
-     */
-    updateItem(item) {
-        const self = this;
-        self.model.update(item.id, item, (updatedItem) => {
-            self.allView.render('updateItem', updatedItem);
-            self.activeView.render('updateItem', updatedItem);
-            self.completedView.render('updateItem', updatedItem);
-            self._updateCount();
-        });
-    };
-
-    /**
-     * By giving it an ID it'll find the DOM element matching that ID,
-     * remove it from the DOM and also remove it from storage.
-     *
-     * @param {number} id The ID of the item to remove from the DOM and
-     * storage
-     */
-    removeItem(id) {
-        const self = this;
-        self.model.remove(id, () => {
-            self.allView.render('removeItem', id);
-            self.activeView.render('removeItem', id);
-            self.completedView.render('removeItem', id);
+    _updateItem(item) {
+        this.model.update(item.id, item, (updatedItem) => {
+            this.allView.render('updateItem', updatedItem);
+            this.activeView.render('updateItem', updatedItem);
+            this.completedView.render('updateItem', updatedItem);
             this._updateCount();
         });
     };
 
-    /**
-     * Updates the pieces of the page which change depending on the remaining
-     * number of todos.
-     */
+    _removeItem(id) {
+        this.model.remove(id, () => {
+            this.allView.render('removeItem', id);
+            this.activeView.render('removeItem', id);
+            this.completedView.render('removeItem', id);
+            this._updateCount();
+        });
+    };
+
     _updateCount() {
-        const self = this;
-        self.model.getCount((todos) => {
-            self.tabView.render('updateElementCount', todos);
+        this.model.getCount((todos) => {
+            this.tabView.render('updateElementCount', todos);
         });
     };
 
@@ -276,28 +236,27 @@ export class Controller {
     }
 
     _setPageTitle(title) {
-        document.title = `Todo-App – ${title} Todos`;
+        document.title = `Todo-App – ${title}`;
     }
 
     _openMenu() {
         this.menuView.render('openMenu');
     }
 
-    _setContentByRoute(route, animate = false) {
-        const command = animate ? 'pushPage' : 'loadPage';
+    _setContentByRoute(route) {
         switch (route) {
             case 'All':
             case 'Active':
             case 'Completed':
-                this.splitterView.render(command, 'tabbar.html')
+                this.splitterView.render('loadPage', 'tabbar.html')
                     .then(() => this._closeMenu());
                 break;
             case 'Settings':
-                this.splitterView.render(command, 'settings.html')
+                this.splitterView.render('loadPage', 'settings.html')
                     .then(() => this._closeMenu());
                 break;
             case 'About':
-                this.splitterView.render(command, 'about.html')
+                this.splitterView.render('loadPage', 'about.html')
                     .then(() => this._closeMenu());
                 break;
         }

@@ -43,20 +43,7 @@ export function $parent(element, tagName) {
     return $parent(element.parentNode, tagName);
 }
 
-export function getCodeFromEvent(event) {
-    let code;
-
-    if (event.key !== undefined) {
-        code = event.key;
-    } else if (event.keyIdentifier !== undefined) {
-        code = event.keyIdentifier;
-    } else if (event.keyCode !== undefined) {
-        code = event.keyCode;
-    }
-
-    return code;
-}
-
+// populate template string with values
 export function TemplateGenerator(cb) {
     return (data) => {
         const dataKeys = [];
@@ -67,5 +54,5 @@ export function TemplateGenerator(cb) {
         }
         let func = new Function(...dataKeys, 'return (' + cb + ')();');
         return func(...dataVals);
-    }
+    };
 }

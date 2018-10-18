@@ -1,19 +1,15 @@
-import {$delegate, $parent, qs} from "./helper";
+import {$delegate, $parent, qs} from './helper';
 
 export class ListView {
-    /**
-     * ListView that abstracts away the browser's DOM completely.
-     * It has two simple entry points:
-     *
-     *   - bind(eventName, handler)
-     *     Takes a todo application event and registers the handler
-     *   - render(command, parameterObject)
-     *     Renders the given command with the options
-     */
     constructor(page, template) {
         this.template = template;
         this.$todoList = qs('.todo-list', page);
     }
+
+    static _itemId(element) {
+        const li = $parent(element, 'ons-list-item');
+        return parseInt(li.dataset.id, 10);
+    };
 
     _removeItem(id) {
         const elem = qs('[data-id="' + id + '"]', this.$todoList);
@@ -74,40 +70,33 @@ export class ListView {
     };
 
     render(viewCmd, parameter) {
-        const self = this;
         const viewCommands = {
             showItems: () => {
-                self.$todoList.innerHTML = self.template.show(parameter);
+                this.$todoList.innerHTML = this.template.show(parameter);
             },
             removeItem: () => {
-                self._removeItem(parameter);
+                this._removeItem(parameter);
             },
             addItem: () => {
-                self.$todoList.appendChild(window.ons._util.createElement(self.template.show([parameter])));
+                this.$todoList.appendChild(window.ons._util.createElement(this.template.show([parameter])));
             },
             updateItem: () => {
-                self._updateItem(parameter);
+                this._updateItem(parameter);
             }
         };
 
         return viewCommands[viewCmd]();
     };
 
-    _itemId(element) {
-        const li = $parent(element, 'ons-list-item');
-        return parseInt(li.dataset.id, 10);
-    };
-
     bind(event, handler) {
-        const self = this;
         if (event === 'itemSelect') {
-            $delegate(self.$todoList, 'ons-list-item label', 'click', function () {
-                handler({id: self._itemId(this)});
+            $delegate(this.$todoList, 'ons-list-item label', 'click', function () {
+                handler({id: ListView._itemId(this)});
             });
         } else if (event === 'itemToggle') {
-            $delegate(self.$todoList, 'ons-list-item ons-checkbox input', 'click', function () {
+            $delegate(this.$todoList, 'ons-list-item ons-checkbox input', 'click', function () {
                 handler({
-                    id: self._itemId(this),
+                    id: ListView._itemId(this),
                     completed: this.checked
                 });
             });
