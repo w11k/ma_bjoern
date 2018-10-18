@@ -1,5 +1,8 @@
 // noinspection ES6UnusedImports
 import ons from 'onsenui/esm';
+if (!ons.platform.isIOS()) {
+    ons.platform.select('android');
+}
 import 'onsenui/esm/elements/ons-navigator';
 import 'onsenui/esm/elements/ons-splitter';
 import 'onsenui/esm/elements/ons-splitter-side';
