@@ -83,7 +83,7 @@ export class ListView {
                 self._removeItem(parameter);
             },
             addItem: () => {
-                self.$todoList.appendChild(self.template.show(item));
+                self.$todoList.appendChild(window.ons._util.createElement(self.template.show([parameter])));
             },
             updateItem: () => {
                 self._updateItem(parameter);

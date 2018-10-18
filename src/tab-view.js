@@ -1,4 +1,4 @@
-import {$on, qs} from "./helper";
+import {$delegate, $on, qs} from './helper';
 
 export class TabView {
     constructor(page) {
@@ -7,7 +7,7 @@ export class TabView {
         this.$activeTab = qs('ons-tab[page="active.html"]', page);
         this.$completedTab = qs('ons-tab[page="completed.html"]', page);
         this.$openMenu = qs('[action="open-menu"]', page);
-        this.$newTodo = qs('[action="new-todo"]', page);
+        this.$page = page;
     }
 
     render(viewCmd, parameter) {
@@ -32,7 +32,7 @@ export class TabView {
         if (event === 'openMenu') {
             $on(self.$openMenu, 'click', handler);
         } else if (event === 'newTodo') {
-            $on(self.$newTodo, 'click', handler);
+            $delegate(self.$page, '[action="new-todo"]', 'click', handler);
         } else if (event === 'switchTab') {
             const tabIndices = {
                 0: 'All',

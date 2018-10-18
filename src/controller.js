@@ -1,9 +1,9 @@
-import {ListView} from "./list-view";
-import {TabView} from "./tab-view";
-import {MenuView} from "./menu-view";
-import {SplitterView} from "./splitter-view";
-import {AboutView} from "./about-view";
-import {SettingsView} from "./settings-view";
+import {AboutView} from './about-view';
+import {ListView} from './list-view';
+import {MenuView} from './menu-view';
+import {SettingsView} from './settings-view';
+import {SplitterView} from './splitter-view';
+import {TabView} from './tab-view';
 
 export class Controller {
     /**
@@ -12,12 +12,10 @@ export class Controller {
      * @constructor
      * @param {object} model The model instance
      * @param {object} template The template instance
-     * @param {object} ons onsen ui object
      */
-    constructor(model, template, ons) {
+    constructor(model, template) {
         this.model = model;
         this.template = template;
-        this.ons = ons;
         this._setActiveRoute(this._extractActiveRoute(document.location.hash));
     }
 
@@ -70,16 +68,8 @@ export class Controller {
         const self = this;
         self[pageName + 'View'] = new ListView(component, self.template);
 
-        self[pageName + 'View'].bind('itemEdit', (item) => {
-            self.editItem(item.id);
-        });
-
         self[pageName + 'View'].bind('itemSelect', (item) => {
             self.selectItem(item.id);
-        });
-
-        self[pageName + 'View'].bind('itemRemove', (item) => {
-            self.removeItem(item.id);
         });
 
         self[pageName + 'View'].bind('itemToggle', (item) => {
@@ -156,7 +146,7 @@ export class Controller {
     };
 
     selectItem(id) {
-        this.ons.openActionSheet({
+        window.ons.openActionSheet({
             cancelable: true,
             buttons: [
                 'Edit',
@@ -183,20 +173,31 @@ export class Controller {
         });
     }
 
+    createEditDialog(callback, oldTitle = '') {
+        const self = this;
+        window.ons.notification.prompt({title: oldTitle !== '' ? 'Edit Item' : 'Create Item', message: 'Title:', buttonLabels: ['Save', 'Cancel'], primaryButtonIndex: 0, cancelable: true, defaultValue: oldTitle})
+            .then((newTitle) => {
+                if (typeof newTitle !== 'string') {
+                    return;
+                } else if (newTitle.trim() === '') {
+                    return window.ons.notification.alert({message: 'No input!', cancelable: true});
+                }
+                callback(newTitle);
+            });
+    };
+
     /**
      * An event to fire whenever you want to add an item. Simply pass in the event
      * object and it'll handle the DOM insertion and saving of the new item.
      */
-    addItem(title) {
-        return console.log('event');
+    addItem() {
         const self = this;
-
-        if (title.trim() === '') {
-            return;
-        }
-
-        self.model.create(title, (item) => {
-            self.view.render('addItem', item);
+        this.createEditDialog((newTitle) => {
+            self.model.create(newTitle, (item) => {
+                self.allView.render('addItem', item);
+                self.activeView.render('addItem', item);
+                self.completedView.render('addItem', item);
+            });
         });
     };
 
@@ -204,7 +205,13 @@ export class Controller {
      * Triggers the item editing mode.
      */
     editItem(id) {
-        // TODO: open dialog
+        const self = this;
+        self.model.read(id, ([oldItem]) => {
+            this.createEditDialog((newTitle) => {
+                oldItem.title = newTitle;
+                this.updateItem(oldItem);
+            }, oldItem.title);
+        });
     };
 
     /*

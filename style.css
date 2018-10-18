@@ -6,6 +6,7 @@ ons-page:not([shown]) {
 #page_all .todo-list ons-list-item, #page_active .todo-list ons-list-item, #page_completed .todo-list ons-list-item {
     max-height: 500px;
     transition: max-height 0.15s ease-out;
+    overflow-y: hidden;
 }
 
 #page_active .todo-list .completed {

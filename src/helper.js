@@ -18,7 +18,7 @@ export function $delegate(target, selector, type, handler) {
     function dispatchEvent(event) {
         const targetElement = event.target;
         const potentialElements = qsa(selector, target);
-        const hasMatch = Array.prototype.indexOf.call(potentialElements, targetElement) >= 0;
+        const hasMatch = Array.prototype.some.call(potentialElements, (currentElement) => currentElement.contains(targetElement));
 
         if (hasMatch) {
             handler.call(targetElement, event);
