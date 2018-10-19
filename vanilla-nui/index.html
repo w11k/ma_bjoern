@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sample App</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/onsenui.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/onsen-css-components.min.css">
+</head>
+<body>
+<ons-page id="page_splitter">
+    <ons-splitter>
+        <ons-splitter-side page="menu.html" side="left" collapse swipeable></ons-splitter-side>
+        <ons-splitter-content>
+            <ons-navigator></ons-navigator>
+        </ons-splitter-content>
+    </ons-splitter>
+</ons-page>
+
+<template id="menu.html">
+    <ons-page id="page_menu">
+        <ons-list>
+            <ons-list-item action="open-home" tappable>
+                Home
+            </ons-list-item>
+            <ons-list-item action="open-settings" tappable>
+                Settings
+            </ons-list-item>
+            <ons-list-item action="open-about" tappable>
+                About
+            </ons-list-item>
+        </ons-list>
+    </ons-page>
+</template>
+
+<template id="tabbar.html">
+    <ons-page id="page_tabbar">
+        <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button action="open-menu">
+                    <ons-icon icon="ion-ios-menu, material:ion-md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+
+            <div class="center">Todos</div>
+
+            <div class="right">
+                <ons-if platform="ios other">
+                    <ons-toolbar-button action="new-todo">
+                        <ons-icon icon="ion-ios-add, material:ion-md-add"></ons-icon>
+                    </ons-toolbar-button>
+                </ons-if>
+            </div>
+        </ons-toolbar>
+        <ons-if platform="android">
+            <ons-fab position="right bottom" action="new-todo">
+                <ons-icon icon="ion-md-add"></ons-icon>
+            </ons-fab>
+        </ons-if>
+        <ons-tabbar swipeable position="auto">
+            <ons-tab page="all.html" label="All" icon="fa-list-ul, material:fa-list" badge="7" active>
+            </ons-tab>
+            <ons-tab page="active.html" label="Active" icon="ion-ios-radio-button-off, material:ion-md-square-outline">
+            </ons-tab>
+            <ons-tab page="completed.html" label="Completed"
+                     icon="ion-ios-checkmark-circle-outline, material:ion-md-checkbox-outline">
+            </ons-tab>
+        </ons-tabbar>
+    </ons-page>
+</template>
+
+<template id="all.html">
+    <ons-page id="page_all">
+        <ons-list class="todo-list"></ons-list>
+    </ons-page>
+</template>
+
+<template id="active.html">
+    <ons-page id="page_active">
+        <ons-list class="todo-list"></ons-list>
+    </ons-page>
+</template>
+
+<template id="completed.html">
+    <ons-page id="page_completed">
+        <ons-list class="todo-list"></ons-list>
+    </ons-page>
+</template>
+
+<template id="settings.html">
+    <ons-page id="page_settings">
+        <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button action="open-menu">
+                    <ons-icon icon="ion-ios-menu, material:ion-md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+
+            <div class="center">Settings</div>
+
+            <div class="right">
+            </div>
+        </ons-toolbar>
+        Test1
+    </ons-page>
+</template>
+
+<template id="about.html">
+    <ons-page id="page_about">
+        <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button action="open-menu">
+                    <ons-icon icon="ion-ios-menu, material:ion-md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+
+            <div class="center">About</div>
+
+            <div class="right">
+            </div>
+        </ons-toolbar>
+        Test2
+    </ons-page>
+</template>
+
+<script src="./js/bundle.js"></script>
+</body>
+</html>
