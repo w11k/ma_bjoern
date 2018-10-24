@@ -1,9 +1,9 @@
 {
     "dir": "ltr",
-    "lang": "de",
+    "lang": "en",
     "name": "Todo-App",
-    "short_name": "Test",
-    "description": "Dies ist eine Todo-App.",
+    "short_name": "Todo",
+    "description": "This is a Todo-App.",
     "start_url": "https://w11k.github.io/ma_bjoern/vanilla-nui/",
     "scope": "/",
     "display": "standalone",

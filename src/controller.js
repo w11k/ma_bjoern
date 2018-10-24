@@ -178,6 +178,7 @@ export class Controller {
                 this.allView.render('addItem', item);
                 this.activeView.render('addItem', item);
                 this.completedView.render('addItem', item);
+                this._updateCount();
             });
         });
     };
@@ -220,10 +221,15 @@ export class Controller {
         if (!this.allView || !this.activeView || !this.completedView) {
             command = 'setTab';
         }
-        this.tabView.render(command, pageName);
+        if (this.tabView) {
+            this.tabView.render(command, pageName);
+        }
     }
 
     _setActiveRoute(newRoute, addHistoryState = true) {
+        if (newRoute === this._activeRoute) {
+            return;
+        }
         this._activeRoute = newRoute;
         this._setPageTitle(newRoute);
         if (addHistoryState) {
@@ -249,7 +255,10 @@ export class Controller {
             case 'Active':
             case 'Completed':
                 this.splitterView.render('loadPage', 'tabbar.html')
-                    .then(() => this._closeMenu());
+                    .then(() => {
+                        this._setTabByRoute(this._activeRoute);
+                        this._closeMenu();
+                    });
                 break;
             case 'Settings':
                 this.splitterView.render('loadPage', 'settings.html')

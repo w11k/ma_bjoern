@@ -23,10 +23,12 @@ self.addEventListener('fetch', event => {
 
     let request = event.request;
     if (request.url.indexOf('#') > -1) {
-        const newUrl = request.url.split('#')[0];
+        const newUrl = request.url.split('#/')[0];
         request = new Request(newUrl);
     }
-    event.waitUntil(updateCache(request));
+    if (request.url.indexOf('http') === 0) {
+	    event.waitUntil(updateCache(request));
+	}
 
     event.respondWith(
         fetch(request).catch(error => {

@@ -33,9 +33,8 @@ export class Template {
     };
 
     show(data = []) {
-        let view = '';
-
-        for (const templateVars of data) {
+        return data.reduce((view, item) => {
+            const templateVars = Object.assign({}, item);
             templateVars.title = Template.escape(templateVars.title);
             if (templateVars.completed) {
                 templateVars.completed = 'completed';
@@ -44,8 +43,7 @@ export class Template {
                 templateVars.completed = 'active';
                 templateVars.checked = '';
             }
-            view += this.defaultTemplate(templateVars);
-        }
-        return view;
+            return view + this.defaultTemplate(templateVars);
+        }, '');
     };
 }
