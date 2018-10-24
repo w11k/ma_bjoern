@@ -1,34 +1,20 @@
-// noinspection ES6UnusedImports
-import ons from 'onsenui/esm';
-if (!ons.platform.isIOS()) {
-    ons.platform.select('android');
-}
-window.ons = ons;
+import '@polymer/iron-icons/iron-icons.js';
+import '@polymer/paper-icon-button/paper-icon-button.js';
+import '@polymer/app-layout/app-drawer-layout/app-drawer-layout.js';
+import '@polymer/app-layout/app-drawer/app-drawer.js';
+import '@polymer/app-layout/app-scroll-effects/app-scroll-effects.js';
+import '@polymer/app-layout/app-header/app-header.js';
+import '@polymer/app-layout/app-header-layout/app-header-layout.js';
+import '@polymer/app-layout/app-toolbar/app-toolbar.js';
+import '@polymer/paper-tabs/paper-tabs.js';
+import '@polymer/paper-tabs/paper-tab.js';
+import '@polymer/iron-pages/iron-pages.js';
+import {Store} from "./store";
+import {Model} from "./model";
+import {Template} from "./template";
+import {Controller} from "./controller";
+import {$on, qs} from "./helper";
 
-import 'onsenui/esm/elements/ons-action-sheet';
-import 'onsenui/esm/elements/ons-action-sheet-button';
-import 'onsenui/esm/elements/ons-alert-dialog';
-import 'onsenui/esm/elements/ons-alert-dialog-button';
-import 'onsenui/esm/elements/ons-checkbox';
-import 'onsenui/esm/elements/ons-fab';
-import 'onsenui/esm/elements/ons-icon';
-import 'onsenui/esm/elements/ons-if';
-import 'onsenui/esm/elements/ons-list';
-import 'onsenui/esm/elements/ons-list-item';
-import 'onsenui/esm/elements/ons-navigator';
-import 'onsenui/esm/elements/ons-page';
-import 'onsenui/esm/elements/ons-splitter';
-import 'onsenui/esm/elements/ons-splitter-content';
-import 'onsenui/esm/elements/ons-splitter-side';
-import 'onsenui/esm/elements/ons-tab';
-import 'onsenui/esm/elements/ons-tabbar';
-import 'onsenui/esm/elements/ons-toolbar';
-import 'onsenui/esm/elements/ons-toolbar-button';
-import {Controller} from './controller';
-import {$on} from './helper';
-import {Model} from './model';
-import {Store} from './store';
-import {Template} from './template';
 
 class Todo {
     constructor(name) {
@@ -39,13 +25,22 @@ class Todo {
     }
 }
 
-const todo = new Todo('vanilla-nui');
+const todo = new Todo('vanilla-wc');
 
-function setView(event) {
-    if (event.target.id) {
-        todo.controller.setView(event.target);
+function setView(node) {
+    if (node.id && node.id.indexOf('page_') === 0) {
+        todo.controller.setView(node);
     }
 }
 
-$on(document, 'init', setView);
+const navigator = qs('#page_navigator');
+$on(window, 'load', () => setView(navigator));
 $on(window, 'hashchange', () => todo.controller.handleManualHashChange());
+
+new MutationObserver((mutationsList, observer) => {
+    for (const mutation of mutationsList) {
+        for (const node of mutation.addedNodes) {
+            setView(node);
+        }
+    }
+}).observe(navigator, {childList: true, subtree: true});

@@ -1,23 +1,32 @@
-/*
-ons-page:not([shown]) {
-    opacity: 0;
-}*/
-
-#page_all .todo-list ons-list-item, #page_active .todo-list ons-list-item, #page_completed .todo-list ons-list-item {
-    max-height: 500px;
-    transition: max-height 0.15s ease-out;
-    overflow-y: hidden;
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #eceff1;
 }
 
-#page_active .todo-list .completed {
-    max-height: 0;
+body[unresolved] {
+    display: none;
 }
 
-#page_completed .todo-list .active {
-    max-height: 0;
+app-header {
+    background-color: #222195;
+    color: #fff;
 }
 
-ons-fab .ons-icon--ion {
-    line-height: 0 !important;
-    vertical-align: 0 !important;
+paper-icon-button {
+    --paper-icon-button-ink-color: white;
+}
+
+app-drawer-layout:not([narrow]) [drawer-toggle] {
+    display: none;
+}
+
+paper-tabs {
+    --paper-tab-ink: #222195;
+    --paper-tabs-selection-bar-color: #222195;
+    background-color: #ffffff;
+}
+
+paper-tab.iron-selected {
+    color: #222195;
 }

@@ -2,7 +2,7 @@ import {AboutView} from './about-view';
 import {ListView} from './list-view';
 import {MenuView} from './menu-view';
 import {SettingsView} from './settings-view';
-import {SplitterView} from './splitter-view';
+import {NavigatorView} from './navigator-view';
 import {TabView} from './tab-view';
 
 export class Controller {
@@ -29,8 +29,8 @@ export class Controller {
             case 'menu':
                 this._createMenuView(component);
                 break;
-            case 'splitter':
-                this._createSplitterView(component);
+            case 'navigator':
+                this._createNavigatorView(component);
                 this._setContentByRoute(this._activeRoute);
                 break;
             case 'settings':
@@ -67,16 +67,13 @@ export class Controller {
     _createTabView(component) {
         this.tabView = new TabView(component);
 
-        this.tabView.bind('openMenu', () => {
-            this._openMenu();
-        });
-
         this.tabView.bind('newTodo', () => {
             this._addItem();
         });
 
         this.tabView.bind('switchTab', (route) => {
             this._setActiveRoute(route);
+            this.tabView.render('setTab', route);
         });
     }
 
@@ -99,24 +96,16 @@ export class Controller {
         });
     }
 
-    _createSplitterView(component) {
-        this.splitterView = new SplitterView(component);
+    _createNavigatorView(component) {
+        this.navigatorView = new NavigatorView(component, ['tabbar.html', 'settings.html', 'about.html']);
     }
 
     _createSettingsView(component) {
         this.settingsView = new SettingsView(component);
-
-        this.settingsView.bind('openMenu', () => {
-            this._openMenu();
-        });
     }
 
     _createAboutView(component) {
         this.aboutView = new AboutView(component);
-
-        this.aboutView.bind('openMenu', () => {
-            this._openMenu();
-        });
     }
 
     _fillListView(page) {
@@ -126,7 +115,7 @@ export class Controller {
     };
 
     _selectItem(id) {
-        window.ons.openActionSheet({
+        /*window.ons.openActionSheet({
             cancelable: true,
             buttons: [
                 'Edit',
@@ -150,11 +139,11 @@ export class Controller {
                 default:
                     break;
             }
-        });
+        });*/
     }
 
     _createEditDialog(callback, oldTitle = '') {
-        window.ons.notification.prompt({
+        /*window.ons.notification.prompt({
             title: oldTitle !== '' ? 'Edit Item' : 'Create Item',
             message: 'Title:',
             buttonLabels: ['Save', 'Cancel'],
@@ -169,7 +158,7 @@ export class Controller {
                     return window.ons.notification.alert({message: 'No input!', cancelable: true});
                 }
                 callback(newTitle);
-            });
+            });*/
     };
 
     _addItem() {
@@ -217,12 +206,8 @@ export class Controller {
     };
 
     _setTabByRoute(pageName) {
-        let command = 'changeTab';
-        if (!this.allView || !this.activeView || !this.completedView) {
-            command = 'setTab';
-        }
         if (this.tabView) {
-            this.tabView.render(command, pageName);
+            this.tabView.render('setTab', pageName);
         }
     }
 
@@ -254,19 +239,17 @@ export class Controller {
             case 'All':
             case 'Active':
             case 'Completed':
-                this.splitterView.render('loadPage', 'tabbar.html')
-                    .then(() => {
-                        this._setTabByRoute(this._activeRoute);
-                        this._closeMenu();
-                    });
+                this.navigatorView.render('loadPage', 0);
+                this._setTabByRoute(this._activeRoute);
+                this._closeMenu();
                 break;
             case 'Settings':
-                this.splitterView.render('loadPage', 'settings.html')
-                    .then(() => this._closeMenu());
+                this.navigatorView.render('loadPage', 1);
+                this._closeMenu();
                 break;
             case 'About':
-                this.splitterView.render('loadPage', 'about.html')
-                    .then(() => this._closeMenu());
+                this.navigatorView.render('loadPage', 2);
+                this._closeMenu();
                 break;
         }
     }

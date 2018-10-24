@@ -21,138 +21,60 @@
     <meta name="msapplication-TileColor" content="#0129c7">
     <meta name="msapplication-config" content="./browserconfig.xml">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/onsenui/css/onsenui.css">
-    <link rel="stylesheet" type="text/css" href="./theme/onsen-css-components.min.css">
 </head>
-<body>
+<body unresolved>
 <noscript>This page needs JavaScript!</noscript>
-<ons-page id="page_splitter">
-    <ons-splitter>
-        <ons-splitter-side page="menu.html" side="left" collapse swipeable></ons-splitter-side>
-        <ons-splitter-content>
-            <ons-navigator></ons-navigator>
-        </ons-splitter-content>
-    </ons-splitter>
-</ons-page>
 
-<template id="menu.html">
-    <ons-page id="page_menu">
-        <ons-list>
-            <ons-list-item action="open-home" tappable>
-                Home
-            </ons-list-item>
-            <ons-list-item action="open-settings" tappable>
-                Settings
-            </ons-list-item>
-            <ons-list-item action="open-about" tappable>
-                About
-            </ons-list-item>
-        </ons-list>
-    </ons-page>
-</template>
+<app-drawer-layout>
+    <app-drawer slot="drawer">
+        <app-toolbar>Todo-App</app-toolbar>
+    </app-drawer>
+    <app-header-layout>
+        <app-header slot="header" reveals effects="waterfall">
+            <app-toolbar>
+                <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+                <div main-title>Todo-App</div>
+            </app-toolbar>
+        </app-header>
+        <iron-pages id="page_navigator"></iron-pages>
+    </app-header-layout>
+</app-drawer-layout>
 
 <template id="tabbar.html">
-    <ons-page id="page_tabbar">
-        <ons-toolbar>
-            <div class="left">
-                <ons-toolbar-button action="open-menu">
-                    <ons-icon icon="ion-ios-menu, material:ion-md-menu"></ons-icon>
-                </ons-toolbar-button>
-            </div>
-
-            <div class="center">Todos</div>
-
-            <div class="right">
-                <ons-if platform="ios other">
-                    <ons-toolbar-button action="new-todo">
-                        <ons-icon icon="ion-ios-add, material:ion-md-add"></ons-icon>
-                    </ons-toolbar-button>
-                </ons-if>
-            </div>
-        </ons-toolbar>
-        <ons-if platform="android">
-            <ons-fab position="right bottom" action="new-todo">
-                <ons-icon icon="ion-md-add"></ons-icon>
-            </ons-fab>
-        </ons-if>
-        <ons-tabbar swipeable position="auto">
-            <ons-tab page="all.html" label="All" icon="fa-list-ul, material:fa-list" badge="7" active>
-            </ons-tab>
-            <ons-tab page="active.html" label="Active" icon="ion-ios-radio-button-off, material:ion-md-square-outline">
-            </ons-tab>
-            <ons-tab page="completed.html" label="Completed"
-                     icon="ion-ios-checkmark-circle-outline, material:ion-md-checkbox-outline">
-            </ons-tab>
-        </ons-tabbar>
-    </ons-page>
-</template>
-
-<template id="all.html">
-    <ons-page id="page_all">
-        <ons-list class="todo-list"></ons-list>
-    </ons-page>
-</template>
-
-<template id="active.html">
-    <ons-page id="page_active">
-        <ons-list class="todo-list"></ons-list>
-    </ons-page>
-</template>
-
-<template id="completed.html">
-    <ons-page id="page_completed">
-        <ons-list class="todo-list"></ons-list>
-    </ons-page>
+    <div id="page_tabbar">
+        <paper-tabs>
+            <paper-tab myTabIndex="0">All</paper-tab>
+            <paper-tab myTabIndex="1">Active</paper-tab>
+            <paper-tab myTabIndex="2">Completed</paper-tab>
+        </paper-tabs>
+        <iron-pages>
+            <div>Page 1</div>
+            <div>Page 2</div>
+            <div>Page 3</div>
+        </iron-pages>
+    </div>
 </template>
 
 <template id="settings.html">
-    <ons-page id="page_settings">
-        <ons-toolbar>
-            <div class="left">
-                <ons-toolbar-button action="open-menu">
-                    <ons-icon icon="ion-ios-menu, material:ion-md-menu"></ons-icon>
-                </ons-toolbar-button>
-            </div>
-
-            <div class="center">Settings</div>
-
-            <div class="right">
-            </div>
-        </ons-toolbar>
-        Test1
-    </ons-page>
+    <div id="page_settings">Test1</div>
 </template>
 
 <template id="about.html">
-    <ons-page id="page_about">
-        <ons-toolbar>
-            <div class="left">
-                <ons-toolbar-button action="open-menu">
-                    <ons-icon icon="ion-ios-menu, material:ion-md-menu"></ons-icon>
-                </ons-toolbar-button>
-            </div>
-
-            <div class="center">About</div>
-
-            <div class="right">
-            </div>
-        </ons-toolbar>
-        Test2
-    </ons-page>
+    <div id="page_about">Test2</div>
 </template>
 
-<script>
+<!--<script>
     if (navigator.serviceWorker.controller) {
         console.log('[PWA] active service worker found, no need to register')
     } else {
         //Register the ServiceWorker
         navigator.serviceWorker.register('sw.js', {
             scope: './'
-        }).then(function(reg) {
-            console.log('[PWA] Service worker has been registered for scope:'+ reg.scope);
+        }).then(function (reg) {
+            console.log('[PWA] Service worker has been registered for scope:' + reg.scope);
         });
     }
-</script>
+</script>-->
 <script src="./dist/bundle.js"></script>
 </body>
 </html>
