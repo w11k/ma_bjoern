@@ -3,14 +3,29 @@ import {TemplateGenerator} from './helper';
 export class Template {
     constructor() {
         this.defaultTemplate = TemplateGenerator(() => `
-            <ons-list-item data-id="${id}" tappable class="${completed}">
-                <div class="left">
-                    <ons-checkbox ${checked}></ons-checkbox>
-                </div>
-                <label class="center">
-                    ${title}
-                </label>
-            </ons-list-item>
+            <vaadin-context-menu>
+                <template>
+                    <div role="listbox" class="menu_list">
+                        <paper-item data-id="0">
+                            Edit
+                            <paper-ripple></paper-ripple>
+                        </paper-item>
+                        <paper-item data-id="1">
+                            Delete
+                            <paper-ripple></paper-ripple>
+                        </paper-item>
+                        <hr>
+                        <paper-item data-id="2">
+                            Cancel
+                            <paper-ripple></paper-ripple>
+                        </paper-item>
+                    </div>
+                </template>
+                <paper-item data-id="${id}" class="${completed} border_bottom">
+                    <paper-checkbox ${checked}></paper-checkbox>
+                    <span class="label">${title}</span>
+                </paper-item>
+            </vaadin-context-menu>
         `);
     }
 

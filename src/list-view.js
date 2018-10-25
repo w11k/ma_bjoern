@@ -1,4 +1,4 @@
-import {$delegate, $parent, qs} from './helper';
+import {$delegate, $on, $parent, qs} from './helper';
 
 export class ListView {
     constructor(page, template) {
@@ -7,16 +7,20 @@ export class ListView {
     }
 
     static _itemId(element) {
-        const li = $parent(element, 'ons-list-item');
+        const li = $parent(element, 'paper-item');
         return parseInt(li.dataset.id, 10);
     };
 
     _removeItem(id) {
-        const elem = qs('[data-id="' + id + '"]', this.$todoList);
-
-        if (elem) {
-            this.$todoList.removeChild(elem);
+        const item = qs('[data-id="' + id + '"]', this.$todoList);
+        if (!item) {
+            return;
         }
+        const elem = $parent(item, 'vaadin-context-menu')
+        if (!elem) {
+            return;
+        }
+        this.$todoList.removeChild(elem);
     };
 
     _updateItem(item) {
@@ -25,48 +29,19 @@ export class ListView {
             return;
         }
 
-        const check = qs('ons-checkbox', listItem);
-        const title = qs('label.center', listItem);
+        const check = qs('paper-checkbox', listItem);
+        const title = qs('.label', listItem);
 
         if (item.completed) {
             listItem.classList.add('completed');
             listItem.classList.remove('active');
-            check.setAttribute('checked', '');
         } else {
             listItem.classList.add('active');
             listItem.classList.remove('completed');
-            check.removeAttribute('checked');
         }
 
+        check.checked = item.completed;
         title.innerHTML = item.title;
-    };
-
-    _toggleItem(id, completed) {
-        let listItem = qs('[data-id="' + id + '"]', this.$todoList);
-
-        if (!listItem) {
-            return;
-        }
-
-        // In case it was toggled from an event and not by clicking the checkbox
-        listItem.checked = completed;
-    };
-
-    _editItem(id, title) {
-        let listItem = qs('[data-id="' + id + '"]', this.$todoList);
-
-        if (!listItem) {
-            return;
-        }
-
-        listItem.className = listItem.className + ' editing';
-
-        const input = document.createElement('input');
-        input.className = 'edit';
-
-        listItem.appendChild(input);
-        input.focus();
-        input.value = title;
     };
 
     render(viewCmd, parameter) {
@@ -78,7 +53,7 @@ export class ListView {
                 this._removeItem(parameter);
             },
             addItem: () => {
-                this.$todoList.appendChild(window.ons._util.createElement(this.template.show([parameter])));
+                this.$todoList.insertAdjacentHTML('beforeend', this.template.show([parameter]));
             },
             updateItem: () => {
                 this._updateItem(parameter);
@@ -89,12 +64,8 @@ export class ListView {
     };
 
     bind(event, handler) {
-        if (event === 'itemSelect') {
-            $delegate(this.$todoList, 'ons-list-item label', 'click', function () {
-                handler({id: ListView._itemId(this)});
-            });
-        } else if (event === 'itemToggle') {
-            $delegate(this.$todoList, 'ons-list-item ons-checkbox input', 'click', function () {
+        if (event === 'itemToggle') {
+            $delegate(this.$todoList, 'paper-item paper-checkbox', 'change', function () {
                 handler({
                     id: ListView._itemId(this),
                     completed: this.checked

@@ -34,6 +34,9 @@ export function $delegate(target, selector, type, handler) {
 // Find the element's parent with the given tag name:
 // $parent(qs('a'), 'div');
 export function $parent(element, tagName) {
+    if (element.tagName.toLowerCase() === tagName.toLowerCase()) {
+        return element;
+    }
     if (!element.parentNode) {
         return;
     }

@@ -4,12 +4,33 @@ import {MenuView} from './menu-view';
 import {SettingsView} from './settings-view';
 import {NavigatorView} from './navigator-view';
 import {TabView} from './tab-view';
+import {$delegate, $parent} from "./helper";
 
 export class Controller {
     constructor(model, template) {
         this.model = model;
         this.template = template;
         this._setActiveRoute(this._extractActiveRoute(document.location.hash));
+
+        $delegate(document, 'vaadin-context-menu-overlay', 'click', (event) => {
+            if (event.target.tagName.toLowerCase() !== 'paper-item') {
+                return;
+            }
+            const button = ListView._itemId(event.target);
+            const menu = $parent(event.target, 'vaadin-context-menu-overlay');
+            const id = ListView._itemId(menu.model.target);
+            switch (button) {
+                case 0:
+                    this._editItem(id);
+                    break;
+                case 1:
+                    this._removeItem(id);
+                    break;
+                case 2:
+                default:
+                    return;
+            }
+        });
     }
 
     setView(component) {
@@ -54,10 +75,6 @@ export class Controller {
 
     _createListView(pageName, component) {
         this[pageName + 'View'] = new ListView(component, this.template);
-
-        this[pageName + 'View'].bind('itemSelect', (item) => {
-            this._selectItem(item.id);
-        });
 
         this[pageName + 'View'].bind('itemToggle', (item) => {
             this._updateItem(item);
@@ -114,51 +131,16 @@ export class Controller {
         });
     };
 
-    _selectItem(id) {
-        /*window.ons.openActionSheet({
-            cancelable: true,
-            buttons: [
-                'Edit',
-                {
-                    label: 'Delete',
-                    modifier: 'destructive'
-                },
-                {
-                    label: 'Cancel',
-                    icon: 'md-close'
-                }
-            ]
-        }).then((index) => {
-            switch (index) {
-                case 0:
-                    this._editItem(id);
-                    break;
-                case 1:
-                    this._removeItem(id);
-                    break;
-                default:
-                    break;
-            }
-        });*/
-    }
-
     _createEditDialog(callback, oldTitle = '') {
-        /*window.ons.notification.prompt({
-            title: oldTitle !== '' ? 'Edit Item' : 'Create Item',
-            message: 'Title:',
-            buttonLabels: ['Save', 'Cancel'],
-            primaryButtonIndex: 0,
-            cancelable: true,
-            defaultValue: oldTitle
-        })
-            .then((newTitle) => {
-                if (typeof newTitle !== 'string') {
-                    return;
-                } else if (newTitle.trim() === '') {
-                    return window.ons.notification.alert({message: 'No input!', cancelable: true});
-                }
-                callback(newTitle);
-            });*/
+        setTimeout(() => {
+            const newTitle = window.prompt(oldTitle !== '' ? 'Edit Item' : 'Create Item', oldTitle);
+            if (typeof newTitle !== 'string') {
+                return;
+            } else if (newTitle.trim() === '') {
+                return window.alert('No input!');
+            }
+            callback(newTitle);
+        }, 300);
     };
 
     _addItem() {

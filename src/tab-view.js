@@ -3,6 +3,7 @@ import {$delegate, $on, qs} from './helper';
 export class TabView {
     constructor(page) {
         this.$tabBar = qs('paper-tabs', page);
+        this.$tabContent = qs('iron-pages', page);
         this.$allTab = qs('ons-tab[page="all.html"]', page);
         this.$activeTab = qs('ons-tab[page="active.html"]', page);
         this.$completedTab = qs('ons-tab[page="completed.html"]', page);
@@ -42,6 +43,7 @@ export class TabView {
             Completed: 2
         };
         this.$tabBar.selectIndex(tabIndices[currentPage] || 0);
+        this.$tabContent.selectIndex(tabIndices[currentPage] || 0);
     };
 
     _setTabBadges(itemCounts) {

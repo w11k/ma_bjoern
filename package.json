@@ -14,8 +14,14 @@
     "@polymer/app-layout": "^3.0.1",
     "@polymer/iron-icons": "^3.0.1",
     "@polymer/iron-pages": "^3.0.1",
+    "@polymer/paper-checkbox": "^3.1.0",
+    "@polymer/paper-fab": "^3.0.1",
     "@polymer/paper-icon-button": "^3.0.1",
-    "@polymer/paper-tabs": "^3.0.1"
+    "@polymer/paper-item": "^3.0.1",
+    "@polymer/paper-ripple": "^3.0.1",
+    "@polymer/paper-tabs": "^3.0.1",
+    "@vaadin/vaadin-context-menu": "^4.2.0",
+    "carbon-copy": "^0.1.43"
   },
   "devDependencies": {
     "babel-runtime": "^6.26.0",

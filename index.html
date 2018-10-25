@@ -21,13 +21,32 @@
     <meta name="msapplication-TileColor" content="#0129c7">
     <meta name="msapplication-config" content="./browserconfig.xml">
     <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="//unpkg.com/@webcomponents/webcomponentsjs@2.0.0/webcomponents-loader.js"></script>
 </head>
 <body unresolved>
 <noscript>This page needs JavaScript!</noscript>
 
 <app-drawer-layout>
-    <app-drawer slot="drawer">
-        <app-toolbar>Todo-App</app-toolbar>
+    <app-drawer slot="drawer" swipe-open="true">
+        <div id="page_menu">
+            <app-toolbar>Todo-App</app-toolbar>
+
+            <div role="listbox">
+                <paper-item action="open-home" class="border_bottom">
+                    Home
+                    <paper-ripple></paper-ripple>
+                </paper-item>
+                <paper-item action="open-settings" class="border_bottom">
+                    Settings
+                    <paper-ripple></paper-ripple>
+                </paper-item>
+                <paper-item action="open-about" class="border_bottom">
+                    About
+                    <paper-ripple></paper-ripple>
+                </paper-item>
+            </div>
+        </div>
     </app-drawer>
     <app-header-layout>
         <app-header slot="header" reveals effects="waterfall">
@@ -42,16 +61,35 @@
 
 <template id="tabbar.html">
     <div id="page_tabbar">
-        <paper-tabs>
+        <paper-tabs selected="0">
             <paper-tab myTabIndex="0">All</paper-tab>
             <paper-tab myTabIndex="1">Active</paper-tab>
             <paper-tab myTabIndex="2">Completed</paper-tab>
         </paper-tabs>
-        <iron-pages>
-            <div>Page 1</div>
-            <div>Page 2</div>
-            <div>Page 3</div>
+        <iron-pages selected="0">
+            <b-c-c copy noshadow from="/all.html"></b-c-c>
+            <b-c-c copy noshadow from="/active.html"></b-c-c>
+            <b-c-c copy noshadow from="/completed.html"></b-c-c>
         </iron-pages>
+        <paper-fab icon="add" class="bottom_right" action="new-todo"></paper-fab>
+    </div>
+</template>
+
+<template id="all.html">
+    <div id="page_all">
+        <div class="todo-list with_separator"></div>
+    </div>
+</template>
+
+<template id="active.html">
+    <div id="page_active">
+        <div class="todo-list with_separator"></div>
+    </div>
+</template>
+
+<template id="completed.html">
+    <div id="page_completed">
+        <div class="todo-list"></div>
     </div>
 </template>
 
@@ -63,7 +101,7 @@
     <div id="page_about">Test2</div>
 </template>
 
-<!--<script>
+<script>
     if (navigator.serviceWorker.controller) {
         console.log('[PWA] active service worker found, no need to register')
     } else {
@@ -74,7 +112,7 @@
             console.log('[PWA] Service worker has been registered for scope:' + reg.scope);
         });
     }
-</script>-->
+</script>
 <script src="./dist/bundle.js"></script>
 </body>
 </html>

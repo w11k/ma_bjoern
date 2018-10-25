@@ -11,6 +11,7 @@ body[unresolved] {
 app-header {
     background-color: #222195;
     color: #fff;
+    box-shadow: -60px -60px 0 60px #222195;
 }
 
 paper-icon-button {
@@ -29,4 +30,58 @@ paper-tabs {
 
 paper-tab.iron-selected {
     color: #222195;
+}
+
+paper-item:before {
+    display: none !important;
+}
+
+#page_tabbar paper-fab {
+    --paper-fab-keyboard-focus-background: var(--accent-color);
+}
+
+#page_navigator {
+    min-height: calc(100vh - 64px);
+}
+
+paper-fab.bottom_right {
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+    left: auto;
+    position: absolute;
+}
+
+.todo-list {
+    background-color: #ffffff;
+}
+
+paper-tabs {
+    box-shadow: 0 4px 2px -2px rgba(0,0,0,.14), 0 3px 5px -2px rgba(0,0,0,.12), 0 5px 1px -4px rgba(0,0,0,.2);
+    position: relative;
+}
+
+paper-tabs, paper-item.border_bottom {
+    border-bottom: 1px solid #eee;
+}
+
+app-drawer {
+    border-right: 1px solid #eee;
+}
+
+#page_active .todo-list .completed {
+    display: none;
+}
+
+#page_completed .todo-list .active {
+    display: none;
+}
+
+vaadin-context-menu-overlay paper-item {
+    --paper-item-min-height: 32px;
+}
+
+vaadin-context-menu-overlay paper-item,
+#page_menu paper-item {
+    cursor: pointer;
 }

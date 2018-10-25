@@ -1,14 +1,20 @@
-import '@polymer/iron-icons/iron-icons.js';
-import '@polymer/paper-icon-button/paper-icon-button.js';
-import '@polymer/app-layout/app-drawer-layout/app-drawer-layout.js';
-import '@polymer/app-layout/app-drawer/app-drawer.js';
-import '@polymer/app-layout/app-scroll-effects/app-scroll-effects.js';
-import '@polymer/app-layout/app-header/app-header.js';
-import '@polymer/app-layout/app-header-layout/app-header-layout.js';
-import '@polymer/app-layout/app-toolbar/app-toolbar.js';
-import '@polymer/paper-tabs/paper-tabs.js';
-import '@polymer/paper-tabs/paper-tab.js';
-import '@polymer/iron-pages/iron-pages.js';
+import '@polymer/iron-icons/iron-icons';
+import '@polymer/paper-icon-button/paper-icon-button';
+import '@polymer/app-layout/app-drawer-layout/app-drawer-layout';
+import '@polymer/app-layout/app-drawer/app-drawer';
+import '@polymer/app-layout/app-scroll-effects/app-scroll-effects';
+import '@polymer/app-layout/app-header/app-header';
+import '@polymer/app-layout/app-header-layout/app-header-layout';
+import '@polymer/app-layout/app-toolbar/app-toolbar';
+import '@polymer/paper-tabs/paper-tabs';
+import '@polymer/paper-tabs/paper-tab';
+import '@polymer/paper-fab/paper-fab';
+import '@polymer/paper-item/paper-item';
+import '@polymer/paper-checkbox/paper-checkbox';
+import '@polymer/paper-ripple/paper-ripple';
+import '@polymer/iron-pages/iron-pages';
+import 'carbon-copy/b-c-c';
+import '@vaadin/vaadin-context-menu/vaadin-context-menu';
 import {Store} from "./store";
 import {Model} from "./model";
 import {Template} from "./template";
@@ -33,8 +39,10 @@ function setView(node) {
     }
 }
 
-const navigator = qs('#page_navigator');
-$on(window, 'load', () => setView(navigator));
+$on(window, 'WebComponentsReady', () => {
+    setView(qs('#page_menu'));
+    setView(qs('#page_navigator'));
+});
 $on(window, 'hashchange', () => todo.controller.handleManualHashChange());
 
 new MutationObserver((mutationsList, observer) => {
@@ -43,4 +51,4 @@ new MutationObserver((mutationsList, observer) => {
             setView(node);
         }
     }
-}).observe(navigator, {childList: true, subtree: true});
+}).observe(document, {childList: true, subtree: true});
