@@ -41,34 +41,6 @@ export class ListView {
         title.innerHTML = item.title;
     };
 
-    _toggleItem(id, completed) {
-        let listItem = qs('[data-id="' + id + '"]', this.$todoList);
-
-        if (!listItem) {
-            return;
-        }
-
-        // In case it was toggled from an event and not by clicking the checkbox
-        listItem.checked = completed;
-    };
-
-    _editItem(id, title) {
-        let listItem = qs('[data-id="' + id + '"]', this.$todoList);
-
-        if (!listItem) {
-            return;
-        }
-
-        listItem.className = listItem.className + ' editing';
-
-        const input = document.createElement('input');
-        input.className = 'edit';
-
-        listItem.appendChild(input);
-        input.focus();
-        input.value = title;
-    };
-
     render(viewCmd, parameter) {
         const viewCommands = {
             showItems: () => {
