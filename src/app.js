@@ -8,6 +8,7 @@ import '@polymer/app-layout/app-header-layout/app-header-layout';
 import '@polymer/app-layout/app-toolbar/app-toolbar';
 import '@polymer/paper-tabs/paper-tabs';
 import '@polymer/paper-tabs/paper-tab';
+import '@polymer/paper-badge/paper-badge';
 import '@polymer/paper-fab/paper-fab';
 import '@polymer/paper-item/paper-item';
 import '@polymer/paper-checkbox/paper-checkbox';

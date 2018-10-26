@@ -57,7 +57,7 @@ paper-fab.bottom_right {
 }
 
 paper-tabs {
-    box-shadow: 0 4px 2px -2px rgba(0,0,0,.14), 0 3px 5px -2px rgba(0,0,0,.12), 0 5px 1px -4px rgba(0,0,0,.2);
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, .14), 0 3px 5px -2px rgba(0, 0, 0, .12), 0 5px 1px -4px rgba(0, 0, 0, .2);
     position: relative;
 }
 
@@ -84,4 +84,13 @@ vaadin-context-menu-overlay paper-item {
 vaadin-context-menu-overlay paper-item,
 #page_menu paper-item {
     cursor: pointer;
+}
+
+paper-tab {
+    --layout-horizontal_-_flex-direction: column;
+    font-size: x-small;
+    --paper-badge-width: 15px;
+    --paper-badge-height: 15px;
+    --paper-badge-margin-bottom: -4px;
+    --paper-badge-margin-left: -4px;
 }

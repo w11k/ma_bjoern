@@ -62,9 +62,21 @@
 <template id="tabbar.html">
     <div id="page_tabbar">
         <paper-tabs selected="0">
-            <paper-tab myTabIndex="0">All</paper-tab>
-            <paper-tab myTabIndex="1">Active</paper-tab>
-            <paper-tab myTabIndex="2">Completed</paper-tab>
+            <paper-tab mytabindex="0">
+                <iron-icon icon="list" id="tab_all"></iron-icon>
+                <span>All</span>
+                <paper-badge label="0" for="tab_all"></paper-badge>
+            </paper-tab>
+            <paper-tab mytabindex="1">
+                <iron-icon icon="check-box-outline-blank" id="tab_active"></iron-icon>
+                <span>Active</span>
+                <paper-badge label="0" for="tab_active"></paper-badge>
+            </paper-tab>
+            <paper-tab mytabindex="2">
+                <iron-icon icon="check-box" id="tab_completed"></iron-icon>
+                <span>Completed</span>
+                <paper-badge label="0" for="tab_completed"></paper-badge>
+            </paper-tab>
         </paper-tabs>
         <iron-pages selected="0">
             <b-c-c copy noshadow from="/all.html"></b-c-c>

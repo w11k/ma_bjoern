@@ -4,9 +4,9 @@ export class TabView {
     constructor(page) {
         this.$tabBar = qs('paper-tabs', page);
         this.$tabContent = qs('iron-pages', page);
-        this.$allTab = qs('ons-tab[page="all.html"]', page);
-        this.$activeTab = qs('ons-tab[page="active.html"]', page);
-        this.$completedTab = qs('ons-tab[page="completed.html"]', page);
+        this.$allBadge = qs('paper-tab[mytabindex="0"] paper-badge', page);
+        this.$activeBadge = qs('paper-tab[mytabindex="1"] paper-badge', page);
+        this.$completedBadge = qs('paper-tab[mytabindex="2"] paper-badge', page);
         this.$page = page;
     }
 
@@ -47,9 +47,8 @@ export class TabView {
     };
 
     _setTabBadges(itemCounts) {
-        // TODO
-        /*this.$allTab.setAttribute('badge', itemCounts.total);
-        this.$activeTab.setAttribute('badge', itemCounts.active);
-        this.$completedTab.setAttribute('badge', itemCounts.completed);*/
+        this.$allBadge.setAttribute('label', itemCounts.total);
+        this.$activeBadge.setAttribute('label', itemCounts.active);
+        this.$completedBadge.setAttribute('label', itemCounts.completed);
     }
 }
