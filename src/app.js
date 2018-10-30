@@ -43,24 +43,7 @@ class RootElement extends HTMLElement {
             <link rel="stylesheet" type="text/css" href="./style.css">
             <style>${styles}</style>
             <app-drawer-layout>
-                <my-app-drawer slot="drawer" swipe-open="true" id="page_menu">
-                    <app-toolbar>Todo-App</app-toolbar>
-            
-                    <div role="listbox">
-                        <paper-item action="open-home" class="border_bottom">
-                            Home
-                            <paper-ripple></paper-ripple>
-                        </paper-item>
-                        <paper-item action="open-settings" class="border_bottom">
-                            Settings
-                            <paper-ripple></paper-ripple>
-                        </paper-item>
-                        <paper-item action="open-about" class="border_bottom">
-                            About
-                            <paper-ripple></paper-ripple>
-                        </paper-item>
-                    </div>
-                </my-app-drawer>
+                <my-app-drawer slot="drawer" swipe-open="true" id="page_menu"></my-app-drawer>
                 <app-header-layout>
                     <app-header slot="header" reveals effects="waterfall">
                         <app-toolbar>

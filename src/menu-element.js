@@ -6,6 +6,24 @@ const AppDrawerElement = customElements.get('app-drawer');
 class MenuElement extends AppDrawerElement {
     constructor() {
         super();
+        this.innerHTML = `
+            <app-toolbar>Todo-App</app-toolbar>
+    
+            <div role="listbox">
+                <paper-item action="open-home" class="border_bottom">
+                    Home
+                    <paper-ripple></paper-ripple>
+                </paper-item>
+                <paper-item action="open-settings" class="border_bottom">
+                    Settings
+                    <paper-ripple></paper-ripple>
+                </paper-item>
+                <paper-item action="open-about" class="border_bottom">
+                    About
+                    <paper-ripple></paper-ripple>
+                </paper-item>
+            </div>
+        `;
 
         this.$openHome = qs('[action="open-home"]', this);
         this.$openSettings = qs('[action="open-settings"]', this);
@@ -18,7 +36,6 @@ class MenuElement extends AppDrawerElement {
 
     ready() {
         super.ready();
-
         this.dispatchEvent(new CustomEvent('init', {bubbles: true, composed: true, detail: this}));
     }
 
