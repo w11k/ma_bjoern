@@ -1,7 +1,7 @@
 import '@polymer/iron-icons/iron-icons';
 import '@polymer/paper-icon-button/paper-icon-button';
 import '@polymer/app-layout/app-drawer-layout/app-drawer-layout';
-import '@polymer/app-layout/app-drawer/app-drawer';
+import './menu-element';
 import '@polymer/app-layout/app-scroll-effects/app-scroll-effects';
 import '@polymer/app-layout/app-header/app-header';
 import '@polymer/app-layout/app-header-layout/app-header-layout';
@@ -22,34 +22,77 @@ import {Template} from "./template";
 import {Controller} from "./controller";
 import {$on, qs} from "./helper";
 
+class RootElement extends HTMLElement {
+    constructor() {
+        super();
 
-class Todo {
-    constructor(name) {
-        this.storage = new Store(name);
+        this.storage = new Store('vanilla-wc');
         this.model = new Model(this.storage);
         this.template = new Template();
         this.controller = new Controller(this.model, this.template);
+
+        $on(document, 'init', (event) => {
+            this.setView(event.detail);
+        });
+        $on(window, 'hashchange', () => this.controller.handleManualHashChange());
+
+        const shadowRoot = this.attachShadow({mode: 'open'});
+        const styles = `
+        `;
+        shadowRoot.innerHTML = `
+            <link rel="stylesheet" type="text/css" href="./style.css">
+            <style>${styles}</style>
+            <app-drawer-layout>
+                <my-app-drawer slot="drawer" swipe-open="true" id="page_menu">
+                    <app-toolbar>Todo-App</app-toolbar>
+            
+                    <div role="listbox">
+                        <paper-item action="open-home" class="border_bottom">
+                            Home
+                            <paper-ripple></paper-ripple>
+                        </paper-item>
+                        <paper-item action="open-settings" class="border_bottom">
+                            Settings
+                            <paper-ripple></paper-ripple>
+                        </paper-item>
+                        <paper-item action="open-about" class="border_bottom">
+                            About
+                            <paper-ripple></paper-ripple>
+                        </paper-item>
+                    </div>
+                </my-app-drawer>
+                <app-header-layout>
+                    <app-header slot="header" reveals effects="waterfall">
+                        <app-toolbar>
+                            <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+                            <div main-title>Todo-App</div>
+                        </app-toolbar>
+                    </app-header>
+                    <iron-pages id="page_navigator"></iron-pages>
+                </app-header-layout>
+            </app-drawer-layout>
+        `;
+
+
+        // TODO: remove
+        new MutationObserver((mutationsList, observer) => {
+            for (const mutation of mutationsList) {
+                for (const node of mutation.addedNodes) {
+                    this.setView(node);
+                }
+            }
+        }).observe(shadowRoot, {childList: true, subtree: true});
+        this.setView(qs('#page_navigator', shadowRoot));
     }
-}
 
-const todo = new Todo('vanilla-wc');
 
-function setView(node) {
-    if (node.id && node.id.indexOf('page_') === 0) {
-        todo.controller.setView(node);
+    setView(node) {
+        if (node.id && node.id.indexOf('page_') === 0) {
+            this.controller.registerElement(node);
+        }
     }
 }
 
 $on(window, 'WebComponentsReady', () => {
-    setView(qs('#page_menu'));
-    setView(qs('#page_navigator'));
+    customElements.define('my-app-root', RootElement);
 });
-$on(window, 'hashchange', () => todo.controller.handleManualHashChange());
-
-new MutationObserver((mutationsList, observer) => {
-    for (const mutation of mutationsList) {
-        for (const node of mutation.addedNodes) {
-            setView(node);
-        }
-    }
-}).observe(document, {childList: true, subtree: true});

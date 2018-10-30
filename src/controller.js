@@ -1,6 +1,5 @@
 import {AboutView} from './about-view';
 import {ListView} from './list-view';
-import {MenuView} from './menu-view';
 import {SettingsView} from './settings-view';
 import {NavigatorView} from './navigator-view';
 import {TabView} from './tab-view';
@@ -33,7 +32,7 @@ export class Controller {
         });
     }
 
-    setView(component) {
+    registerElement(component) {
         const pageName = component.id.split('_')[1];
         switch (pageName) {
             case 'all':
@@ -95,7 +94,7 @@ export class Controller {
     }
 
     _createMenuView(component) {
-        this.menuView = new MenuView(component);
+        this.menuView = component;
 
         this.menuView.bind('openHome', () => {
             this._setActiveRoute('All');

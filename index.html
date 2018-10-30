@@ -20,44 +20,14 @@
 
     <meta name="msapplication-TileColor" content="#0129c7">
     <meta name="msapplication-config" content="./browserconfig.xml">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="./style.css">
 
     <script src="//unpkg.com/@webcomponents/webcomponentsjs@2.0.0/webcomponents-loader.js"></script>
 </head>
 <body unresolved>
 <noscript>This page needs JavaScript!</noscript>
 
-<app-drawer-layout>
-    <app-drawer slot="drawer" swipe-open="true">
-        <div id="page_menu">
-            <app-toolbar>Todo-App</app-toolbar>
-
-            <div role="listbox">
-                <paper-item action="open-home" class="border_bottom">
-                    Home
-                    <paper-ripple></paper-ripple>
-                </paper-item>
-                <paper-item action="open-settings" class="border_bottom">
-                    Settings
-                    <paper-ripple></paper-ripple>
-                </paper-item>
-                <paper-item action="open-about" class="border_bottom">
-                    About
-                    <paper-ripple></paper-ripple>
-                </paper-item>
-            </div>
-        </div>
-    </app-drawer>
-    <app-header-layout>
-        <app-header slot="header" reveals effects="waterfall">
-            <app-toolbar>
-                <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
-                <div main-title>Todo-App</div>
-            </app-toolbar>
-        </app-header>
-        <iron-pages id="page_navigator"></iron-pages>
-    </app-header-layout>
-</app-drawer-layout>
+<my-app-root></my-app-root>
 
 <template id="tabbar.html">
     <div id="page_tabbar">
