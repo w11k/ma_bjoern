@@ -1,12 +1,31 @@
-import '@polymer/app-layout/app-drawer/app-drawer';
+import '@polymer/app-layout/app-toolbar/app-toolbar';
+import '@polymer/paper-item/paper-item';
+import '@polymer/paper-ripple/paper-ripple';
 import {$on, qs} from "./helper";
 
-const AppDrawerElement = customElements.get('app-drawer');
-
-class MenuElement extends AppDrawerElement {
+class MenuElement extends HTMLElement {
     constructor() {
         super();
-        this.innerHTML = `
+        this.attachShadow({mode: 'open'});
+        const styles = `
+            :host {
+                display: block;
+            }
+            
+            paper-item:before {
+                display: none !important;
+            }
+            
+            paper-item.border_bottom {
+                border-bottom: 1px solid #eee;
+            }
+            
+            paper-item {
+                cursor: pointer;
+            }
+        `;
+        this.shadowRoot.innerHTML = `
+            <style>${styles}</style>
             <app-toolbar>Todo-App</app-toolbar>
     
             <div role="listbox">
@@ -25,17 +44,16 @@ class MenuElement extends AppDrawerElement {
             </div>
         `;
 
-        this.$openHome = qs('[action="open-home"]', this);
-        this.$openSettings = qs('[action="open-settings"]', this);
-        this.$openAbout = qs('[action="open-about"]', this);
+        this.$openHome = qs('[action="open-home"]', this.shadowRoot);
+        this.$openSettings = qs('[action="open-settings"]', this.shadowRoot);
+        this.$openAbout = qs('[action="open-about"]', this.shadowRoot);
     }
 
     static get is() {
-        return 'my-app-drawer';
+        return 'my-menu';
     }
 
-    ready() {
-        super.ready();
+    connectedCallback() {
         this.dispatchEvent(new CustomEvent('init', {bubbles: true, composed: true, detail: this}));
     }
 
@@ -63,12 +81,12 @@ class MenuElement extends AppDrawerElement {
     };
 
     _openMenu() {
-        this.open();
+        this.parentNode.open();
     }
 
     _closeMenu() {
-        if (this.opened && !this.persistent) {
-            this.close();
+        if (this.parentNode.opened && !this.parentNode.persistent) {
+            this.parentNode.close();
         }
     }
 }

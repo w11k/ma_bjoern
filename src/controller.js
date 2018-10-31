@@ -1,9 +1,4 @@
-import {AboutView} from './about-view';
-import {ListView} from './list-view';
-import {SettingsView} from './settings-view';
-import {NavigatorView} from './navigator-view';
-import {TabView} from './tab-view';
-import {$delegate, $parent} from "./helper";
+import {$delegate, $parent, getItemId} from "./helper";
 
 export class Controller {
     constructor(model, template) {
@@ -12,12 +7,12 @@ export class Controller {
         this._setActiveRoute(this._extractActiveRoute(document.location.hash));
 
         $delegate(document, 'vaadin-context-menu-overlay', 'click', (event) => {
-            if (event.target.tagName.toLowerCase() !== 'paper-item') {
+            const menu = $parent(event.target, 'vaadin-context-menu-overlay');
+            if (!menu.content.activeElement || menu.content.activeElement.tagName.toLowerCase() !== 'paper-item') {
                 return;
             }
-            const button = ListView._itemId(event.target);
-            const menu = $parent(event.target, 'vaadin-context-menu-overlay');
-            const id = ListView._itemId(menu.model.target);
+            const button = getItemId(menu.content.activeElement);
+            const id = getItemId(menu.model.target);
             switch (button) {
                 case 0:
                     this._editItem(id);
@@ -42,7 +37,7 @@ export class Controller {
                 this._fillListView(pageName);
                 this._setTabByRoute(this._activeRoute);
                 break;
-            case 'tabbar':
+            case 'tabs':
                 this._createTabView(component);
                 this._updateCount();
                 break;
@@ -53,12 +48,12 @@ export class Controller {
                 this._createNavigatorView(component);
                 this._setContentByRoute(this._activeRoute);
                 break;
-            case 'settings':
+            /*case 'settings':
                 this._createSettingsView(component);
                 break;
             case 'about':
                 this._createAboutView(component);
-                break;
+                break;*/
             default:
                 break;
         }
@@ -73,7 +68,8 @@ export class Controller {
     }
 
     _createListView(pageName, component) {
-        this[pageName + 'View'] = new ListView(component, this.template);
+        component.template = this.template;
+        this[pageName + 'View'] = component;
 
         this[pageName + 'View'].bind('itemToggle', (item) => {
             this._updateItem(item);
@@ -81,7 +77,7 @@ export class Controller {
     }
 
     _createTabView(component) {
-        this.tabView = new TabView(component);
+        this.tabView = component;
 
         this.tabView.bind('newTodo', () => {
             this._addItem();
@@ -113,15 +109,7 @@ export class Controller {
     }
 
     _createNavigatorView(component) {
-        this.navigatorView = new NavigatorView(component, ['tabbar.html', 'settings.html', 'about.html']);
-    }
-
-    _createSettingsView(component) {
-        this.settingsView = new SettingsView(component);
-    }
-
-    _createAboutView(component) {
-        this.aboutView = new AboutView(component);
+        this.navigatorView = component;
     }
 
     _fillListView(page) {

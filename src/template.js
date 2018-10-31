@@ -1,3 +1,6 @@
+import '@polymer/paper-checkbox/paper-checkbox';
+import '@polymer/paper-item/paper-item';
+import '@polymer/paper-ripple/paper-ripple';
 import {TemplateGenerator} from './helper';
 
 export class Template {
@@ -5,6 +8,12 @@ export class Template {
         this.defaultTemplate = TemplateGenerator(() => `
             <vaadin-context-menu>
                 <template>
+                    <style>
+                        paper-item {
+                            --paper-item-min-height: 32px;
+                            cursor: pointer;
+                        }
+                    </style>
                     <div role="listbox" class="menu_list">
                         <paper-item data-id="0">
                             Edit

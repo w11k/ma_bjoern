@@ -22,7 +22,7 @@ self.addEventListener('fetch', event => {
     });
 
     let request = event.request;
-    if (request.url.indexOf('#') > -1) {
+    if (request.url.indexOf('/#/') > -1) {
         const newUrl = request.url.split('#/')[0];
         request = new Request(newUrl);
     }

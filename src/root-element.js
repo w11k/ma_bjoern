@@ -1,26 +1,19 @@
+import '@polymer/app-layout/app-drawer-layout/app-drawer-layout';
+import '@polymer/app-layout/app-drawer/app-drawer';
+import '@polymer/app-layout/app-header-layout/app-header-layout';
+import '@polymer/app-layout/app-header/app-header';
+import '@polymer/app-layout/app-scroll-effects/app-scroll-effects';
+import '@polymer/app-layout/app-toolbar/app-toolbar';
 import '@polymer/iron-icons/iron-icons';
 import '@polymer/paper-icon-button/paper-icon-button';
-import '@polymer/app-layout/app-drawer-layout/app-drawer-layout';
-import './menu-element';
-import '@polymer/app-layout/app-scroll-effects/app-scroll-effects';
-import '@polymer/app-layout/app-header/app-header';
-import '@polymer/app-layout/app-header-layout/app-header-layout';
-import '@polymer/app-layout/app-toolbar/app-toolbar';
-import '@polymer/paper-tabs/paper-tabs';
-import '@polymer/paper-tabs/paper-tab';
-import '@polymer/paper-badge/paper-badge';
-import '@polymer/paper-fab/paper-fab';
-import '@polymer/paper-item/paper-item';
-import '@polymer/paper-checkbox/paper-checkbox';
-import '@polymer/paper-ripple/paper-ripple';
-import '@polymer/iron-pages/iron-pages';
-import 'carbon-copy/b-c-c';
 import '@vaadin/vaadin-context-menu/vaadin-context-menu';
-import {Store} from "./store";
-import {Model} from "./model";
-import {Template} from "./template";
 import {Controller} from "./controller";
-import {$on, qs} from "./helper";
+import {$on} from "./helper";
+import './menu-element';
+import {Model} from "./model";
+import './navigator-element';
+import {Store} from "./store";
+import {Template} from "./template";
 
 class RootElement extends HTMLElement {
     constructor() {
@@ -36,14 +29,42 @@ class RootElement extends HTMLElement {
         });
         $on(window, 'hashchange', () => this.controller.handleManualHashChange());
 
-        const shadowRoot = this.attachShadow({mode: 'open'});
+        this.attachShadow({mode: 'open'});
         const styles = `
+            :host {
+                display: block;
+                height: 100%;
+            }
+            
+            app-header {
+                background-color: #222195;
+                color: #fff;
+                box-shadow: -60px -60px 0 60px #222195;
+            }
+
+            paper-icon-button {
+                --paper-icon-button-ink-color: white;
+            }
+            
+            app-drawer-layout, app-header-layout {
+                height: 100%;
+            }
+            
+            app-drawer-layout:not([narrow]) [drawer-toggle] {
+                display: none;
+            }
+
+            app-drawer {
+                border-right: 1px solid #eee;
+            }
         `;
-        shadowRoot.innerHTML = `
+        this.shadowRoot.innerHTML = `
             <link rel="stylesheet" type="text/css" href="./style.css">
             <style>${styles}</style>
             <app-drawer-layout>
-                <my-app-drawer slot="drawer" swipe-open="true" id="page_menu"></my-app-drawer>
+                <app-drawer slot="drawer" swipe-open="true">
+                    <my-menu id="page_menu"></my-menu>
+                </app-drawer>
                 <app-header-layout>
                     <app-header slot="header" reveals effects="waterfall">
                         <app-toolbar>
@@ -51,21 +72,10 @@ class RootElement extends HTMLElement {
                             <div main-title>Todo-App</div>
                         </app-toolbar>
                     </app-header>
-                    <iron-pages id="page_navigator"></iron-pages>
+                    <my-navigator id="page_navigator"></my-navigator>
                 </app-header-layout>
             </app-drawer-layout>
         `;
-
-
-        // TODO: remove
-        new MutationObserver((mutationsList, observer) => {
-            for (const mutation of mutationsList) {
-                for (const node of mutation.addedNodes) {
-                    this.setView(node);
-                }
-            }
-        }).observe(shadowRoot, {childList: true, subtree: true});
-        this.setView(qs('#page_navigator', shadowRoot));
     }
 
 

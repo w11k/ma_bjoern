@@ -1,17 +1,19 @@
 {
-  "name": "vanilla-nui",
+  "name": "vanilla-wc",
   "version": "1.0.0",
-  "description": "SPA mit vanilla JS und nativem UI (OnsenUI)",
-  "main": "dist/index.html",
+  "description": "SPA mit vanilla JS und Web Components",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --watch --config webpack.config.js --devtool source-map ./src/app.js",
-    "build:prod": "webpack --mode=production --config webpack.config.js ./src/app.js"
+    "build": "webpack --watch --config webpack.config.js --devtool source-map",
+    "build:prod": "webpack --mode=production --config webpack.config.js"
   },
   "author": "Björn Saja",
   "license": "ISC",
   "dependencies": {
+    "@myfrom/iron-swipeable-pages": "^2.0.0",
     "@polymer/app-layout": "^3.0.1",
+    "@polymer/iron-icon": "^3.0.1",
     "@polymer/iron-icons": "^3.0.1",
     "@polymer/iron-pages": "^3.0.1",
     "@polymer/paper-badge": "^3.0.1",
@@ -21,8 +23,7 @@
     "@polymer/paper-item": "^3.0.1",
     "@polymer/paper-ripple": "^3.0.1",
     "@polymer/paper-tabs": "^3.0.1",
-    "@vaadin/vaadin-context-menu": "^4.2.0",
-    "carbon-copy": "^0.1.43"
+    "@vaadin/vaadin-context-menu": "^4.2.0"
   },
   "devDependencies": {
     "babel-runtime": "^6.26.0",

@@ -29,60 +29,6 @@
 
 <my-app-root></my-app-root>
 
-<template id="tabbar.html">
-    <div id="page_tabbar">
-        <paper-tabs selected="0">
-            <paper-tab mytabindex="0">
-                <iron-icon icon="list" id="tab_all"></iron-icon>
-                <span>All</span>
-                <paper-badge label="0" for="tab_all"></paper-badge>
-            </paper-tab>
-            <paper-tab mytabindex="1">
-                <iron-icon icon="check-box-outline-blank" id="tab_active"></iron-icon>
-                <span>Active</span>
-                <paper-badge label="0" for="tab_active"></paper-badge>
-            </paper-tab>
-            <paper-tab mytabindex="2">
-                <iron-icon icon="check-box" id="tab_completed"></iron-icon>
-                <span>Completed</span>
-                <paper-badge label="0" for="tab_completed"></paper-badge>
-            </paper-tab>
-        </paper-tabs>
-        <iron-pages selected="0">
-            <b-c-c copy noshadow from="/all.html"></b-c-c>
-            <b-c-c copy noshadow from="/active.html"></b-c-c>
-            <b-c-c copy noshadow from="/completed.html"></b-c-c>
-        </iron-pages>
-        <paper-fab icon="add" class="bottom_right" action="new-todo"></paper-fab>
-    </div>
-</template>
-
-<template id="all.html">
-    <div id="page_all">
-        <div class="todo-list with_separator"></div>
-    </div>
-</template>
-
-<template id="active.html">
-    <div id="page_active">
-        <div class="todo-list with_separator"></div>
-    </div>
-</template>
-
-<template id="completed.html">
-    <div id="page_completed">
-        <div class="todo-list"></div>
-    </div>
-</template>
-
-<template id="settings.html">
-    <div id="page_settings">Test1</div>
-</template>
-
-<template id="about.html">
-    <div id="page_about">Test2</div>
-</template>
-
 <script>
     if (navigator.serviceWorker.controller) {
         console.log('[PWA] active service worker found, no need to register')
@@ -90,7 +36,7 @@
         //Register the ServiceWorker
         navigator.serviceWorker.register('sw.js', {
             scope: './'
-        }).then(function (reg) {
+        }).then((reg) => {
             console.log('[PWA] Service worker has been registered for scope:' + reg.scope);
         });
     }

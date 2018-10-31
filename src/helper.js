@@ -7,6 +7,12 @@ export function qsa(selector, scope) {
     return (scope || document).querySelectorAll(selector);
 }
 
+// extract item id
+export function getItemId(element) {
+    const li = $parent(element, 'paper-item');
+    return parseInt(li.dataset.id, 10);
+}
+
 // addEventListener wrapper:
 export function $on(target, type, callback, useCapture) {
     target.addEventListener(type, callback, !!useCapture);

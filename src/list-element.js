@@ -1,22 +1,52 @@
-import {$delegate, $on, $parent, qs} from './helper';
+import {$delegate, $parent, getItemId, qs} from './helper';
 
-export class ListView {
-    constructor(page, template) {
-        this.template = template;
-        this.$todoList = qs('.todo-list', page);
+class ListElement extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({mode: 'open'});
+        const hideRowsClass = this.id === 'page_active' ? 'completed' : this.id === 'page_completed' ? 'active' : 'dont-hide';
+        const styles = `
+            :host {
+                display: block;
+            }
+            
+            paper-item:before {
+                display: none !important;
+            }
+            
+            .list-container {
+                background-color: #ffffff;
+            }
+            
+            paper-item.border_bottom {
+                border-bottom: 1px solid #eee;
+            }
+
+            .list-container .${hideRowsClass} {
+                display: none;
+            }
+        `;
+        this.shadowRoot.innerHTML = `
+            <style>${styles}</style>
+            <div class="list-container with-separator"></div>
+        `;
+        this.$todoList = qs('.list-container', this.shadowRoot);
     }
 
-    static _itemId(element) {
-        const li = $parent(element, 'paper-item');
-        return parseInt(li.dataset.id, 10);
-    };
+    static get is() {
+        return 'my-list';
+    }
+
+    connectedCallback() {
+        this.dispatchEvent(new CustomEvent('init', {bubbles: true, composed: true, detail: this}));
+    }
 
     _removeItem(id) {
         const item = qs('[data-id="' + id + '"]', this.$todoList);
         if (!item) {
             return;
         }
-        const elem = $parent(item, 'vaadin-context-menu')
+        const elem = $parent(item, 'vaadin-context-menu');
         if (!elem) {
             return;
         }
@@ -67,10 +97,12 @@ export class ListView {
         if (event === 'itemToggle') {
             $delegate(this.$todoList, 'paper-item paper-checkbox', 'change', function () {
                 handler({
-                    id: ListView._itemId(this),
+                    id: getItemId(this),
                     completed: this.checked
                 });
             });
         }
     };
 }
+
+customElements.define(ListElement.is, ListElement);
