@@ -20,36 +20,57 @@
 
     <meta name="msapplication-TileColor" content="#0129c7">
     <meta name="msapplication-config" content="./browserconfig.xml">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="./node_modules/onsenui/css/onsenui.css">
-    <link rel="stylesheet" type="text/css" href="./theme/onsen-css-components.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
 <noscript>This page needs JavaScript!</noscript>
-<ons-page id="page_splitter">
-    <ons-splitter>
-        <ons-splitter-side page="menu.html" side="left" collapse swipeable></ons-splitter-side>
-        <ons-splitter-content>
-            <ons-navigator></ons-navigator>
-        </ons-splitter-content>
-    </ons-splitter>
-</ons-page>
+<div class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay">
+    <header class="bmd-layout-header">
+        <div class="navbar navbar-dark bg-primary">
+            <button class="navbar-toggler position-absolute" type="button" data-toggle="drawer" data-target="#dw-s2">
+                <span class="sr-only">Toggle drawer</span>
+                <i class="material-icons">menu</i>
+            </button>
+            <span class="nav navbar-brand mx-auto">
+                Todo-App
+            </span>
+        </div>
+    </header>
+    <div id="dw-s2" class="bmd-layout-drawer bg-faded">
+        <header>
+            <a class="navbar-brand">Todo-App</a>
+        </header>
+        <div class="list-group">
+            <a href="#/all" class="list-group-item list-group-item-action">Home</a>
+            <a href="#/settings" class="list-group-item list-group-item-action">Settings</a>
+            <a href="#/about" class="list-group-item list-group-item-action">About</a>
+        </div>
+    </div>
+    <main class="bmd-layout-content">
+        <div id="navigator">
 
-<template id="menu.html">
-    <ons-page id="page_menu">
-        <ons-list>
-            <ons-list-item action="open-home" tappable>
-                Home
-            </ons-list-item>
-            <ons-list-item action="open-settings" tappable>
-                Settings
-            </ons-list-item>
-            <ons-list-item action="open-about" tappable>
-                About
-            </ons-list-item>
-        </ons-list>
-    </ons-page>
-</template>
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#/all" role="tab" aria-controls="all" aria-selected="true">All</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#/active" role="tab" aria-controls="active" aria-selected="false">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#/completed" role="tab" aria-controls="completed" aria-selected="false">Completed</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="/all" role="tabpanel" aria-labelledby="all-tab">All</div>
+                <div class="tab-pane fade" id="/active" role="tabpanel" aria-labelledby="active-tab">Active</div>
+                <div class="tab-pane fade" id="/completed" role="tabpanel" aria-labelledby="completed-tab">Completed</div>
+            </div>
+
+        </div>
+    </main>
+</div>
 
 <template id="tabbar.html">
     <ons-page id="page_tabbar">
@@ -141,7 +162,7 @@
     </ons-page>
 </template>
 
-<script>
+<!--<script>
     if (navigator.serviceWorker.controller) {
         console.log('[PWA] active service worker found, no need to register')
     } else {
@@ -152,7 +173,11 @@
             console.log('[PWA] Service worker has been registered for scope:'+ reg.scope);
         });
     }
-</script>
-<script src="./dist/bundle.js"></script>
+</script>-->
+<!--<script src="./dist/bundle.js"></script>-->
+<script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="//unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+<script src="//unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+<script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
 </body>
 </html>

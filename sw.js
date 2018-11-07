@@ -5,7 +5,7 @@
 self.addEventListener('install', event => {
     const indexPage = new Request('index.html');
     event.waitUntil(
-        fetch(indexPage).then(response => caches.open('vanilla-nui').then(cache => {
+        fetch(indexPage).then(response => caches.open('vanilla-fw').then(cache => {
             console.log('[PWA] Cached index page during Install ' + response.url);
             return cache.put(indexPage, response);
         }))
@@ -14,7 +14,7 @@ self.addEventListener('install', event => {
 
 // If any fetch fails, it will look for the request in the cache and serve it from there first
 self.addEventListener('fetch', event => {
-    const updateCache = request => caches.open('vanilla-nui').then(cache => {
+    const updateCache = request => caches.open('vanilla-fw').then(cache => {
         return fetch(request).then(response => {
             console.log('[PWA] add page to offline ' + response.url);
             return cache.put(request, response);
@@ -37,7 +37,7 @@ self.addEventListener('fetch', event => {
             // Check to see if you have it in the cache
             // Return response
             // If not in the cache, then return error page
-            return caches.open('vanilla-nui').then(cache => {
+            return caches.open('vanilla-fw').then(cache => {
                 return cache.match(request).then(matching => {
                     return !matching || matching.status === 404 ? Promise.reject('no-match') : matching;
                 });
