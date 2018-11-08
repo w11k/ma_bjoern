@@ -1,16 +1,10 @@
-import {TemplateGenerator} from './helper';
-
 export class Template {
     constructor() {
         this.defaultTemplate = TemplateGenerator(() => `
-            <ons-list-item data-id="${id}" tappable class="${completed}">
-                <div class="left">
-                    <ons-checkbox ${checked}></ons-checkbox>
-                </div>
-                <label class="center">
-                    ${title}
-                </label>
-            </ons-list-item>
+            <div data-id="${id}" class="list-group-item todo-list-item ${completed}" data-toggle="context" data-target="#context-menu">
+                <input type="checkbox" ${checked}>
+                <span class="title">${title}</span>
+            </div>
         `);
     }
 
@@ -37,13 +31,27 @@ export class Template {
             const templateVars = Object.assign({}, item);
             templateVars.title = Template.escape(templateVars.title);
             if (templateVars.completed) {
-                templateVars.completed = 'completed';
+                templateVars.completed = 'my-completed';
                 templateVars.checked = 'checked';
             } else {
-                templateVars.completed = 'active';
+                templateVars.completed = 'my-active';
                 templateVars.checked = '';
             }
             return view + this.defaultTemplate(templateVars);
         }, '');
+    };
+}
+
+// populate template string with values
+function TemplateGenerator(cb) {
+    return (data) => {
+        const dataKeys = [];
+        const dataVals = [];
+        for (let key in data) {
+            dataKeys.push(key);
+            dataVals.push(data[key]);
+        }
+        let func = new Function(...dataKeys, 'return (' + cb + ')();');
+        return func(...dataVals);
     };
 }

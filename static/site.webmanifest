@@ -4,7 +4,7 @@
     "name": "Todo-App",
     "short_name": "Todo",
     "description": "This is a Todo-App.",
-    "start_url": "https://w11k.github.io/ma_bjoern/vanilla-nui/",
+    "start_url": "https://w11k.github.io/ma_bjoern/vanilla-fw/",
     "scope": "/",
     "display": "standalone",
     "orientation": "portrait",

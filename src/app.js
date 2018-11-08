@@ -1,34 +1,20 @@
-// noinspection ES6UnusedImports
-import ons from 'onsenui/esm';
-if (!ons.platform.isIOS()) {
-    ons.platform.select('android');
-}
-window.ons = ons;
-
-import 'onsenui/esm/elements/ons-action-sheet';
-import 'onsenui/esm/elements/ons-action-sheet-button';
-import 'onsenui/esm/elements/ons-alert-dialog';
-import 'onsenui/esm/elements/ons-alert-dialog-button';
-import 'onsenui/esm/elements/ons-checkbox';
-import 'onsenui/esm/elements/ons-fab';
-import 'onsenui/esm/elements/ons-icon';
-import 'onsenui/esm/elements/ons-if';
-import 'onsenui/esm/elements/ons-list';
-import 'onsenui/esm/elements/ons-list-item';
-import 'onsenui/esm/elements/ons-navigator';
-import 'onsenui/esm/elements/ons-page';
-import 'onsenui/esm/elements/ons-splitter';
-import 'onsenui/esm/elements/ons-splitter-content';
-import 'onsenui/esm/elements/ons-splitter-side';
-import 'onsenui/esm/elements/ons-tab';
-import 'onsenui/esm/elements/ons-tabbar';
-import 'onsenui/esm/elements/ons-toolbar';
-import 'onsenui/esm/elements/ons-toolbar-button';
+import 'bootstrap-material-design';
+import 'bootstrap-contextmenu';
+// import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 import {Controller} from './controller';
-import {$on} from './helper';
 import {Model} from './model';
 import {Store} from './store';
+import './style.scss';
 import {Template} from './template';
+
+/*if (navigator.serviceWorker.controller) {
+    console.log('[PWA] active service worker found, no need to register');
+} else {
+    //Register the ServiceWorker
+    runtime.register().then(reg => {
+        console.log('[PWA] Service worker has been registered for scope:' + reg.scope);
+    });
+}*/
 
 class Todo {
     constructor(name) {
@@ -39,13 +25,20 @@ class Todo {
     }
 }
 
-const todo = new Todo('vanilla-nui');
+$(document).ready(function () {
+    $('body').bootstrapMaterialDesign();
 
-function setView(event) {
-    if (event.target.id) {
-        todo.controller.setView(event.target);
+    const todo = new Todo('vanilla-fw');
+
+    function registerElement(event) {
+        if (event.target.id) {
+            todo.controller.registerElement(event.target);
+        }
     }
-}
 
-$on(document, 'init', setView);
-$on(window, 'hashchange', () => todo.controller.handleManualHashChange());
+    $(document).on('init', registerElement);
+    $(window).on('hashchange', () => todo.controller.handleManualHashChange());
+
+    todo.controller.registerElement($('#page_navigator')[0]);
+    todo.controller.registerElement($('#page_menu')[0]);
+});

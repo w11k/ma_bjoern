@@ -27,8 +27,8 @@ self.addEventListener('fetch', event => {
         request = new Request(newUrl);
     }
     if (request.url.indexOf('http') === 0) {
-	    event.waitUntil(updateCache(request));
-	}
+        event.waitUntil(updateCache(request));
+    }
 
     event.respondWith(
         fetch(request).catch(error => {

@@ -11,3 +11,24 @@ html, body {
 .nav-tabs .nav-link.active, .nav-tabs .nav-link.active:focus, .nav-tabs .nav-link.active:hover {
   border-color: #222195;
 }
+
+button.bmd-btn-fab {
+  top: auto;
+  bottom: 20px;
+  right: 20px;
+  left: auto;
+  position: absolute;
+}
+
+.nav-tabs, .todo-list-item {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #eee;
+}
+
+#page_active .todo-list .my-completed {
+  display: none;
+}
+
+#page_completed .todo-list .my-active {
+  display: none;
+}

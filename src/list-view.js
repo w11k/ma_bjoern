@@ -1,56 +1,54 @@
-import {$delegate, $parent, qs} from './helper';
-
 export class ListView {
     constructor(page, template) {
         this.template = template;
-        this.$todoList = qs('.todo-list', page);
+        this.$todoList = $(page).find('.todo-list');
     }
 
     static _itemId(element) {
-        const li = $parent(element, 'ons-list-item');
+        const li = $(element).parents('.todo-list-item')[0];
         return parseInt(li.dataset.id, 10);
     };
 
     _removeItem(id) {
-        const elem = qs('[data-id="' + id + '"]', this.$todoList);
+        const elem = this.$todoList.find('[data-id="' + id + '"]')[0];
 
         if (elem) {
-            this.$todoList.removeChild(elem);
+            this.$todoList[0].removeChild(elem);
         }
     };
 
     _updateItem(item) {
-        const listItem = qs('[data-id="' + item.id + '"]', this.$todoList);
-        if (!listItem) {
+        const listItem = this.$todoList.find('[data-id="' + item.id + '"]');
+        if (listItem.length !== 1) {
             return;
         }
 
-        const check = qs('ons-checkbox', listItem);
-        const title = qs('label.center', listItem);
+        const check = listItem.find('input');
+        const title = listItem.find('span.title');
 
         if (item.completed) {
-            listItem.classList.add('completed');
-            listItem.classList.remove('active');
-            check.setAttribute('checked', '');
+            listItem.addClass('my-completed');
+            listItem.removeClass('my-active');
+            check.prop('checked', true);
         } else {
-            listItem.classList.add('active');
-            listItem.classList.remove('completed');
-            check.removeAttribute('checked');
+            listItem.addClass('my-active');
+            listItem.removeClass('my-completed');
+            check.prop('checked', false);
         }
 
-        title.innerHTML = item.title;
+        title.html(item.title);
     };
 
     render(viewCmd, parameter) {
         const viewCommands = {
             showItems: () => {
-                this.$todoList.innerHTML = this.template.show(parameter);
+                this.$todoList.html(this.template.show(parameter));
             },
             removeItem: () => {
                 this._removeItem(parameter);
             },
             addItem: () => {
-                this.$todoList.appendChild(window.ons._util.createElement(this.template.show([parameter])));
+                this.$todoList.append(this.template.show([parameter]));
             },
             updateItem: () => {
                 this._updateItem(parameter);
@@ -62,14 +60,14 @@ export class ListView {
 
     bind(event, handler) {
         if (event === 'itemSelect') {
-            $delegate(this.$todoList, 'ons-list-item label', 'click', function () {
-                handler({id: ListView._itemId(this)});
+            this.$todoList.delegate('.todo-list-item', 'dbclick', event => {
+                handler({id: ListView._itemId(event.target)});
             });
         } else if (event === 'itemToggle') {
-            $delegate(this.$todoList, 'ons-list-item ons-checkbox input', 'click', function () {
+            this.$todoList.delegate('.todo-list-item input', 'click', event => {
                 handler({
-                    id: ListView._itemId(this),
-                    completed: this.checked
+                    id: ListView._itemId(event.target),
+                    completed: event.target.checked
                 });
             });
         }

@@ -1,9 +1,11 @@
-import {AboutView} from './about-view';
 import {ListView} from './list-view';
 import {MenuView} from './menu-view';
-import {SettingsView} from './settings-view';
-import {SplitterView} from './splitter-view';
+import {NavigatorView} from './navigator-view';
 import {TabView} from './tab-view';
+
+function noop() {
+
+}
 
 export class Controller {
     constructor(model, template) {
@@ -12,7 +14,7 @@ export class Controller {
         this._setActiveRoute(this._extractActiveRoute(document.location.hash));
     }
 
-    setView(component) {
+    registerElement(component) {
         const pageName = component.id.split('_')[1];
         switch (pageName) {
             case 'all':
@@ -29,15 +31,9 @@ export class Controller {
             case 'menu':
                 this._createMenuView(component);
                 break;
-            case 'splitter':
-                this._createSplitterView(component);
+            case 'navigator':
+                this._createNavigatorView(component);
                 this._setContentByRoute(this._activeRoute);
-                break;
-            case 'settings':
-                this._createSettingsView(component);
-                break;
-            case 'about':
-                this._createAboutView(component);
                 break;
             default:
                 break;
@@ -67,10 +63,6 @@ export class Controller {
     _createTabView(component) {
         this.tabView = new TabView(component);
 
-        this.tabView.bind('openMenu', () => {
-            this._openMenu();
-        });
-
         this.tabView.bind('newTodo', () => {
             this._addItem();
         });
@@ -99,24 +91,8 @@ export class Controller {
         });
     }
 
-    _createSplitterView(component) {
-        this.splitterView = new SplitterView(component);
-    }
-
-    _createSettingsView(component) {
-        this.settingsView = new SettingsView(component);
-
-        this.settingsView.bind('openMenu', () => {
-            this._openMenu();
-        });
-    }
-
-    _createAboutView(component) {
-        this.aboutView = new AboutView(component);
-
-        this.aboutView.bind('openMenu', () => {
-            this._openMenu();
-        });
+    _createNavigatorView(component) {
+        this.navigatorView = new NavigatorView(component);
     }
 
     _fillListView(page) {
@@ -154,22 +130,32 @@ export class Controller {
     }
 
     _createEditDialog(callback, oldTitle = '') {
-        window.ons.notification.prompt({
-            title: oldTitle !== '' ? 'Edit Item' : 'Create Item',
-            message: 'Title:',
-            buttonLabels: ['Save', 'Cancel'],
-            primaryButtonIndex: 0,
-            cancelable: true,
-            defaultValue: oldTitle
-        })
-            .then((newTitle) => {
-                if (typeof newTitle !== 'string') {
-                    return;
-                } else if (newTitle.trim() === '') {
-                    return window.ons.notification.alert({message: 'No input!', cancelable: true});
-                }
-                callback(newTitle);
-            });
+        const dialog = $('#modalPrompt');
+        const title = dialog.find('#modalTitle');
+        const input = dialog.find('#modalTitleInput');
+        const button = dialog.find('#modalSaveButton');
+
+        title.html(oldTitle !== '' ? 'Edit Item' : 'Create Item');
+        input.val(oldTitle);
+        const submit = () => {
+            const newTitle = input.val().trim();
+            if (newTitle === '') {
+                return;
+            }
+            dialog.modal('hide');
+            callback(newTitle);
+        };
+        button.on('click', submit);
+        input.keypress(e => e.which === 13 ? submit() : noop);
+        dialog.on('shown.bs.modal', () => {
+            input.focus();
+        });
+        dialog.on('hidden.bs.modal', () => {
+            input.off();
+            button.off();
+            dialog.off();
+        });
+        dialog.modal('show');
     };
 
     _addItem() {
@@ -217,12 +203,8 @@ export class Controller {
     };
 
     _setTabByRoute(pageName) {
-        let command = 'changeTab';
-        if (!this.allView || !this.activeView || !this.completedView) {
-            command = 'setTab';
-        }
         if (this.tabView) {
-            this.tabView.render(command, pageName);
+            this.tabView.render('setTab', pageName);
         }
     }
 
@@ -245,27 +227,23 @@ export class Controller {
         document.title = `Todo-App – ${title}`;
     }
 
-    _openMenu() {
-        this.menuView.render('openMenu');
-    }
-
     _setContentByRoute(route) {
         switch (route) {
             case 'All':
             case 'Active':
             case 'Completed':
-                this.splitterView.render('loadPage', 'tabbar.html')
+                this.navigatorView.render('loadPage', 'tabbar.html')
                     .then(() => {
                         this._setTabByRoute(this._activeRoute);
                         this._closeMenu();
                     });
                 break;
             case 'Settings':
-                this.splitterView.render('loadPage', 'settings.html')
+                this.navigatorView.render('loadPage', 'settings.html')
                     .then(() => this._closeMenu());
                 break;
             case 'About':
-                this.splitterView.render('loadPage', 'about.html')
+                this.navigatorView.render('loadPage', 'about.html')
                     .then(() => this._closeMenu());
                 break;
         }
