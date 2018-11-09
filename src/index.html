@@ -74,14 +74,6 @@
     </div>
 </div>
 
-<div id="context-menu">
-    <ul class="dropdown-menu" role="menu">
-        <li><a tabindex="-1" href="#">Action</a></li>
-        ...
-        <li><a tabindex="-1" href="#">Separated link</a></li>
-    </ul>
-</div>
-
 
 <template id="tabbar.html">
     <div id="page_tabbar">
@@ -91,15 +83,27 @@
         <ul class="nav nav-tabs nav-justified bg-white" role="tablist" id="tabs">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#/all" role="tab" aria-controls="all"
-                   aria-selected="true" mytabindex="0">All</a>
+                   aria-selected="true" mytabindex="0">
+                    <i class="material-icons">list</i>
+                    <span class="badge badge-pill badge-danger">0</span>
+                    <small>All</small>
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#/active" role="tab" aria-controls="active"
-                   aria-selected="false" mytabindex="1">Active</a>
+                   aria-selected="false" mytabindex="1">
+                    <i class="material-icons">check_box_outline_blank</i>
+                    <span class="badge badge-pill badge-danger">0</span>
+                    <small>Active</small>
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#/completed" role="tab" aria-controls="completed"
-                   aria-selected="false" mytabindex="2">Completed</a>
+                   aria-selected="false" mytabindex="2">
+                    <i class="material-icons">check_box</i>
+                    <span class="badge badge-pill badge-danger">0</span>
+                    <small>Completed</small>
+                </a>
             </li>
         </ul>
         <div class="tab-content">

@@ -12,6 +12,24 @@ html, body {
   border-color: #222195;
 }
 
+.nav-tabs .nav-link {
+  padding: 0.5rem 1rem;
+}
+
+.nav-tabs .nav-link small {
+  line-height: 1;
+}
+
+.nav-tabs .nav-link > * {
+  display: block;
+}
+
+.nav-tabs .nav-link .badge {
+  position: absolute;
+  top: 5px;
+  display: inline-block;
+}
+
 button.bmd-btn-fab {
   top: auto;
   bottom: 20px;
@@ -31,4 +49,26 @@ button.bmd-btn-fab {
 
 #page_completed .todo-list .my-active {
   display: none;
+}
+
+.bootstrapMenu ul {
+  opacity: 1;
+  transform: scale(1);
+  padding: 0;
+}
+
+.bootstrapMenu li {
+  cursor: pointer;
+}
+
+.bootstrapMenu a {
+  color: #333;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.bootstrapMenu .divider {
+  height: 1px;
+  overflow: hidden;
+  background-color: #e5e5e5;
 }

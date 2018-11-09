@@ -1,3 +1,5 @@
+import BootstrapMenu from 'bootstrap-menu';
+
 export class ListView {
     constructor(page, template) {
         this.template = template;
@@ -5,7 +7,7 @@ export class ListView {
     }
 
     static _itemId(element) {
-        const li = $(element).parents('.todo-list-item')[0];
+        const li = $(element).closest('.todo-list-item')[0];
         return parseInt(li.dataset.id, 10);
     };
 

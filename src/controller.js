@@ -1,3 +1,4 @@
+import BootstrapMenu from 'bootstrap-menu';
 import {ListView} from './list-view';
 import {MenuView} from './menu-view';
 import {NavigatorView} from './navigator-view';
@@ -12,6 +13,31 @@ export class Controller {
         this.model = model;
         this.template = template;
         this._setActiveRoute(this._extractActiveRoute(document.location.hash));
+
+        new BootstrapMenu('.todo-list-item', {
+            fetchElementData: $rowElem => ListView._itemId($rowElem),
+            actionsGroups: [
+                ['editItem', 'deleteItem' ],
+                ['cancel']
+            ],
+            actions: {
+                editItem: {
+                    name: 'Edit',
+                    classNames: 'dropdown-item',
+                    onClick: id => this._editItem(id)
+                },
+                deleteItem: {
+                    name: 'Delete',
+                    classNames: 'dropdown-item',
+                    onClick: id => this._removeItem(id)
+                },
+                cancel: {
+                    name: 'Cancel',
+                    classNames: 'dropdown-item',
+                    onClick: noop
+                }
+            }
+        });
     }
 
     registerElement(component) {

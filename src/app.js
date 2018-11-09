@@ -1,5 +1,4 @@
 import 'bootstrap-material-design';
-import 'bootstrap-contextmenu';
 // import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 import {Controller} from './controller';
 import {Model} from './model';
