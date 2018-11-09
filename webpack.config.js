@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -43,6 +42,17 @@ module.exports = {
                         }
                     },
                     'sass-loader']
+            },
+            {
+                include: path.resolve(__dirname, 'static'),
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[path][name].[ext]?[hash]',
+                        context: 'static',
+                        outputPath: '/'
+                    }
+                }
             }
         ]
     },
@@ -58,11 +68,9 @@ module.exports = {
             filename: 'index.html'
         }),
         new ServiceWorkerWebpackPlugin({
-            entry: path.join(__dirname, './src/sw.js')
+            entry: path.join(__dirname, './src/sw.js'),
+            publicPath: './'
         }),
-        new CopyWebpackPlugin([
-            {from: 'static'}
-        ]),
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',

@@ -5,39 +5,47 @@
 self.addEventListener('install', event => {
     const indexPage = new Request('index.html');
     event.waitUntil(
-        fetch(indexPage).then(response => caches.open('vanilla-fw').then(cache => {
-            console.log('[PWA] Cached index page during Install ' + response.url);
-            return cache.put(indexPage, response);
-        }))
+        fetch(indexPage)
+        	.then(response => caches.open(getCacheName())
+                .then(cache => cache.put(indexPage, response)))
+            .then(() => self.skipWaiting())
     );
+});
+
+self.addEventListener('activate', () => {
+    return caches.keys()
+        .then(cacheKeys => {
+            cacheKeys.forEach(cacheKey => {
+                if (cacheKey !== getCacheName()) {
+                    caches.delete(cacheKey);
+                }
+            });
+            return self.clients.claim();
+        });
 });
 
 // If any fetch fails, it will look for the request in the cache and serve it from there first
 self.addEventListener('fetch', event => {
-    const updateCache = request => caches.open('vanilla-fw').then(cache => {
-        return fetch(request).then(response => {
-            console.log('[PWA] add page to offline ' + response.url);
-            return cache.put(request, response);
-        });
+    const updateCache = request => caches.open(getCacheName()).then(cache => {
+        return fetch(request).then(response => cache.put(request, response));
     });
 
     let request = event.request;
-    if (request.url.indexOf('#') > -1) {
+    if (request.url.indexOf('/#/') > -1) {
         const newUrl = request.url.split('#/')[0];
         request = new Request(newUrl);
     }
     if (request.url.indexOf('http') === 0) {
-        event.waitUntil(updateCache(request));
+        event.waitUntil(updateCache(request).catch((error) => {
+        }));
     }
 
     event.respondWith(
-        fetch(request).catch(error => {
-            console.log('[PWA] Network request Failed. Serving content from cache: ' + error);
-
+        fetch(request).catch(() => {
             // Check to see if you have it in the cache
             // Return response
             // If not in the cache, then return error page
-            return caches.open('vanilla-fw').then(cache => {
+            return caches.open(getCacheName()).then(cache => {
                 return cache.match(request).then(matching => {
                     return !matching || matching.status === 404 ? Promise.reject('no-match') : matching;
                 });
@@ -45,3 +53,7 @@ self.addEventListener('fetch', event => {
         })
     );
 });
+
+function getCacheName() {
+    return 'vanilla-fw';
+}

@@ -1,5 +1,3 @@
-import BootstrapMenu from 'bootstrap-menu';
-
 export class ListView {
     constructor(page, template) {
         this.template = template;

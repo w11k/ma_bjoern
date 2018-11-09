@@ -17,7 +17,7 @@ export class Controller {
         new BootstrapMenu('.todo-list-item', {
             fetchElementData: $rowElem => ListView._itemId($rowElem),
             actionsGroups: [
-                ['editItem', 'deleteItem' ],
+                ['editItem', 'deleteItem'],
                 ['cancel']
             ],
             actions: {

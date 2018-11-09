@@ -1,19 +1,24 @@
 import 'bootstrap-material-design';
-// import runtime from 'serviceworker-webpack-plugin/lib/runtime';
+import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 import {Controller} from './controller';
 import {Model} from './model';
 import {Store} from './store';
 import './style.scss';
 import {Template} from './template';
 
-/*if (navigator.serviceWorker.controller) {
-    console.log('[PWA] active service worker found, no need to register');
-} else {
-    //Register the ServiceWorker
-    runtime.register().then(reg => {
-        console.log('[PWA] Service worker has been registered for scope:' + reg.scope);
+require.context('../static/', true);
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        runtime.register()
+            .then(registration => {
+                // periodically check (each hour) if there is a new version of the Service Worker
+                setInterval(() => {
+                    registration.update();
+                }, 3600000);
+            });
     });
-}*/
+}
 
 class Todo {
     constructor(name) {
