@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Todo-App</title>
+    <meta name="description" content="This is a Todo-App.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="manifest" href="./site.webmanifest">
+    <meta name="application-name" content="Todo-App">
+    <meta name="theme-color" content="#0129c7">
+
+    <link rel="shortcut icon" href="./favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+    <meta name="apple-mobile-web-app-title" content="Todo-App">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="mask-icon" href="./assets/images/safari-pinned-tab.svg" color="#0129c7">
+
+    <meta name="msapplication-TileColor" content="#0129c7">
+    <meta name="msapplication-config" content="./browserconfig.xml">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="style.a18f7564bd20181b781c.css?0de0f98132cfe2ca7fa1">
+</head>
+<body>
+<noscript>This page needs JavaScript!</noscript>
+<div class="bmd-layout-container bmd-drawer-f-l bmd-drawer-overlay">
+    <header class="bmd-layout-header">
+        <div class="navbar navbar-dark bg-primary">
+            <button class="navbar-toggler position-absolute" type="button" data-toggle="drawer"
+                    data-target="#page_menu">
+                <span class="sr-only">Toggle drawer</span>
+                <i class="material-icons">menu</i>
+            </button>
+            <span class="nav navbar-brand mx-auto">
+                Todo-App
+            </span>
+        </div>
+    </header>
+    <div id="page_menu" class="bmd-layout-drawer bg-faded">
+        <header>
+            <a class="navbar-brand">Todo-App</a>
+        </header>
+        <div class="list-group">
+            <a href="#/all" class="list-group-item list-group-item-action" action="open-home">Home</a>
+            <a href="#/settings" class="list-group-item list-group-item-action" action="open-settings">Settings</a>
+            <a href="#/about" class="list-group-item list-group-item-action" action="open-about">About</a>
+        </div>
+    </div>
+    <main class="bmd-layout-content" id="page_navigator">
+        <div id="navigator-content"></div>
+    </main>
+</div>
+
+<div class="modal fade" id="modalPrompt" tabindex="-1" role="dialog"
+     aria-labelledby="modalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Todo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="form-control" id="modalTitleInput" placeholder="Title">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="modalSaveButton">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<template id="tabbar.html">
+    <div id="page_tabbar">
+        <script>
+            document.querySelector('#page_tabbar').dispatchEvent(new Event('init', {bubbles: true}));
+        </script>
+        <ul class="nav nav-tabs nav-justified bg-white" role="tablist" id="tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#/all" role="tab" aria-controls="all"
+                   aria-selected="true" mytabindex="0">
+                    <i class="material-icons">list</i>
+                    <span class="badge badge-pill badge-danger">0</span>
+                    <small>All</small>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#/active" role="tab" aria-controls="active"
+                   aria-selected="false" mytabindex="1">
+                    <i class="material-icons">check_box_outline_blank</i>
+                    <span class="badge badge-pill badge-danger">0</span>
+                    <small>Active</small>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#/completed" role="tab" aria-controls="completed"
+                   aria-selected="false" mytabindex="2">
+                    <i class="material-icons">check_box</i>
+                    <span class="badge badge-pill badge-danger">0</span>
+                    <small>Completed</small>
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="/all" role="tabpanel" aria-labelledby="all-tab">
+                <div id="page_all">
+                    <script>
+                        document.querySelector('#page_all').dispatchEvent(new Event('init', {bubbles: true}));
+                    </script>
+                    <div class="todo-list"></div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="/active" role="tabpanel" aria-labelledby="active-tab">
+                <div id="page_active">
+                    <script>
+                        document.querySelector('#page_active').dispatchEvent(new Event('init', {bubbles: true}));
+                    </script>
+                    <div class="todo-list"></div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="/completed" role="tabpanel" aria-labelledby="completed-tab">
+                <div id="page_completed">
+                    <script>
+                        document.querySelector('#page_completed').dispatchEvent(new Event('init', {bubbles: true}));
+                    </script>
+                    <div class="todo-list"></div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-secondary bmd-btn-fab" action="new-todo">
+            <i class="material-icons">add</i>
+        </button>
+    </div>
+</template>
+
+<template id="settings.html">
+    <div id="page_settings">
+        <script>
+            document.querySelector('#page_settings').dispatchEvent(new Event('init', {bubbles: true}));
+        </script>
+        Test1
+    </div>
+</template>
+
+<template id="about.html">
+    <div id="page_about">
+        <script>
+            document.querySelector('#page_about').dispatchEvent(new Event('init', {bubbles: true}));
+        </script>
+        Test2
+    </div>
+</template>
+
+<script src="main.88776107e60529530782.js?0de0f98132cfe2ca7fa1"></script>
+</body>
+</html>
