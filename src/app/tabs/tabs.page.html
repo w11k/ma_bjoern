@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Todos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="top">
+      <ion-tab-button tab="all" href="/todos/(all:all)">
+        <ion-icon name="list"></ion-icon>
+        <ion-label>All</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="active" href="/todos/(active:active)">
+        <ion-icon name="square-outline"></ion-icon>
+        <ion-label>Active</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="completed" href="/todos/(completed:completed)">
+        <ion-icon name="checkbox-outline"></ion-icon>
+        <ion-label>Completed</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+
+    <ion-tab tab="all">
+      <ion-router-outlet name="all"></ion-router-outlet>
+    </ion-tab>
+    <ion-tab tab="active">
+      <ion-router-outlet name="active"></ion-router-outlet>
+    </ion-tab>
+    <ion-tab tab="completed">
+      <ion-router-outlet name="completed"></ion-router-outlet>
+    </ion-tab>
+  </ion-tabs>
+</ion-content>

@@ -1,22 +1,21 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TodoPage } from './todo.page';
+import { TabsPage } from './tabs.page';
 
-describe('TodoPage', () => {
-  let component: TodoPage;
-  let fixture: ComponentFixture<TodoPage>;
+describe('TabsPage', () => {
+  let component: TabsPage;
+  let fixture: ComponentFixture<TabsPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TodoPage ],
+      declarations: [TabsPage],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TodoPage);
+    fixture = TestBed.createComponent(TabsPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
