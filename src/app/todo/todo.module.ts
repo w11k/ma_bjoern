@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
-import { HomePage } from './home.page';
+import { TodoPage } from './todo.page';
 
 @NgModule({
   imports: [
@@ -14,10 +14,22 @@ import { HomePage } from './home.page';
     RouterModule.forChild([
       {
         path: '',
-        component: HomePage
+        redirectTo: 'all'
+      },
+      {
+        path: 'all',
+        component: TodoPage
+      },
+      {
+        path: 'active',
+        component: TodoPage
+      },
+      {
+        path: 'completed',
+        component: TodoPage
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [TodoPage]
 })
-export class HomePageModule {}
+export class TodoPageModule {}

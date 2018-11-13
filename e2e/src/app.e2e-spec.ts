@@ -8,11 +8,11 @@ describe('new App', () => {
   });
   describe('default screen', () => {
     beforeEach(() => {
-      page.navigateTo('/home');
+      page.navigateTo('/todo');
     });
-    it('should have a title saying Home', () => {
+    it('should have a title saying Todos', () => {
       page.getPageOneTitleText().then(title => {
-        expect(title).toEqual('Home');
+        expect(title).toEqual('Todos');
       });
     });
   });
