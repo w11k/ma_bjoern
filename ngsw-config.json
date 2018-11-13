@@ -18,6 +18,7 @@
       "updateMode": "prefetch",
       "resources": {
         "files": [
+          "/apple-touch-icon.png",
           "/assets/**"
         ]
       }

@@ -22,6 +22,16 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               {
+                "glob": "favicon.ico",
+                "input": "src/",
+                "output": "/"
+              },
+              {
+                "glob": "apple-touch-icon.png",
+                "input": "src/",
+                "output": "/"
+              },
+              {
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "assets"
@@ -31,6 +41,7 @@
                 "input": "node_modules/@ionic/angular/dist/ionic/svg",
                 "output": "./svg"
               },
+              "src/browserconfig.xml",
               "src/manifest.json"
             ],
             "styles": [
@@ -97,10 +108,16 @@
                 "output": "/"
               },
               {
+                "glob": "apple-touch-icon.png",
+                "input": "src/",
+                "output": "/"
+              },
+              {
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"
               },
+              "src/browserconfig.xml",
               "src/manifest.json"
             ]
           }
