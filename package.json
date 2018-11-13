@@ -1,8 +1,8 @@
 {
   "name": "angular-nui",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "version": "1.0.0",
+  "description": "SPA mit vanilla JS und nativem UI (Ionic)",
+  "main": "index.html",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,6 +11,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "author": "Björn Saja",
+  "license": "ISC",
   "private": true,
   "dependencies": {
     "@angular/common": "~6.1.1",
@@ -53,6 +55,5 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~2.9.2"
-  },
-  "description": "An Ionic project"
+  }
 }
