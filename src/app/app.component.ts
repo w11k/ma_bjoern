@@ -1,32 +1,32 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html'
+    selector: 'app-root',
+    templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  public appPages = [
-    {
-      title: 'Todos',
-      url: '/todos',
-      icon: 'list'
-    },
-    {
-      title: 'Settings',
-      url: '/settings',
-      icon: 'settings'
-    },
-    {
-      title: 'About',
-      url: '/about',
-      icon: 'information-circle'
+    public appPages = [
+        {
+            title: 'Todos',
+            url: '/todos',
+            icon: 'list'
+        },
+        {
+            title: 'Settings',
+            url: '/settings',
+            icon: 'settings'
+        },
+        {
+            title: 'About',
+            url: '/about',
+            icon: 'information-circle'
+        }
+    ];
+
+    constructor() {
+        this.initializeApp();
     }
-  ];
 
-  constructor() {
-    this.initializeApp();
-  }
-
-  initializeApp() {
-  }
+    initializeApp() {
+    }
 }

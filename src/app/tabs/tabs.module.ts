@@ -1,21 +1,22 @@
-import { IonicModule } from '@ionic/angular';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-import { TabsPageRoutingModule } from './tabs.router.module';
-
-import { TabsPage } from './tabs.page';
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {IonicModule} from '@ionic/angular';
 import {EmptyPageModule} from '../empty/empty.module';
 
+import {TabsPage} from './tabs.page';
+
+import {TabsPageRoutingModule} from './tabs.router.module';
+
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    TabsPageRoutingModule,
-    EmptyPageModule
-  ],
-  declarations: [TabsPage]
+    imports: [
+        IonicModule,
+        CommonModule,
+        FormsModule,
+        TabsPageRoutingModule,
+        EmptyPageModule
+    ],
+    declarations: [TabsPage]
 })
-export class TabsPageModule {}
+export class TabsPageModule {
+}
