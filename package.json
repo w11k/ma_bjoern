@@ -7,16 +7,19 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --watch --config webpack.config.js --devtool source-map ./src/app.js",
     "build:prod": "webpack --mode=production --config webpack.config.js ./src/app.js",
-    "postinstall": "cp node_modules/ionicons/dist/css/* node_modules/onsenui/css/ionicons/css/; cp node_modules/ionicons/dist/fonts/* node_modules/onsenui/css/ionicons/fonts/;"
+    "postinstall": "cp node_modules/ionicons/dist/css/* node_modules/onsenui/css/ionicons/css/; cp node_modules/ionicons/dist/fonts/* node_modules/onsenui/css/ionicons/fonts/;",
+    "publish": "npm run build:prod && gh-pages -d dist -b master -e vanilla-nui"
   },
   "author": "Björn Saja",
   "license": "ISC",
+  "private": true,
   "dependencies": {
     "ionicons": "^4.4.4",
     "onsenui": "^2.10.4"
   },
   "devDependencies": {
     "babel-runtime": "^6.26.0",
+    "gh-pages": "^2.0.1",
     "spa-http-server": "^0.9.0",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
