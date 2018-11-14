@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, noop, Observable} from 'rxjs';
-import {ITodo, StoreService} from './store.service';
+import {map} from 'rxjs/operators';
+import {StoreService} from './store.service';
+import {ITodo, ITodoCount} from './typings';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +11,7 @@ export class ModelService {
     private todos: BehaviorSubject<Array<ITodo>> = new BehaviorSubject([]);
 
     constructor(private storage: StoreService) {
-        this.storage.findAll((items) => this.todos.next(items));
+        this.storage.findAll((items: Array<ITodo>) => this.todos.next(items));
     }
 
     public createItem(title: string = '') {
@@ -25,7 +27,7 @@ export class ModelService {
 
     public getItemById(id: number): Promise<ITodo> {
         return new Promise<ITodo>((resolve, reject) => {
-            this.storage.find({id}, (items) => items.length === 1 ? resolve(items[0]) : reject());
+            this.storage.find({id}, (items: Array<ITodo>) => items.length === 1 ? resolve(items[0]) : reject());
         });
     }
 
@@ -35,7 +37,7 @@ export class ModelService {
         if (index > -1) {
             Object.assign(liveItems[index], data);
             this.todos.next(liveItems);
-            this.storage.save(data, (storageItems) => this.todos.next(storageItems), id);
+            this.storage.save(data, (storageItems: Array<ITodo>) => this.todos.next(storageItems), id);
         }
     }
 
@@ -45,33 +47,28 @@ export class ModelService {
         if (index > -1) {
             liveItems.splice(index, 1);
             this.todos.next(liveItems);
-            this.storage.remove(id, (storageItems) => this.todos.next(storageItems));
+            this.storage.remove(id, (storageItems: Array<ITodo>) => this.todos.next(storageItems));
         }
     }
 
-    public removeAll() {
+    public removeAll(): void {
         this.todos.next([]);
         this.storage.drop(noop);
     }
 
-    public getCount(callback: Function) {
-        const todos = {
-            active: 0,
-            completed: 0,
-            total: 0
-        };
-
-        this.storage.findAll((data) => {
-            data.forEach((todo) => {
-                if (todo.completed) {
-                    todos.completed++;
-                } else {
-                    todos.active++;
-                }
-
-                todos.total++;
+    public getCount(): Observable<ITodoCount> {
+        return this.todos.asObservable().pipe(map((todos: Array<ITodo>) => {
+            return todos.reduce((count: ITodoCount, currentTodo: ITodo) => {
+                return {
+                    active: count.active + +!currentTodo.completed,
+                    completed: count.completed + +currentTodo.completed,
+                    total: count.total++
+                };
+            }, {
+                active: 0,
+                completed: 0,
+                total: 0
             });
-            callback(todos);
-        });
+        }));
     }
 }

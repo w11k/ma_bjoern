@@ -8,6 +8,9 @@ import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
+import {ModelService} from './model.service';
+import {StoreService} from './store.service';
+
 
 @NgModule({
     declarations: [AppComponent],
@@ -19,7 +22,9 @@ import {AppComponent} from './app.component';
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
     ],
     providers: [
-        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
+        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+        ModelService,
+        StoreService
     ],
     bootstrap: [AppComponent]
 })

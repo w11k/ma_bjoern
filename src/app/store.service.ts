@@ -1,10 +1,7 @@
 import {Injectable} from '@angular/core';
-
-export interface ITodo {
-    id?: number;
-    title?: string;
-    completed?: boolean;
-}
+import {noop} from 'rxjs';
+import {environment} from '../environments/environment';
+import {ITodo} from './typings';
 
 @Injectable({
     providedIn: 'root'
@@ -12,17 +9,12 @@ export interface ITodo {
 export class StoreService {
     private readonly _dbName: string;
 
-    constructor(name: string, callback: Function = () => {
-    }) {
-        this._dbName = name;
+    constructor() {
+        this._dbName = environment.storeName;
 
-        if (!localStorage.getItem(name)) {
-            const todos = [];
-
-            localStorage.setItem(name, JSON.stringify(todos));
+        if (!localStorage.getItem(this._dbName)) {
+            localStorage.setItem(this._dbName, JSON.stringify([]));
         }
-
-        callback.call(this, JSON.parse(localStorage.getItem(name)));
     }
 
     public find(query: ITodo, callback: Function): void {
@@ -42,13 +34,11 @@ export class StoreService {
         }));
     }
 
-    public findAll(callback: Function = () => {
-    }): void {
+    public findAll(callback: Function = noop): void {
         callback.call(this, JSON.parse(localStorage.getItem(this._dbName)));
     }
 
-    public save(updateData: ITodo, callback: Function = () => {
-    }, id?): void {
+    public save(updateData: ITodo, callback: Function = noop, id?): void {
         const todos = JSON.parse(localStorage.getItem(this._dbName));
 
         // If an ID was actually given, find the item and update each property
@@ -58,9 +48,9 @@ export class StoreService {
                 Object.assign(todos[index], updateData);
 
                 localStorage.setItem(this._dbName, JSON.stringify(todos));
-                callback.call(this, todos[index]);
+                callback.call(this, todos);
             } else {
-                callback.call(this, undefined);
+                callback.call(this, todos);
             }
         } else {
             // Generate an ID
@@ -68,18 +58,16 @@ export class StoreService {
 
             todos.push(updateData);
             localStorage.setItem(this._dbName, JSON.stringify(todos));
-            callback.call(this, updateData);
+            callback.call(this, todos);
         }
     }
 
     public remove(id: number, callback: Function): void {
         const todos = JSON.parse(localStorage.getItem(this._dbName));
 
-        for (let i = 0; i < todos.length; i++) {
-            if (todos[i].id === id) {
-                todos.splice(i, 1);
-                break;
-            }
+        const index = todos.findIndex(item => item.id === id);
+        if (index > -1) {
+            todos.splice(index, 1);
         }
 
         localStorage.setItem(this._dbName, JSON.stringify(todos));
