@@ -20,7 +20,7 @@
 
     <meta name="msapplication-TileColor" content="#0129c7">
     <meta name="msapplication-config" content="./browserconfig.xml">
-    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" href="style.13fe0e74a3636a3032b3.css?ee6c9fc17dc967f5a72f">
 
     <script src="//unpkg.com/@webcomponents/webcomponentsjs@2.0.0/webcomponents-loader.js"></script>
 </head>
@@ -29,18 +29,6 @@
 
 <my-app-root></my-app-root>
 
-<script>
-    if (navigator.serviceWorker.controller) {
-        console.log('[PWA] active service worker found, no need to register')
-    } else {
-        //Register the ServiceWorker
-        navigator.serviceWorker.register('sw.js', {
-            scope: './'
-        }).then((reg) => {
-            console.log('[PWA] Service worker has been registered for scope:' + reg.scope);
-        });
-    }
-</script>
-<script src="./dist/bundle.js"></script>
+<script src="main.2fb7e3c9e616ea635da4.js?ee6c9fc17dc967f5a72f"></script>
 </body>
 </html>
