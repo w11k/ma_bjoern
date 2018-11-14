@@ -5,8 +5,8 @@
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --watch --config webpack.config.js --devtool source-map ./src/app.js",
-    "build:prod": "webpack --mode=production --config webpack.config.js ./src/app.js",
+    "build": "webpack --watch --config webpack.config.js --devtool source-map",
+    "build:prod": "webpack --mode=production --config webpack.config.js",
     "postinstall": "cp node_modules/ionicons/dist/css/* node_modules/onsenui/css/ionicons/css/; cp node_modules/ionicons/dist/fonts/* node_modules/onsenui/css/ionicons/fonts/;",
     "publish": "npm run build:prod && gh-pages -d dist -b master -e vanilla-nui"
   },
@@ -18,11 +18,25 @@
     "onsenui": "^2.10.4"
   },
   "devDependencies": {
+    "autoprefixer": "^9.3.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
     "babel-runtime": "^6.26.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^1.0.1",
+    "file-loader": "^2.0.0",
     "gh-pages": "^2.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.4",
+    "node-sass": "^4.10.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "serviceworker-webpack-plugin": "^1.0.1",
     "spa-http-server": "^0.9.0",
-    "webpack": "^4.20.2",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
-    "webpack-livereload-plugin": "^2.1.1"
+    "webpack-md5-hash": "0.0.6"
   }
 }

@@ -1,5 +1,6 @@
 // noinspection ES6UnusedImports
 import ons from 'onsenui/esm';
+
 if (!ons.platform.isIOS()) {
     ons.platform.select('android');
 }
@@ -24,11 +25,27 @@ import 'onsenui/esm/elements/ons-tab';
 import 'onsenui/esm/elements/ons-tabbar';
 import 'onsenui/esm/elements/ons-toolbar';
 import 'onsenui/esm/elements/ons-toolbar-button';
+import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 import {Controller} from './controller';
 import {$on} from './helper';
 import {Model} from './model';
 import {Store} from './store';
+import './style.scss';
 import {Template} from './template';
+
+require.context('../static/', true);
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        runtime.register({scope: '/ma_bjoern/vanilla-nui/'})
+            .then(registration => {
+                // periodically check (each hour) if there is a new version of the Service Worker
+                setInterval(() => {
+                    registration.update();
+                }, 3600000);
+            });
+    });
+}
 
 class Todo {
     constructor(name) {
