@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {ActionSheetController} from '@ionic/angular';
-import {Subscription} from 'rxjs';
+import {ActionSheetController, AlertController} from '@ionic/angular';
+import {noop, Subscription} from 'rxjs';
 import {ModelService} from '../model.service';
 import {ITodo, ListType} from '../typings';
 
@@ -15,7 +15,7 @@ export class ListPage implements OnInit, OnDestroy {
     private todos: Array<ITodo> = [];
     private subscription: Subscription;
 
-    constructor(private model: ModelService, private route: ActivatedRoute, public actionSheetController: ActionSheetController, private changeRef: ChangeDetectorRef) {
+    constructor(private model: ModelService, private route: ActivatedRoute, public actionSheetController: ActionSheetController, public alertController: AlertController, private changeRef: ChangeDetectorRef) {
     }
 
     ngOnInit(): void {
@@ -57,7 +57,7 @@ export class ListPage implements OnInit, OnDestroy {
         this.model.removeItem(id);
     }
 
-    presentActionSheet(id: number) {
+    presentActionSheet(item: ITodo) {
         this.actionSheetController.create({
             header: 'Todo',
             buttons: [
@@ -65,14 +65,14 @@ export class ListPage implements OnInit, OnDestroy {
                     text: 'Edit',
                     icon: 'create',
                     handler: () => {
-                        console.log('Edit clicked');
+                        this.presentAlertPrompt(item);
                     }
                 },
                 {
                     text: 'Delete',
                     role: 'destructive',
                     icon: 'trash',
-                    handler: () => this.deleteItem(id)
+                    handler: () => this.deleteItem(item.id)
                 },
                 {
                     text: 'Cancel',
@@ -81,5 +81,43 @@ export class ListPage implements OnInit, OnDestroy {
                 }
             ]
         }).then((actionSheet: HTMLIonActionSheetElement) => actionSheet.present());
+    }
+
+    presentAlertPrompt(item?: ITodo) {
+        this.alertController
+            .create({
+                header: !!item ? 'Edit Item' : 'Create Item',
+                inputs: [
+                    {
+                        name: 'title',
+                        type: 'text',
+                        value: !!item ? item.title : '',
+                        placeholder: 'Title'
+                    }
+                ],
+                buttons: [
+                    {
+                        text: 'Cancel',
+                        role: 'cancel',
+                        cssClass: 'secondary'
+                    }, {
+                        text: 'Ok',
+                        cssClass: 'submit',
+                        handler: (result) => {
+                            if (!!item) {
+                                this.model.updateItem(item.id, {title: result.title});
+                            } else {
+                                this.model.createItem(result.title);
+                            }
+                        }
+                    }
+                ]
+            })
+            .then((alert: HTMLIonAlertElement) => alert.present().then(() => {
+                const input = alert.querySelector('input');
+                const button = alert.querySelector('button.submit') as HTMLButtonElement;
+                input.addEventListener('keypress', (event) => event.which === 13 ? button.click() : noop);
+                input.focus();
+            }));
     }
 }

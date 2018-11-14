@@ -18,6 +18,8 @@ export class ModelService {
         this.storage.save({
             title: title.trim(),
             completed: false
+        }, (items) => {
+            this.todos.next(items);
         });
     }
 
@@ -31,13 +33,13 @@ export class ModelService {
         });
     }
 
-    public updateItem(id: number, data: ITodo): void {
+    public updateItem(id: number, changes: ITodo): void {
         const liveItems = this.todos.getValue();
         const index = liveItems.findIndex(item => item.id === id);
         if (index > -1) {
-            Object.assign(liveItems[index], data);
+            Object.assign(liveItems[index], changes);
             this.todos.next(liveItems);
-            this.storage.save(data, (storageItems: Array<ITodo>) => this.todos.next(storageItems), id);
+            this.storage.save(changes, (storageItems: Array<ITodo>) => this.todos.next(storageItems), id);
         }
     }
 

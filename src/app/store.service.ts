@@ -48,9 +48,6 @@ export class StoreService {
                 Object.assign(todos[index], updateData);
 
                 localStorage.setItem(this._dbName, JSON.stringify(todos));
-                callback.call(this, todos);
-            } else {
-                callback.call(this, todos);
             }
         } else {
             // Generate an ID
@@ -58,8 +55,8 @@ export class StoreService {
 
             todos.push(updateData);
             localStorage.setItem(this._dbName, JSON.stringify(todos));
-            callback.call(this, todos);
         }
+        callback.call(this, todos);
     }
 
     public remove(id: number, callback: Function): void {
