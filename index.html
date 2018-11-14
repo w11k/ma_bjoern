@@ -35,7 +35,7 @@
     } else {
         //Register the ServiceWorker
         navigator.serviceWorker.register('sw.js', {
-            scope: './'
+            scope: '/ma_bjoern/vanilla-wc/'
         }).then((reg) => {
             console.log('[PWA] Service worker has been registered for scope:' + reg.scope);
         });
