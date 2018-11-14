@@ -10,7 +10,7 @@ require.context('../static/', true);
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        runtime.register()
+        runtime.register({scope: '/ma_bjoern/vanilla-fw/'})
             .then(registration => {
                 // periodically check (each hour) if there is a new version of the Service Worker
                 setInterval(() => {

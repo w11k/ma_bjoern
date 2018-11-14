@@ -7,10 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --watch --config webpack.config.js --devtool source-map",
     "build:prod": "webpack --mode=production --config webpack.config.js",
-    "publish": "gh-pages -d dist -b master -e vanilla-fw"
+    "publish": "npm run build:prod && gh-pages -d dist -b master -e vanilla-fw"
   },
   "author": "Björn Saja",
   "license": "ISC",
+  "private": true,
   "dependencies": {
     "bootstrap": "^4.1.3",
     "bootstrap-material-design": "^4.1.1",
