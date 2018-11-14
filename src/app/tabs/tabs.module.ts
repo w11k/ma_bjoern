@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {IonicModule} from '@ionic/angular';
-import {EmptyPageModule} from '../empty/empty.module';
+import {ListPageModule} from '../list/list.module';
 
 import {TabsPage} from './tabs.page';
 
@@ -14,7 +14,7 @@ import {TabsPageRoutingModule} from './tabs.router.module';
         CommonModule,
         FormsModule,
         TabsPageRoutingModule,
-        EmptyPageModule
+        ListPageModule
     ],
     declarations: [TabsPage]
 })

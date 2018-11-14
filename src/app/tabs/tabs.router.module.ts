@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {EmptyPage} from '../empty/empty.page';
+import {ListPage} from '../list/list.page';
 
 import {TabsPage} from './tabs.page';
 
@@ -17,17 +17,26 @@ const routes: Routes = [
             {
                 path: 'all',
                 outlet: 'all',
-                component: EmptyPage
+                component: ListPage,
+                data: {
+                    type: 'ALL'
+                }
             },
             {
                 path: 'active',
                 outlet: 'active',
-                component: EmptyPage
+                component: ListPage,
+                data: {
+                    type: 'ACTIVE'
+                }
             },
             {
                 path: 'completed',
                 outlet: 'completed',
-                component: EmptyPage
+                component: ListPage,
+                data: {
+                    type: 'COMPLETED'
+                }
             }
         ]
     },
