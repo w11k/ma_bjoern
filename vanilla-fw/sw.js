@@ -15,7 +15,7 @@ var serviceWorkerOption = {
     "./favicon.ico?c674b958d2e6cee819f853a9cdcf9648",
     "./site.webmanifest?13d048262cef59040f6ab5ffafb1228f",
     "./style.a18f7564bd20181b781c.css",
-    "./main.62f60fbe22013523a2e6.js",
+    "./main.ccf9b36fa1c5b4be0ca6.js",
     "./index.html"
   ]
 };
