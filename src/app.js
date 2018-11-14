@@ -7,13 +7,29 @@ import '@polymer/app-layout/app-toolbar/app-toolbar';
 import '@polymer/iron-icons/iron-icons';
 import '@polymer/paper-icon-button/paper-icon-button';
 import '@vaadin/vaadin-context-menu/vaadin-context-menu';
-import {Controller} from "./controller";
-import {$on} from "./helper";
+import runtime from 'serviceworker-webpack-plugin/lib/runtime';
+import {Controller} from './controller';
+import {$on} from './helper';
 import './menu-element';
-import {Model} from "./model";
+import {Model} from './model';
 import './navigator-element';
-import {Store} from "./store";
-import {Template} from "./template";
+import {Store} from './store';
+import './style.scss';
+import {Template} from './template';
+
+require.context('../static/', true);
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        runtime.register({scope: '/ma_bjoern/vanilla-wc/'})
+            .then(registration => {
+                // periodically check (each hour) if there is a new version of the Service Worker
+                setInterval(() => {
+                    registration.update();
+                }, 3600000);
+            });
+    });
+}
 
 class RootElement extends HTMLElement {
     constructor() {
@@ -59,7 +75,6 @@ class RootElement extends HTMLElement {
             }
         `;
         this.shadowRoot.innerHTML = `
-            <link rel="stylesheet" type="text/css" href="./style.css">
             <style>${styles}</style>
             <app-drawer-layout>
                 <app-drawer slot="drawer" swipe-open="true">
