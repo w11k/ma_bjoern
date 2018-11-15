@@ -14,14 +14,17 @@
         <ion-tab-bar slot="top">
             <ion-tab-button tab="all" href="/todos/(all:all)">
                 <ion-icon name="list"></ion-icon>
+                <ion-badge color="danger">{{getCount().total}}</ion-badge>
                 <ion-label>All</ion-label>
             </ion-tab-button>
             <ion-tab-button tab="active" href="/todos/(active:active)">
                 <ion-icon name="square-outline"></ion-icon>
+                <ion-badge color="danger">{{getCount().active}}</ion-badge>
                 <ion-label>Active</ion-label>
             </ion-tab-button>
             <ion-tab-button tab="completed" href="/todos/(completed:completed)">
                 <ion-icon name="checkbox-outline"></ion-icon>
+                <ion-badge color="danger">{{getCount().completed}}</ion-badge>
                 <ion-label>Completed</ion-label>
             </ion-tab-button>
         </ion-tab-bar>

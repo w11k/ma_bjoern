@@ -64,7 +64,7 @@ export class ModelService {
                 return {
                     active: count.active + +!currentTodo.completed,
                     completed: count.completed + +currentTodo.completed,
-                    total: count.total++
+                    total: ++count.total
                 };
             }, {
                 active: 0,

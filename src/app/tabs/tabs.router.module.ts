@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ListPage} from '../list/list.page';
+import {ListType} from '../typings';
 
 import {TabsPage} from './tabs.page';
 
@@ -19,7 +20,7 @@ const routes: Routes = [
                 outlet: 'all',
                 component: ListPage,
                 data: {
-                    type: 'ALL'
+                    type: ListType.ALL
                 }
             },
             {
@@ -27,7 +28,7 @@ const routes: Routes = [
                 outlet: 'active',
                 component: ListPage,
                 data: {
-                    type: 'ACTIVE'
+                    type: ListType.ACTIVE
                 }
             },
             {
@@ -35,7 +36,7 @@ const routes: Routes = [
                 outlet: 'completed',
                 component: ListPage,
                 data: {
-                    type: 'COMPLETED'
+                    type: ListType.COMPLETED
                 }
             }
         ]

@@ -11,3 +11,12 @@ ion-tab-button {
 ion-tab-bar {
   height: 48px;
 }
+
+ion-badge {
+  padding: 0 4px;
+  font-size: 9px;
+  line-height: 13px;
+  right: unset;
+  left: calc(50% + 2px);
+  top: 2px;
+}
