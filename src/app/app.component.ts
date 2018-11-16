@@ -11,17 +11,17 @@ export class AppComponent implements OnDestroy {
   public appPages = [
     {
       title: 'Todos',
-      url: '.',
+      url: '/todos',
       icon: 'list'
     },
     {
       title: 'Settings',
-      url: '.',
+      url: '/settings',
       icon: 'settings'
     },
     {
       title: 'About',
-      url: '.',
+      url: '/about',
       icon: 'information-circle'
     }
   ];

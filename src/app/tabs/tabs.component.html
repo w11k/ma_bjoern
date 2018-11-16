@@ -1,0 +1,22 @@
+<nav mat-tab-nav-bar mat-align-tabs="center" mat-stretch-tabs>
+  <a mat-tab-link
+     routerLink="/todos/(all:all)"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    All
+  </a>
+  <a mat-tab-link
+     routerLink="/todos/(active:active)"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    Active
+  </a>
+  <a mat-tab-link
+     routerLink="/todos/(completed:completed)"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    Completed
+  </a>
+</nav>
+
+<router-outlet></router-outlet>
