@@ -1,14 +1,20 @@
 {
   "name": "angular-fw",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "SPA mit Angular und UI Framework (Angular Material)",
+  "main": "index.html",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --prod --base-href /ma_bjoern/angular-fw/",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "publish": "npm run build:prod && gh-pages -d dist -b master -e angular-fw"
   },
+  "author": "Björn Saja",
+  "license": "ISC",
   "private": true,
   "dependencies": {
     "@angular/animations": "~7.0.0",
