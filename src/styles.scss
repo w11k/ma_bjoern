@@ -1,4 +1,72 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// define a real custom palette (using http://mcg.mbitson.com)
+$colors-primary: (
+  50 : #e4e4f2,
+  100 : #bdbcdf,
+  200 : #9190ca,
+  300 : #6464b5,
+  400 : #4342a5,
+  500 : #222195,
+  600 : #1e1d8d,
+  700 : #191882,
+  800 : #141478,
+  900 : #0c0b67,
+  A100 : #9a9aff,
+  A200 : #6767ff,
+  A400 : #3434ff,
+  A700 : #1a1aff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$w11k-primary: mat-palette($colors-primary);
+$w11k-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$w11k-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$w11k-theme: mat-light-theme($w11k-primary, $w11k-accent, $w11k-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($w11k-theme);
+
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+
+
+
