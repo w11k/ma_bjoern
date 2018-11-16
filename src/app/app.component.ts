@@ -7,7 +7,6 @@ import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnDestroy {
-  private readonly _mobileQueryListener: () => void;
   public mobileQuery: MediaQueryList;
   public appPages = [
     {
@@ -26,6 +25,7 @@ export class AppComponent implements OnDestroy {
       icon: 'information-circle'
     }
   ];
+  private readonly _mobileQueryListener: () => void;
 
   constructor(public changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
