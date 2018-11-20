@@ -35,7 +35,9 @@
         "/ma_bjoern/angular-fw/assets/images/safari-pinned-tab.svg",
         "/ma_bjoern/angular-fw/assets/images/splash-512x512.png"
       ],
-      "patterns": []
+      "patterns": [
+        "[^/]*:\\/\\/fonts\\.googleapis\\.com\\/[^/]*"
+      ]
     }
   ],
   "dataGroups": [],
