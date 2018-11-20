@@ -36,7 +36,7 @@
         "/ma_bjoern/angular-fw/assets/images/splash-512x512.png"
       ],
       "patterns": [
-        "[^/]*:\\/\\/fonts\\.googleapis\\.com\\/[^/]*"
+        "https:\\/\\/fonts\\.googleapis\\.com\\/.*"
       ]
     }
   ],
