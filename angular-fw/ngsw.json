@@ -1,0 +1,81 @@
+{
+  "configVersion": 1,
+  "index": "/ma_bjoern/angular-fw/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/ma_bjoern/angular-fw/4.5b38d93b9ebdeef14910.js",
+        "/ma_bjoern/angular-fw/5.3f9f98c4aa1567afffe0.js",
+        "/ma_bjoern/angular-fw/favicon.ico",
+        "/ma_bjoern/angular-fw/index.html",
+        "/ma_bjoern/angular-fw/main.4cea853c08665ef30c5e.js",
+        "/ma_bjoern/angular-fw/polyfills.c6871e56cb80756a5498.js",
+        "/ma_bjoern/angular-fw/runtime.63dfa245a3f100830d8f.js",
+        "/ma_bjoern/angular-fw/styles.a3083f49d6d6d485e405.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/ma_bjoern/angular-fw/apple-touch-icon.png",
+        "/ma_bjoern/angular-fw/assets/images/android-chrome-192x192.png",
+        "/ma_bjoern/angular-fw/assets/images/favicon-16x16.png",
+        "/ma_bjoern/angular-fw/assets/images/favicon-32x32.png",
+        "/ma_bjoern/angular-fw/assets/images/mstile-144x144.png",
+        "/ma_bjoern/angular-fw/assets/images/mstile-150x150.png",
+        "/ma_bjoern/angular-fw/assets/images/mstile-310x150.png",
+        "/ma_bjoern/angular-fw/assets/images/mstile-310x310.png",
+        "/ma_bjoern/angular-fw/assets/images/mstile-70x70.png",
+        "/ma_bjoern/angular-fw/assets/images/safari-pinned-tab.svg",
+        "/ma_bjoern/angular-fw/assets/images/splash-512x512.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/ma_bjoern/angular-fw/4.5b38d93b9ebdeef14910.js": "867baf429f877d4fb6f8031ca7f0252e3312586c",
+    "/ma_bjoern/angular-fw/5.3f9f98c4aa1567afffe0.js": "89450adce92221e81c668bbf3325ab84c95d0101",
+    "/ma_bjoern/angular-fw/apple-touch-icon.png": "cfa2f7b2615451dddf2592110683a325aa552068",
+    "/ma_bjoern/angular-fw/assets/images/android-chrome-192x192.png": "2541f5c7afde887f92e6138b1431fa59d4c63a42",
+    "/ma_bjoern/angular-fw/assets/images/favicon-16x16.png": "2d536230465738a5d2afb9ca04400785568978b2",
+    "/ma_bjoern/angular-fw/assets/images/favicon-32x32.png": "44603fd658be0a81d2b2d69e18351ceb695dce78",
+    "/ma_bjoern/angular-fw/assets/images/mstile-144x144.png": "89cb8fffb93ad32298ad33efca99c783cbed9119",
+    "/ma_bjoern/angular-fw/assets/images/mstile-150x150.png": "ed25be0e6ff03541becc75135af306d7d2e86d2b",
+    "/ma_bjoern/angular-fw/assets/images/mstile-310x150.png": "cbdea2761b99442ade33cbeb45826b6941fe5d7e",
+    "/ma_bjoern/angular-fw/assets/images/mstile-310x310.png": "a8b1509ff66520c7f0f979d439bd2e49ffab58ec",
+    "/ma_bjoern/angular-fw/assets/images/mstile-70x70.png": "00e5203d444c2ea17259e9759a6673486fe8cb20",
+    "/ma_bjoern/angular-fw/assets/images/safari-pinned-tab.svg": "036c7153e1fd189151b73c43e9c2df014802ba15",
+    "/ma_bjoern/angular-fw/assets/images/splash-512x512.png": "7dd68f046d5686272fc3af6321922ad6b061cea9",
+    "/ma_bjoern/angular-fw/favicon.ico": "d08d6acd3fe0f0b8895d174acac2c702c89ac986",
+    "/ma_bjoern/angular-fw/index.html": "36e49c42c3bfbf63886776b3121a706e1d78d5ef",
+    "/ma_bjoern/angular-fw/main.4cea853c08665ef30c5e.js": "2a2064f23f969f5a4cba421f20dca341a2e0b561",
+    "/ma_bjoern/angular-fw/polyfills.c6871e56cb80756a5498.js": "ce68d153e9b9b6d26b625069c0ee99ae09c6f255",
+    "/ma_bjoern/angular-fw/runtime.63dfa245a3f100830d8f.js": "4783cfea1f4a814ddb355e837eb1bf1ceef45b42",
+    "/ma_bjoern/angular-fw/styles.a3083f49d6d6d485e405.css": "c56abb48d2e7510cf9658eb95e4b581fd061c8dc"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
