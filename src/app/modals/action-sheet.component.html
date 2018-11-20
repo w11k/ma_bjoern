@@ -1,0 +1,13 @@
+<mat-nav-list>
+  <a href="#" mat-list-item (click)="closeSheet(TodoActions.EDIT, $event)">
+    <span mat-line>Edit</span>
+  </a>
+
+  <a href="#" mat-list-item (click)="closeSheet(TodoActions.DELETE, $event)">
+    <span mat-line>Delete</span>
+  </a>
+
+  <a href="#" mat-list-item (click)="closeSheet(TodoActions.NONE, $event)">
+    <span mat-line>Cancel</span>
+  </a>
+</mat-nav-list>

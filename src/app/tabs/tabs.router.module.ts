@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {EmptyComponent} from '../empty/empty.component';
+import {ListComponent} from '../list/list.component';
 import {ListType} from '../typings';
 
 import {TabsComponent} from './tabs.component';
@@ -12,29 +12,26 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/todos/(all:all)',
+        redirectTo: '/todos/all',
         pathMatch: 'full'
       },
       {
         path: 'all',
-        outlet: 'all',
-        component: EmptyComponent,
+        component: ListComponent,
         data: {
           type: ListType.ALL
         }
       },
       {
         path: 'active',
-        outlet: 'active',
-        component: EmptyComponent,
+        component: ListComponent,
         data: {
           type: ListType.ACTIVE
         }
       },
       {
         path: 'completed',
-        outlet: 'completed',
-        component: EmptyComponent,
+        component: ListComponent,
         data: {
           type: ListType.COMPLETED
         }
@@ -43,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/todos/(all:all)',
+    redirectTo: '/todos/all',
     pathMatch: 'full'
   }
 ];

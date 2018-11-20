@@ -22,7 +22,7 @@ export class AppComponent implements OnDestroy {
     {
       title: 'About',
       url: '/about',
-      icon: 'information-circle'
+      icon: 'info'
     }
   ];
   private readonly _mobileQueryListener: () => void;

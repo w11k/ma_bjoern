@@ -1,7 +1,8 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
-import {MatTabsModule} from '@angular/material';
-import {EmptyComponentModule} from '../empty/empty.module';
+import {ListComponentModule} from '../list/list.module';
+import {MaterialModule} from '../material.module';
+import {ModalsModule} from '../modals/modals.module';
 import {TabsComponent} from './tabs.component';
 import {TabsComponentRoutingModule} from './tabs.router.module';
 
@@ -9,9 +10,9 @@ import {TabsComponentRoutingModule} from './tabs.router.module';
   declarations: [TabsComponent],
   imports: [
     CommonModule,
-    MatTabsModule,
+    MaterialModule,
     TabsComponentRoutingModule,
-    EmptyComponentModule
+    ListComponentModule
   ]
 })
 export class TabsComponentModule {

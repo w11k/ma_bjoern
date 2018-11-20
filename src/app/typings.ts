@@ -16,3 +16,9 @@ export enum ListType {
     COMPLETED = 'COMPLETED',
     NONE = 'NONE'
 }
+
+export enum TodoActions {
+    EDIT = 'EDIT',
+    DELETE = 'DELETE',
+    NONE = 'NONE'
+}

@@ -1,0 +1,11 @@
+<mat-list role="list">
+  <mat-list-item role="listitem" *ngFor="let item of getItems()" (click)="presentActionSheet(item)">
+    <mat-checkbox [ngModel]="item.completed"
+                  (change)="toggleItem(item.id, $event)">
+    </mat-checkbox>
+    <span class="label">{{item.title}}</span>
+  </mat-list-item>
+</mat-list>
+<button mat-fab (click)="presentAlertPrompt()">
+  <mat-icon aria-label="Add todo">add</mat-icon>
+</button>
