@@ -1,7 +1,7 @@
 {
   "name": "angular-nui",
   "version": "1.0.0",
-  "description": "SPA mit vanilla JS und nativem UI (Ionic)",
+  "description": "SPA mit Angular und nativem UI (Ionic)",
   "main": "index.html",
   "scripts": {
     "ng": "ng",
