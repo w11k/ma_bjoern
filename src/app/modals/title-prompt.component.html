@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>{{data.title}}</h1>
 <div mat-dialog-content>
   <mat-form-field>
-    <input placeholder="Title" matInput [(ngModel)]="data.value" cdkFocusInitial>
+    <input placeholder="Title" matInput [(ngModel)]="data.value" cdkFocusInitial (keydown)="handleKeydown($event)">
   </mat-form-field>
 </div>
 <div mat-dialog-actions align="end">

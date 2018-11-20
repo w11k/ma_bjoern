@@ -1,3 +1,18 @@
 nav {
   background-color: #FFFFFF;
 }
+
+a.mat-tab-link {
+  opacity: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+mat-icon {
+  height: 20px;
+}
+
+small {
+  line-height: 15px;
+  font-size: xx-small;
+}

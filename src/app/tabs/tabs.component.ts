@@ -1,15 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {ModelService} from '../model.service';
+import {ITodoCount} from '../typings';
 
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.scss']
 })
-export class TabsComponent implements OnInit {
+export class TabsComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
+  private count: ITodoCount = {
+    active: 0,
+    completed: 0,
+    total: 0
+  };
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private model: ModelService, private changeRef: ChangeDetectorRef) {
   }
 
+  ngOnInit(): void {
+    this.subscription = this.model.getCount().subscribe((count) => {
+      this.count = count;
+      this.changeRef.detectChanges();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  getCount(): ITodoCount {
+    return this.count;
+  }
 }

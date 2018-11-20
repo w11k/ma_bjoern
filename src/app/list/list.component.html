@@ -1,7 +1,8 @@
 <mat-list role="list">
   <mat-list-item role="listitem" *ngFor="let item of getItems()" (click)="presentActionSheet(item)">
     <mat-checkbox [ngModel]="item.completed"
-                  (change)="toggleItem(item.id, $event)">
+                  (change)="toggleItem(item.id, $event)"
+                  (click)="$event.stopPropagation()">
     </mat-checkbox>
     <span class="label">{{item.title}}</span>
   </mat-list-item>

@@ -10,6 +10,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [],
@@ -24,7 +25,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatBottomSheetModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatBadgeModule
   ],
   exports: [
     MatToolbarModule,
@@ -37,7 +39,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatBottomSheetModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatBadgeModule
   ]
 })
 export class MaterialModule {

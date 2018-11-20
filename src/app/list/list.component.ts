@@ -60,7 +60,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   presentActionSheet(item: ITodo) {
-    const bottomSheetRef = this.bottomSheet.open(ActionSheetComponent);
+    const bottomSheetRef = this.bottomSheet.open(ActionSheetComponent, {autoFocus: false});
     bottomSheetRef.afterDismissed().subscribe((action: TodoActions) => {
       switch (action) {
         case TodoActions.EDIT:
