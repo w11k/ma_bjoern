@@ -20,6 +20,9 @@
         "files": [
           "/apple-touch-icon.png",
           "/assets/**"
+        ],
+        "urls": [
+          "https://fonts.googleapis.com/**"
         ]
       }
     }
