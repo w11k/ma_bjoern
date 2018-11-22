@@ -1,39 +1,20 @@
-import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnDestroy {
-  public mobileQuery: MediaQueryList;
-  public appPages = [
-    {
-      title: 'Todos',
-      url: '/todos',
-      icon: 'list'
-    },
-    {
-      title: 'Settings',
-      url: '/settings',
-      icon: 'settings'
-    },
-    {
-      title: 'About',
-      url: '/about',
-      icon: 'info'
-    }
-  ];
-  private readonly _mobileQueryListener: () => void;
+export class AppComponent {
 
-  constructor(public changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => this.changeDetectorRef.detectChanges();
-    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
+  @ViewChild('drawer') drawer: ElementRef;
+
+  constructor() {
   }
 
-  ngOnDestroy(): void {
-    this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
+  closeMenu() {
+    if (this.drawer.nativeElement.opened && !this.drawer.nativeElement.persistent) {
+      this.drawer.nativeElement.close();
+    }
   }
 }

@@ -1,8 +1,7 @@
 import {CommonModule} from '@angular/common';
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {ListComponentModule} from '../list/list.module';
 import {MaterialModule} from '../material.module';
-import {ModalsModule} from '../modals/modals.module';
 import {TabsComponent} from './tabs.component';
 import {TabsComponentRoutingModule} from './tabs.router.module';
 
@@ -13,7 +12,8 @@ import {TabsComponentRoutingModule} from './tabs.router.module';
     MaterialModule,
     TabsComponentRoutingModule,
     ListComponentModule
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class TabsComponentModule {
 }

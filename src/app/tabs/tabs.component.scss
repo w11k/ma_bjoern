@@ -1,18 +1,31 @@
-nav {
-  background-color: #FFFFFF;
+:host {
+  display: block;
+  height: calc(100vh - 64px);
 }
 
-a.mat-tab-link {
-  opacity: 1;
-  flex-direction: column;
-  justify-content: flex-end;
+paper-tabs {
+  --paper-tab-ink: #222195;
+  --paper-tabs-selection-bar-color: #222195;
+  background-color: #ffffff;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, .14), 0 3px 5px -2px rgba(0, 0, 0, .12), 0 5px 1px -4px rgba(0, 0, 0, .2);
+  border-bottom: 1px solid #eee;
+  position: relative;
+  z-index: 1;
 }
 
-mat-icon {
-  height: 20px;
+paper-tab {
+  --layout-horizontal_-_flex-direction: column;
+  font-size: x-small;
+  --paper-badge-width: 15px;
+  --paper-badge-height: 15px;
+  --paper-badge-margin-bottom: -4px;
+  --paper-badge-margin-left: -4px;
 }
 
-small {
-  line-height: 15px;
-  font-size: xx-small;
+paper-tab.iron-selected {
+  color: #222195;
+}
+
+iron-swipeable-pages {
+  height: calc(100% - 49px);
 }

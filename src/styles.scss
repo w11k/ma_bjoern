@@ -61,17 +61,18 @@ $w11k-theme: mat-light-theme($w11k-primary, $w11k-accent, $w11k-warn);
 
 /* You can add global styles to this file, and also import other style files */
 
+
 html, body {
   height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: sans-serif;
+  background-color: #eceff1;
 }
 
-
-
-
-
+body[unresolved] {
+  display: none;
+}
 

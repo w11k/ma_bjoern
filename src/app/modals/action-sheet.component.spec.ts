@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ActionSheetComponent } from './action-sheet.component';
+import {ActionSheetComponent} from './action-sheet.component';
 
 describe('ActionSheetComponent', () => {
   let component: ActionSheetComponent;
@@ -8,9 +8,9 @@ describe('ActionSheetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ActionSheetComponent ]
+      declarations: [ActionSheetComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

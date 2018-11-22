@@ -1,25 +1,21 @@
-<nav mat-tab-nav-bar mat-align-tabs="center" mat-stretch-tabs>
-  <a mat-tab-link
-     routerLink="/todos/all"
-     routerLinkActive #rla1="routerLinkActive"
-     [active]="rla1.isActive">
-    <mat-icon [matBadge]="getCount().total" matBadgeColor="warn">list</mat-icon>
-    <small>All</small>
-  </a>
-  <a mat-tab-link
-     routerLink="/todos/active"
-     routerLinkActive #rla2="routerLinkActive"
-     [active]="rla2.isActive">
-    <mat-icon [matBadge]="getCount().active" matBadgeColor="warn">check_box_outline_blank</mat-icon>
-    <small>Active</small>
-  </a>
-  <a mat-tab-link
-     routerLink="/todos/completed"
-     routerLinkActive #rla3="routerLinkActive"
-     [active]="rla3.isActive">
-    <mat-icon [matBadge]="getCount().completed" matBadgeColor="warn">check_box</mat-icon>
-    <small>Completed</small>
-  </a>
-</nav>
-
-<router-outlet></router-outlet>
+<paper-tabs [selected]="currentTab | async">
+  <paper-tab routerLink="/todos/all">
+    <iron-icon icon="list" id="tab_all"></iron-icon>
+    <span>All</span>
+    <paper-badge [label]="getCount().total" for="tab_all"></paper-badge>
+  </paper-tab>
+  <paper-tab routerLink="/todos/active">
+    <iron-icon icon="check-box-outline-blank" id="tab_active"></iron-icon>
+    <span>Active</span>
+    <paper-badge [label]="getCount().active" for="tab_active"></paper-badge>
+  </paper-tab>
+  <paper-tab routerLink="/todos/completed">
+    <iron-icon icon="check-box" id="tab_completed"></iron-icon>
+    <span>Completed</span>
+    <paper-badge [label]="getCount().completed" for="tab_completed"></paper-badge>
+  </paper-tab>
+</paper-tabs>
+<iron-swipeable-pages selected="0" no-cycle="true">
+  <router-outlet></router-outlet>
+</iron-swipeable-pages>
+<paper-fab icon="add" class="bottom_right" action="new-todo"></paper-fab>

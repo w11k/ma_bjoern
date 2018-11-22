@@ -1,21 +1,23 @@
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
-import {ActionSheetComponent} from './modals/action-sheet.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {MaterialModule} from './material.module';
+import {MenuComponent} from './menu/menu.component';
+import {ActionSheetComponent} from './modals/action-sheet.component';
 import {ModalsModule} from './modals/modals.module';
+import {TitlePromptComponent} from './modals/title-prompt.component';
 import {ModelService} from './model.service';
 import {StoreService} from './store.service';
-import {TitlePromptComponent} from './modals/title-prompt.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -29,11 +31,15 @@ import {TitlePromptComponent} from './modals/title-prompt.component';
     ModelService,
     StoreService
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [
     ActionSheetComponent,
     TitlePromptComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+    MenuComponent
+  ]
 })
 export class AppModule {
 }

@@ -5,16 +5,16 @@ import {RouterModule} from '@angular/router';
 import {EmptyComponent} from './empty.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild([
-            {
-                path: '',
-                component: EmptyComponent
-            }
-        ])
-    ],
-    declarations: [EmptyComponent]
+  imports: [
+    CommonModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: EmptyComponent
+      }
+    ])
+  ],
+  declarations: [EmptyComponent]
 })
 export class EmptyComponentModule {
 }
