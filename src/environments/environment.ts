@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  storeName: 'angular-fw'
+  storeName: 'angular-wc'
 };
 
 /*

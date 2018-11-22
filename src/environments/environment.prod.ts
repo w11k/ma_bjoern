@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  storeName: 'angular-fw'
+  storeName: 'angular-wc'
 };
