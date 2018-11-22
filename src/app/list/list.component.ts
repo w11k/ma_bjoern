@@ -51,8 +51,8 @@ export class ListComponent implements OnInit, OnDestroy {
     return this.todos;
   }
 
-  toggleItem(id: number, event: MatCheckboxChange): void {
-    this.model.updateItem(id, {completed: !!event.checked});
+  toggleItem(id: number, event: Event): void {
+    this.model.updateItem(id, {completed: !!(<any>event.srcElement).checked});
   }
 
   deleteItem(id: number) {

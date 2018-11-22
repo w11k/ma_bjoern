@@ -15,7 +15,4 @@
     <paper-badge [label]="getCount().completed" for="tab_completed"></paper-badge>
   </paper-tab>
 </paper-tabs>
-<iron-swipeable-pages selected="0" no-cycle="true">
-  <router-outlet></router-outlet>
-</iron-swipeable-pages>
-<paper-fab icon="add" class="bottom_right" action="new-todo"></paper-fab>
+<router-outlet></router-outlet>

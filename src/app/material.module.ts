@@ -13,7 +13,6 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
 
-import '@myfrom/iron-swipeable-pages/iron-swipeable-pages';
 import '@polymer/app-layout/app-drawer-layout/app-drawer-layout';
 import '@polymer/app-layout/app-drawer/app-drawer';
 import '@polymer/app-layout/app-header-layout/app-header-layout';
@@ -30,6 +29,9 @@ import '@polymer/paper-ripple/paper-ripple';
 import '@polymer/paper-tabs/paper-tab';
 import '@polymer/paper-tabs/paper-tabs';
 import '@vaadin/vaadin-context-menu/vaadin-context-menu';
+import '@polymer/paper-checkbox/paper-checkbox';
+import '@polymer/paper-item/paper-item';
+import '@polymer/paper-ripple/paper-ripple';
 
 
 @NgModule({
