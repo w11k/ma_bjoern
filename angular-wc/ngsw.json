@@ -36,7 +36,8 @@
         "/ma_bjoern/angular-wc/assets/images/splash-512x512.png"
       ],
       "patterns": [
-        "https:\\/\\/fonts\\.googleapis\\.com\\/.*"
+        "https:\\/\\/fonts\\.googleapis\\.com\\/.*",
+        "https:\\/\\/fonts\\.gstatic\\.com\\/.*"
       ]
     }
   ],
