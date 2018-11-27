@@ -19,7 +19,8 @@
       "resources": {
         "files": [
           "/apple-touch-icon.png",
-          "/assets/**"
+          "/assets/**",
+          "/svg/**"
         ]
       }
     }
