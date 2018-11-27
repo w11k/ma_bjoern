@@ -10,4 +10,6 @@
 
 [Angular with native UI (Ionic)](./angular-nui)
 
+[Angular with Web Components](./angular-wc)
+
 [Angular with popular UI Framework (Angular Material)](./angular-fw)
