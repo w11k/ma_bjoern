@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-fw": {
+    "angular-wc": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -65,18 +65,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-fw:build"
+            "browserTarget": "angular-wc:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-fw:build:production"
+              "browserTarget": "angular-wc:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-fw:build"
+            "browserTarget": "angular-wc:build"
           }
         },
         "test": {
@@ -113,7 +113,7 @@
         }
       }
     },
-    "angular-fw-e2e": {
+    "angular-wc-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -122,11 +122,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-fw:serve"
+            "devServerTarget": "angular-wc:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-fw:serve:production"
+              "devServerTarget": "angular-wc:serve:production"
             }
           }
         },
@@ -142,5 +142,5 @@
       }
     }
   },
-  "defaultProject": "angular-fw"
+  "defaultProject": "angular-wc"
 }
