@@ -1,32 +1,11 @@
-<vaadin-context-menu *ngFor="let item of getItems()">
-  <template>
-    <style>
-      paper-item {
-        --paper-item-min-height: 32px;
-        cursor: pointer;
-      }
-    </style>
-    <div role="listbox" class="menu_list">
-      <paper-item data-id="0">
-        Edit
-        <paper-ripple></paper-ripple>
-      </paper-item>
-      <paper-item data-id="1">
-        Delete
-        <paper-ripple></paper-ripple>
-      </paper-item>
-      <hr>
-      <paper-item data-id="2">
-        Cancel
-        <paper-ripple></paper-ripple>
-      </paper-item>
-    </div>
-  </template>
-  <paper-item class="border_bottom">
-    <paper-checkbox (change)="toggleItem(item.id, $event)"
-                    (click)="$event.stopPropagation()"
-                    [checked]="item.completed"></paper-checkbox>
-    <span class="label">{{item.title}}</span>
-  </paper-item>
-</vaadin-context-menu>
-<paper-fab icon="add" class="bottom_right" (click)="presentAlertPrompt()"></paper-fab>
+<ng-container *ngFor="let item of getItems()">
+  <vaadin-context-menu #menu>
+    <paper-item [attr.data-id]="item.id">
+      <paper-checkbox (change)="toggleItem(item.id, $event)"
+                      (click)="$event.stopPropagation()"
+                      [checked]="item.completed"></paper-checkbox>
+      <span class="label">{{item.title}}</span>
+    </paper-item>
+  </vaadin-context-menu>
+  <paper-fab icon="add" class="bottom_right" (click)="presentAlertPrompt()"></paper-fab>
+</ng-container>

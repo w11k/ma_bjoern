@@ -1,4 +1,11 @@
+paper-item {
+  border-bottom: 1px solid #eee;
+  background-color: #ffffff;
+}
 
+paper-item:before {
+  display: none !important;
+}
 
 paper-fab {
   --paper-fab-keyboard-focus-background: var(--accent-color);

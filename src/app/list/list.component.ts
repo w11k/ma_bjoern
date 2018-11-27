@@ -1,23 +1,24 @@
-import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {MatBottomSheet, MatCheckboxChange, MatDialog} from '@angular/material';
+import {ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {ActionSheetComponent} from '../modals/action-sheet.component';
-import {TitlePromptComponent} from '../modals/title-prompt.component';
 import {ModelService} from '../model.service';
 import {ITodo, ListType, TodoActions} from '../typings';
 
 @Component({
   selector: 'app-list',
   templateUrl: 'list.component.html',
-  styleUrls: ['list.component.scss']
+  styleUrls: ['list.component.scss'],
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class ListComponent implements OnInit, OnDestroy {
   private type: ListType = ListType.NONE;
   private todos: Array<ITodo> = [];
   private subscription: Subscription;
 
-  constructor(private model: ModelService, private route: ActivatedRoute, private bottomSheet: MatBottomSheet, public dialog: MatDialog, /*public actionSheetController: ActionSheetController, public alertController: AlertController,*/ private changeRef: ChangeDetectorRef) {
+  @ViewChildren('menu', {read: ElementRef}) menus: QueryList<ElementRef>;
+
+  constructor(private model: ModelService, private route: ActivatedRoute, private changeRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -41,6 +42,11 @@ export class ListComponent implements OnInit, OnDestroy {
         this.changeRef.detectChanges();
       });
     }
+
+    this.setContextMenuRenderer(this.menus.toArray());
+    this.menus.changes.subscribe((currentMenus: QueryList<ElementRef>) => {
+      this.setContextMenuRenderer(currentMenus.toArray());
+    });
   }
 
   ngOnDestroy() {
@@ -55,41 +61,87 @@ export class ListComponent implements OnInit, OnDestroy {
     this.model.updateItem(id, {completed: !!(<any>event.srcElement).checked});
   }
 
-  deleteItem(id: number) {
+  private deleteItem(id: number) {
     this.model.removeItem(id);
   }
 
-  presentActionSheet(item: ITodo) {
-    const bottomSheetRef = this.bottomSheet.open(ActionSheetComponent, {autoFocus: false});
-    bottomSheetRef.afterDismissed().subscribe((action: TodoActions) => {
-      switch (action) {
-        case TodoActions.EDIT:
-          return this.presentAlertPrompt(item);
-        case TodoActions.DELETE:
-          return this.deleteItem(item.id);
-        case TodoActions.NONE:
-        default:
-          return;
+  presentAlertPrompt(item?: ITodo) {
+    const oldTitle = !!item ? item.title : '';
+    setTimeout(() => {
+      const newTitle = window.prompt(oldTitle !== '' ? 'Edit Item' : 'Create Item', oldTitle);
+      if (typeof newTitle !== 'string') {
+        return;
+      } else if (newTitle.trim() === '') {
+        return window.alert('No input!');
+      } else if (oldTitle === newTitle) {
+        return window.alert('No change!');
       }
+      if (!!item) {
+        this.model.updateItem(item.id, {title: newTitle});
+      } else {
+        this.model.createItem(newTitle);
+      }
+    }, 300);
+  }
+
+  private setContextMenuRenderer(menus: Array<ElementRef>): void {
+    menus.forEach((nativeElement) => {
+      nativeElement.nativeElement.renderer = (root, contextMenu, context) => {
+        let listBox = root.firstElementChild;
+        if (!listBox) {
+          listBox = document.createElement('div');
+          listBox.setAttribute('role', 'listbox');
+          listBox.classList.add('menu_list');
+          listBox.innerHTML = `
+            <style>
+                div.menu_list paper-item {
+                    --paper-item-min-height: 32px;
+                    cursor: pointer;
+                }
+            </style>
+            <paper-item data-id="0">
+                Edit
+                <paper-ripple></paper-ripple>
+            </paper-item>
+            <paper-item data-id="1">
+                Delete
+                <paper-ripple></paper-ripple>
+            </paper-item>
+            <hr>
+            <paper-item data-id="2">
+                Cancel
+                <paper-ripple></paper-ripple>
+            </paper-item>
+          `;
+          listBox.querySelectorAll('paper-item').forEach((item) => {
+            item.addEventListener('click', (event) => {
+              this.handleContextMenuClick(event);
+            });
+          });
+          root.appendChild(listBox);
+        }
+      };
     });
   }
 
-  presentAlertPrompt(item?: ITodo) {
-    const dialogRef = this.dialog.open(TitlePromptComponent, {
-      data: {
-        title: !!item ? 'Edit Item' : 'Create Item',
-        value: !!item ? item.title : ''
-      }
-    });
+  private getItemId(element): number {
+    return parseInt(element.dataset.id, 10);
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (!!result) {
-        if (!!item) {
-          this.model.updateItem(item.id, {title: result});
-        } else {
-          this.model.createItem(result);
-        }
-      }
-    });
+  private handleContextMenuClick(event: MouseEvent) {
+    const menu = (<any>event.target).parentNode.parentNode;
+    const button = this.getItemId(event.target);
+    const id = this.getItemId(menu.model.target);
+    switch (button) {
+      case 0:
+        this.model.getItemById(id).then((item) => this.presentAlertPrompt(item));
+        break;
+      case 1:
+        this.deleteItem(id);
+        break;
+      case 2:
+      default:
+        return;
+    }
   }
 }

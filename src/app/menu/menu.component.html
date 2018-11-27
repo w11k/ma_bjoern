@@ -3,8 +3,7 @@
 <div role="listbox">
   <paper-item *ngFor="let p of appPages"
               [routerLink]="[p.url]"
-              (click)="menuItemClicked()"
-              class="border_bottom">
+              (click)="menuItemClicked()">
     <iron-icon [icon]="p.icon"></iron-icon>
     {{p.title}}
     <paper-ripple></paper-ripple>
