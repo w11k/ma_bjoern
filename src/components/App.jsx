@@ -26,8 +26,8 @@ export default function (props) {
 
   // Framework7 parameters here
   const f7params = {
-    id: 'io.framework7.testapp', // App bundle ID
-    name: 'Framework7', // App name
+    id: 'io.framework7.react-nui', // App bundle ID
+        name: 'Todo', // App name
     theme: 'auto', // Automatic theme detection
     // App routes
     routes,

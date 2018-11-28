@@ -1,6 +1,21 @@
 {
-  "name": "framework7-react-app-template",
-  "version": "3.0.0",
+  "name": "react-nui",
+  "version": "1.0.0",
+  "description": "SPA mit React und nativem UI (Framework7)",
+  "main": "index.html",
+  "homepage": "https://w11k.github.io/ma_bjoern/react-nui",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "copy-fonts": "cpy node_modules/framework7-icons/fonts/*.* src/fonts && cpy node_modules/material-design-icons/iconfont/*.{eot,ttf,woff,woff2} src/fonts",
+    "postinstall": "npm run copy-fonts",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build -b master -e react-nui"
+  },
+  "author": "Björn Saja",
+  "license": "ISC",
   "private": true,
   "dependencies": {
     "framework7": "^3.0.1",
@@ -11,17 +26,10 @@
     "react-dom": "^16.4.1",
     "react-scripts": "^2.1.1"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "copy-fonts": "cpy node_modules/framework7-icons/fonts/*.* src/fonts && cpy node_modules/material-design-icons/iconfont/*.{eot,ttf,woff,woff2} src/fonts",
-    "postinstall": "npm run copy-fonts"
-  },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "cpy-cli": "^2.0.0"
+    "cpy-cli": "^2.0.0",
+    "gh-pages": "^2.0.1"
   },
   "browserslist": {
     "development": [
