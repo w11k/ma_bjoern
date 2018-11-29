@@ -1,38 +1,49 @@
-import HomePage from './components/pages/HomePage';
 import AboutPage from './components/pages/AboutPage';
-import FormPage from './components/pages/FormPage';
-import DynamicRoutePage from './components/pages/DynamicRoutePage';
-import NotFoundPage from './components/pages/NotFoundPage';
-import PanelLeftPage from './components/pages/PanelLeftPage';
-import PanelRightPage from './components/pages/PanelRightPage';
+import ListPage from './components/pages/ListPage';
+import MenuPanelPage from './components/pages/MenuPanelPage';
+import SettingsPage from './components/pages/SettingsPage';
+import HomePage from './components/pages/TabsPage';
 
 export default [
-  {
-    path: '/',
-    component: HomePage,
-  },
-  {
-    path: '/panel-left/',
-    component: PanelLeftPage,
-  },
-  {
-    path: '/panel-right/',
-    component: PanelRightPage,
-  },
-  {
-    path: '/about/',
-    component: AboutPage,
-  },
-  {
-    path: '/form/',
-    component: FormPage,
-  },
-  {
-    path: '/dynamic-route/blog/:blogId/post/:postId/',
-    component: DynamicRoutePage,
-  },
-  {
-    path: '(.*)',
-    component: NotFoundPage,
-  },
+    {
+        path: '/todos/',
+        component: HomePage,
+        tabs: [
+            {
+                path: '/all',
+                id: 'all',
+                component: ListPage
+            },
+            {
+                path: '/active',
+                id: 'active',
+                component: ListPage
+            },
+            {
+                path: '/completed',
+                id: 'completed',
+                component: ListPage
+            }
+        ]
+    },
+    {
+        path: '/menu/',
+        component: MenuPanelPage
+    },
+    {
+        path: '/settings/',
+        component: SettingsPage
+    },
+    {
+        path: '/about/',
+        component: AboutPage
+    },
+    {
+        path: '/',
+        redirect: '/todos/'
+    },
+    {
+        path: '(.*)',
+        redirect: '/todos/all'
+    }
 ];

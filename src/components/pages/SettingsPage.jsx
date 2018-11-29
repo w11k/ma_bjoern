@@ -7,7 +7,7 @@ export default () => (
             <NavLeft>
                 <Link iconIos="f7:menu" iconMd="material:menu" panelOpen="left"/>
             </NavLeft>
-            <NavTitle>About</NavTitle>
+            <NavTitle>Settings</NavTitle>
         </Navbar>
         test
     </Page>
