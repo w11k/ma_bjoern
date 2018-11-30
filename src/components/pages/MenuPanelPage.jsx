@@ -3,7 +3,7 @@ import React from 'react';
 
 export default () => (
     <Page>
-        <Navbar title="Todo-App"/>
+        <Navbar title="Todo-App" bgColor="primary"/>
         <List>
             <ListItem link="/todos/" title="Todos" view="#main-view" panelClose/>
             <ListItem link="/settings/" title="Settings" view="#main-view" panelClose/>

@@ -1,1 +1,7 @@
 /* Your app styles here */
+.bg-color-primary {
+    background-color: #0129c7 !important;
+}
+.text-color-primary {
+    color: #FFFFFF !important;
+}

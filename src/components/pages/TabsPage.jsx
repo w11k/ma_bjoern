@@ -3,13 +3,13 @@ import React from 'react';
 
 export default () => (
     <Page pageContent={false} tabs={true}>
-        <Navbar>
+        <Navbar bgColor="primary">
             <NavLeft>
                 <Link iconIos="f7:menu" iconMd="material:menu" panelOpen="left"/>
             </NavLeft>
             <NavTitle>Todos</NavTitle>
         </Navbar>
-        <Toolbar tabbar>
+        <Toolbar tabbar bgColor="primary">
             <Link tabLink routeTabId="all" href="/todos/all" tabLinkActive>All</Link>
             <Link tabLink routeTabId="active" href="/todos/active">Active</Link>
             <Link tabLink routeTabId="completed" href="/todos/completed">Completed</Link>

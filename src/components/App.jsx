@@ -20,7 +20,7 @@ export default function (props) {
             <Statusbar/>
 
             {/* Left Panel */}
-            <Panel left cover themeDark>
+            <Panel left cover>
                 <View url="/menu/"/>
             </Panel>
 
