@@ -4,6 +4,13 @@ import MenuPanelPage from './components/pages/MenuPanelPage';
 import SettingsPage from './components/pages/SettingsPage';
 import HomePage from './components/pages/TabsPage';
 
+export const ListTypes = {
+    ALL: 'all',
+    ACTIVE: 'active',
+    COMPLETED: 'completed',
+    NONE: 'none'
+};
+
 export default [
     {
         path: '/todos/',
@@ -11,17 +18,17 @@ export default [
         tabs: [
             {
                 path: '/all',
-                id: 'all',
+                id: ListTypes.ALL,
                 component: ListPage
             },
             {
                 path: '/active',
-                id: 'active',
+                id: ListTypes.ACTIVE,
                 component: ListPage
             },
             {
                 path: '/completed',
-                id: 'completed',
+                id: ListTypes.COMPLETED,
                 component: ListPage
             }
         ]

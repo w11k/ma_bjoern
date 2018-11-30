@@ -1,51 +1,45 @@
+import {storage} from 'react-easy-params';
 import {store} from 'react-easy-state';
 
-const model = store({
-    items: [
-        {
-            id: 666,
-            title: 'test',
-            completed: false
-        }
-    ],
+storage.items = storage.items || [];
 
+const model = store({
     getAllItems: () => {
-        return model.items;
+        return storage.items;
     },
 
     getItem: (id) => {
-        return model.items.find((item) => item.id === id);
+        return storage.items.find((item) => item.id === id);
     },
 
     addItem: (title = '') => {
-        console.log(title);
         const item = {
             id: new Date().getTime(),
             title: title.trim(),
             completed: false
         };
-        model.items = model.items.concat(item);
+        storage.items = storage.items.concat(item);
     },
 
     editItem: (id, data) => {
-        const index = model.items.findIndex((item) => item.id === id);
+        const index = storage.items.findIndex((item) => item.id === id);
         if (index < 0) {
             return;
         }
-        const item = Object.assign(model.items[index], data);
-        model.items = [...model.items.slice(0, index), item, ...model.items.slice(index + 1)]; // immutable splice
+        const item = Object.assign(storage.items[index], data);
+        storage.items = [...storage.items.slice(0, index), item, ...storage.items.slice(index + 1)]; // immutable splice
     },
 
     deleteItem: (id) => {
-        const index = model.items.findIndex((item) => item.id === id);
+        const index = storage.items.findIndex((item) => item.id === id);
         if (index < 0) {
             return;
         }
-        model.items = [...model.items.slice(0, index), ...model.items.slice(index + 1)]; // immutable splice
+        storage.items = [...storage.items.slice(0, index), ...storage.items.slice(index + 1)]; // immutable splice
     },
 
     getCount: () => {
-        return model.items.reduce((count, item) => {
+        return storage.items.reduce((count, item) => {
             return {
                 active: count.active + +!item.completed,
                 completed: count.completed + +item.completed,
