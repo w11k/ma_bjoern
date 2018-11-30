@@ -3,7 +3,7 @@ import React from 'react';
 
 export default () => (
     <Page>
-        <Navbar>
+        <Navbar bgColor="primary">
             <NavLeft>
                 <Link iconIos="f7:menu" iconMd="material:menu" panelOpen="left"/>
             </NavLeft>
