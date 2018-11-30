@@ -38,7 +38,7 @@ export default class TabsPage extends React.Component {
             if (defaultValue === resultValue) {
                 return;
             }
-            this.model.addItem(resultValue);
+            this.model.createItem(resultValue);
         });
         const input = dialog.$el.find('input');
         input.val(defaultValue);

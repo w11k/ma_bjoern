@@ -12,7 +12,7 @@ const model = store({
         return storage.items.find((item) => item.id === id);
     },
 
-    addItem: (title = '') => {
+    createItem: (title = '') => {
         const item = {
             id: new Date().getTime(),
             title: title.trim(),
@@ -21,7 +21,7 @@ const model = store({
         storage.items = storage.items.concat(item);
     },
 
-    editItem: (id, data) => {
+    updateItem: (id, data) => {
         const index = storage.items.findIndex((item) => item.id === id);
         if (index < 0) {
             return;
