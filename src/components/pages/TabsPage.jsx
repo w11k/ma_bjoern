@@ -33,15 +33,14 @@ export default class TabsPage extends React.Component {
         </Page>;
     }
 
-    openDialog(defaultValue = '') {
-        const dialog = this.$f7.dialog.prompt(null, defaultValue !== '' ? 'Edit Item' : 'Create Item', (resultValue) => {
-            if (defaultValue === resultValue) {
+    openDialog() {
+        const dialog = this.$f7.dialog.prompt(null, 'Create Item', (result) => {
+            if (result.trim() === '') {
                 return;
             }
-            this.model.createItem(resultValue);
+            this.model.createItem(result);
         });
         const input = dialog.$el.find('input');
-        input.val(defaultValue);
         input.focus();
     }
 }
