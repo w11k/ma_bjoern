@@ -2,7 +2,7 @@ import AboutPage from './components/pages/AboutPage';
 import ListPage from './components/pages/ListPage';
 import MenuPanelPage from './components/pages/MenuPanelPage';
 import SettingsPage from './components/pages/SettingsPage';
-import HomePage from './components/pages/TabsPage';
+import TabPage from './components/pages/TabsPage';
 
 export const ListTypes = {
     ALL: 'all',
@@ -14,7 +14,7 @@ export const ListTypes = {
 export default [
     {
         path: '/todos/',
-        component: HomePage,
+        component: TabPage,
         tabs: [
             {
                 path: '/all',

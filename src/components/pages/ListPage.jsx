@@ -1,4 +1,4 @@
-import {Page} from 'framework7-react';
+import {List, ListItem, Page} from 'framework7-react';
 import React from 'react';
 import {view} from 'react-easy-state';
 import model from '../../model';
@@ -26,12 +26,12 @@ class ListPage extends React.Component {
                         return false;
                 }
             })
-            .map(item => <li key={item.id}>{item.title}</li>);
+            .map(item => <ListItem key={item.id} title={item.title}/>);
         return (
             <Page>
-                <ul>
+                <List>
                     {list}
-                </ul>
+                </List>
             </Page>
         );
     }

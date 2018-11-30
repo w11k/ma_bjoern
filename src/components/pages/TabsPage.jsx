@@ -1,8 +1,14 @@
 import {Fab, Icon, Link, Navbar, NavLeft, NavTitle, Page, Tab, Tabs, Toolbar} from 'framework7-react';
 import React from 'react';
+import model from '../../model';
 import {ListTypes} from '../../routes';
 
 export default class TabsPage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.model = model;
+    }
+
     render() {
         return <Page pageContent={false} tabs={true}>
             <Navbar bgColor="primary">
@@ -21,9 +27,21 @@ export default class TabsPage extends React.Component {
                 <Tab id={ListTypes.ACTIVE}/>
                 <Tab id={ListTypes.COMPLETED}/>
             </Tabs>
-            <Fab position="right-bottom" slot="fixed" color="pink">
+            <Fab position="right-bottom" slot="fixed" color="pink" onClick={() => this.openDialog()}>
                 <Icon ios="f7:add" md="material:add"/>
             </Fab>
         </Page>;
+    }
+
+    openDialog(defaultValue = '') {
+        const dialog = this.$f7.dialog.prompt(null, defaultValue !== '' ? 'Edit Item' : 'Create Item', (resultValue) => {
+            if (defaultValue === resultValue) {
+                return;
+            }
+            this.model.addItem(resultValue);
+        });
+        const input = dialog.$el.find('input');
+        input.val(defaultValue);
+        input.focus();
     }
 }
