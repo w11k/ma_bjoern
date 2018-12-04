@@ -16,4 +16,4 @@
 
 <br>
 
-[React with native UI (Framework7)](./angular-nui)
+[React with native UI (Framework7)](./react-nui)
