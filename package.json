@@ -1,8 +1,20 @@
 {
-  "name": "create-react-app-with-typescript",
-  "version": "3.2.2",
+  "name": "react-nui",
+  "version": "1.0.0",
+  "description": "SPA mit React und UI Framework (Material-UI)",
+  "main": "index.html",
+  "homepage": "https://w11k.github.io/ma_bjoern/react-fw/",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build -b master -e react-fw"
+  },
+  "author": "Björn Saja",
+  "license": "ISC",
   "private": true,
-  "main": "src/index.tsx",
   "dependencies": {
     "@material-ui/core": "latest",
     "@types/react": "*",
@@ -15,12 +27,6 @@
     "@types/jest": "*",
     "@types/node": "*",
     "typescript": "latest"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
