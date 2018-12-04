@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.e79bfd88.eot"
   },
   {
-    "revision": "604e9f19dca5dab23af3",
+    "revision": "e3db3265d261e07da1f3",
     "url": "/ma_bjoern/react-nui/static/css/main.b3705085.chunk.css"
   },
   {
@@ -28,8 +28,8 @@ self.__precacheManifest = [
     "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.012cf6a1.woff"
   },
   {
-    "revision": "604e9f19dca5dab23af3",
-    "url": "/ma_bjoern/react-nui/static/js/main.604e9f19.chunk.js"
+    "revision": "e3db3265d261e07da1f3",
+    "url": "/ma_bjoern/react-nui/static/js/main.e3db3265.chunk.js"
   },
   {
     "revision": "a37b0c01c0baf1888ca812cc0508f6e2",
@@ -52,7 +52,7 @@ self.__precacheManifest = [
     "url": "/ma_bjoern/react-nui/static/css/1.1cfcd5f9.chunk.css"
   },
   {
-    "revision": "6754010471cd2794d9be38950fb780ea",
+    "revision": "36a9194ad012b96f2297ed0239ddd358",
     "url": "/ma_bjoern/react-nui/index.html"
   }
 ];
