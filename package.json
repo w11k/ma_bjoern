@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "SPA mit React und nativem UI (Framework7)",
   "main": "index.html",
-  "homepage": "https://w11k.github.io/ma_bjoern/react-nui",
+  "homepage": "https://w11k.github.io/ma_bjoern/react-nui/",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
