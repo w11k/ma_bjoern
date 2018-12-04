@@ -13,6 +13,8 @@ import App from './components/App.jsx';
 import './css/app.css';
 // Icons
 import './css/icons.css';
+// ServiceWorker
+import * as serviceWorker from './serviceWorker';
 
 // Init Framework7-React plugin
 Framework7.use(Framework7React);
@@ -22,3 +24,8 @@ ReactDOM.render(
     React.createElement(App),
     document.getElementById('app')
 );
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: http://bit.ly/CRA-PWA
+serviceWorker.register();
