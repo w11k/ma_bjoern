@@ -31,7 +31,7 @@ self.__precacheManifest = [
   },
   {
     "url": "/ma_bjoern/react-nui/browserconfig.xml",
-    "revision": "3c890a46f84b2272f8e9e83e75acc8c6"
+    "revision": "eb4d3a2a8d87095d0dbf1d5d4efa6673"
   },
   {
     "url": "/ma_bjoern/react-nui/favicon.ico",
@@ -39,7 +39,7 @@ self.__precacheManifest = [
   },
   {
     "url": "/ma_bjoern/react-nui/manifest.json",
-    "revision": "500610ecec7084c5989b1523110ff47f"
+    "revision": "be9f3283756ab7e410a8e7e9180dd3c6"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
