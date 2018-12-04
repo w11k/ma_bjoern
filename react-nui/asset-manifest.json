@@ -1,7 +1,7 @@
 {
   "main.css": "/ma_bjoern/react-nui/static/css/main.b3705085.chunk.css",
-  "main.js": "/ma_bjoern/react-nui/static/js/main.e3db3265.chunk.js",
-  "main.js.map": "/ma_bjoern/react-nui/static/js/main.e3db3265.chunk.js.map",
+  "main.js": "/ma_bjoern/react-nui/static/js/main.5f81a31b.chunk.js",
+  "main.js.map": "/ma_bjoern/react-nui/static/js/main.5f81a31b.chunk.js.map",
   "static/css/1.1cfcd5f9.chunk.css": "/ma_bjoern/react-nui/static/css/1.1cfcd5f9.chunk.css",
   "static/js/1.8cff7304.chunk.js": "/ma_bjoern/react-nui/static/js/1.8cff7304.chunk.js",
   "static/js/1.8cff7304.chunk.js.map": "/ma_bjoern/react-nui/static/js/1.8cff7304.chunk.js.map",
@@ -11,6 +11,6 @@
   "static/css/main.b3705085.chunk.css.map": "/ma_bjoern/react-nui/static/css/main.b3705085.chunk.css.map",
   "static/css/1.1cfcd5f9.chunk.css.map": "/ma_bjoern/react-nui/static/css/1.1cfcd5f9.chunk.css.map",
   "index.html": "/ma_bjoern/react-nui/index.html",
-  "precache-manifest.dcd75a96e34deeaa230575c12c8e0334.js": "/ma_bjoern/react-nui/precache-manifest.dcd75a96e34deeaa230575c12c8e0334.js",
+  "precache-manifest.149250a75a5bbe3ebf0a75853c2b7ac9.js": "/ma_bjoern/react-nui/precache-manifest.149250a75a5bbe3ebf0a75853c2b7ac9.js",
   "service-worker.js": "/ma_bjoern/react-nui/service-worker.js"
 }
