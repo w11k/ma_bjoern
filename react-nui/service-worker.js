@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/ma_bjoern/react-nui/precache-manifest.cf814d767bb40b4d6472fb6e40272240.js"
+  "/ma_bjoern/react-nui/precache-manifest.acceb50a53a1e2688b22dfd724d0f8ef.js"
 );
 
 workbox.clientsClaim();
@@ -24,7 +24,24 @@ workbox.clientsClaim();
  * requests for URLs in the manifest.
  * See https://goo.gl/S9QRab
  */
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
+self.__precacheManifest = [
+  {
+    "url": "/ma_bjoern/react-nui/apple-touch-icon.png",
+    "revision": "b4d0a128e681954979d6b1f7a7a713f6"
+  },
+  {
+    "url": "/ma_bjoern/react-nui/browserconfig.xml",
+    "revision": "3c890a46f84b2272f8e9e83e75acc8c6"
+  },
+  {
+    "url": "/ma_bjoern/react-nui/favicon.ico",
+    "revision": "c674b958d2e6cee819f853a9cdcf9648"
+  },
+  {
+    "url": "/ma_bjoern/react-nui/manifest.json",
+    "revision": "500610ecec7084c5989b1523110ff47f"
+  }
+].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
