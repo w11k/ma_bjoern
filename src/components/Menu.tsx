@@ -1,4 +1,4 @@
-import {Theme, WithStyles} from '@material-ui/core';
+import {Theme} from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar/AppBar';
 import Divider from '@material-ui/core/Divider/Divider';
 import List from '@material-ui/core/List/List';
@@ -10,13 +10,9 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Toolbar from '@material-ui/core/Toolbar/Toolbar';
 import Typography from '@material-ui/core/Typography/Typography';
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {drawerWidth, pages} from '../constants';
 import {MenuComponentProps} from '../typings';
-
-function createLink({innerRef, ...props}: any) {
-    return <Link {...props}/>;
-}
+import createLink from './Link';
 
 const styles = (theme: Theme) =>
     createStyles({
@@ -46,10 +42,13 @@ function MenuComponent(props: MenuComponentProps<typeof styles>) {
             <Divider/>
             <List>
                 {Object.values(pages).map((page) => (
-                    <ListItem button {...{to: page.url}}
-                              component={createLink}
-                              key={page.title}
-                              onClick={props.handleDrawerToggle}>
+                    <ListItem
+                        button
+                        {...{to: page.url}}
+                        component={createLink}
+                        key={page.title}
+                        onClick={props.handleDrawerToggle}
+                    >
                         <ListItemIcon>{page.icon}</ListItemIcon>
                         <ListItemText primary={page.title}/>
                     </ListItem>

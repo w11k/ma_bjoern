@@ -57,7 +57,7 @@ class AppComponent extends React.Component<WithStyles<typeof styles>, AppCompone
                             <Route path={pages.about.url} render={(props) => <About {...props}
                                                                            title={pages.about.title}
                                                                            setTitle={this.setTitle}/>}/>
-                            <Redirect to={pages.todos.url}/>
+                            <Redirect to={pages.todos.tabs.all.url}/>
                         </Switch>
                     </main>
                 </div>

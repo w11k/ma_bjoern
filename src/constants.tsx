@@ -1,6 +1,5 @@
 import {Info as InfoIcon, List as ListIcon, Settings as SettingsIcon} from '@material-ui/icons';
 import React from 'react';
-import {Page} from './typings';
 
 
 export const drawerWidth = 240;
@@ -9,7 +8,24 @@ export const pages = {
     todos: {
         url: '/todos',
         title: 'Todos',
-        icon: <ListIcon/>
+        icon: <ListIcon/>,
+        tabs: {
+            all: {
+                url: '/todos/all',
+                title: 'All',
+                icon: <ListIcon/>
+            },
+            active: {
+                url: '/todos/active',
+                title: 'Active',
+                icon: <ListIcon/>
+            },
+            completed: {
+                url: '/todos/completed',
+                title: 'Completed',
+                icon: <ListIcon/>
+            }
+        }
     },
     settings: {
         url: '/settings',
