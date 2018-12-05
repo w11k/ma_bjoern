@@ -22,11 +22,15 @@
     "@types/react-dom": "*",
     "react": "latest",
     "react-dom": "latest",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "latest"
   },
   "devDependencies": {
     "@types/jest": "*",
     "@types/node": "*",
+    "@types/react-router": "^4.4.1",
+    "@types/react-router-dom": "^4.3.1",
     "typescript": "latest"
   },
   "eslintConfig": {

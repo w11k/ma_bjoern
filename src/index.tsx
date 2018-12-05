@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Index from './pages/index';
+import App from './components/App';
 import {register} from './serviceWorker';
 
-ReactDOM.render(<Index />, document.querySelector('#root'));
+ReactDOM.render(<App/>, document.querySelector('#root'));
 
 
 register({scope: '/ma_bjoern/react-fw/'});
