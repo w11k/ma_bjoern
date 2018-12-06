@@ -1,10 +1,4 @@
-import {Theme} from '@material-ui/core';
-import AppBar from '@material-ui/core/AppBar/AppBar';
-import IconButton from '@material-ui/core/IconButton/IconButton';
-import createStyles from '@material-ui/core/styles/createStyles';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Toolbar from '@material-ui/core/Toolbar/Toolbar';
-import Typography from '@material-ui/core/Typography/Typography';
+import {AppBar, createStyles, IconButton, Theme, Toolbar, Typography, withStyles} from '@material-ui/core';
 import {Menu as MenuIcon} from '@material-ui/icons';
 import React from 'react';
 import {drawerWidth} from '../constants';
@@ -34,7 +28,7 @@ function AppBarComponent(props: AppBarComponentProps<typeof styles>) {
                 <IconButton
                     color="inherit"
                     aria-label="Open drawer"
-                    onClick={props.handleDrawerToggle}
+                    onClick={props.toggleDrawer}
                     className={classes.menuButton}
                 >
                     <MenuIcon/>

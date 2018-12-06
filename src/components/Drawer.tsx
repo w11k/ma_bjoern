@@ -1,8 +1,4 @@
-import {Theme} from '@material-ui/core';
-import Drawer from '@material-ui/core/Drawer/Drawer';
-import Hidden from '@material-ui/core/Hidden/Hidden';
-import createStyles from '@material-ui/core/styles/createStyles';
-import withStyles from '@material-ui/core/styles/withStyles';
+import {createStyles, Drawer, Hidden, Theme, withStyles} from '@material-ui/core';
 import React from 'react';
 import {drawerWidth} from '../constants';
 import {DrawerComponentProps} from '../typings';
@@ -30,7 +26,7 @@ function DrawerComponent(props: DrawerComponentProps<typeof styles>) {
                     variant="temporary"
                     anchor={theme.direction === 'rtl' ? 'right' : 'left'}
                     open={props.mobileOpen}
-                    onClose={props.handleDrawerToggle}
+                    onClose={props.closeDrawer}
                     classes={{
                         paper: classes.drawerPaper
                     }}
@@ -38,7 +34,7 @@ function DrawerComponent(props: DrawerComponentProps<typeof styles>) {
                         keepMounted: true // Better open performance on mobile.
                     }}
                 >
-                    <Menu handleDrawerToggle={props.handleDrawerToggle}/>
+                    <Menu closeDrawer={props.closeDrawer}/>
                 </Drawer>
             </Hidden>
             <Hidden xsDown implementation="css">
@@ -49,7 +45,7 @@ function DrawerComponent(props: DrawerComponentProps<typeof styles>) {
                     variant="permanent"
                     open
                 >
-                    <Menu handleDrawerToggle={props.handleDrawerToggle}/>
+                    <Menu closeDrawer={props.closeDrawer}/>
                 </Drawer>
             </Hidden>
         </nav>
