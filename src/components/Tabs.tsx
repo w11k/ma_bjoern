@@ -1,4 +1,4 @@
-import {AppBar, createStyles, Fab, Tab, Tabs, Theme, withStyles} from '@material-ui/core';
+import {AppBar, Badge, createStyles, Fab, Tab, Tabs, Theme, withStyles} from '@material-ui/core';
 import {Add as AddIcon} from '@material-ui/icons';
 import React from 'react';
 import {view} from 'react-easy-state';
@@ -60,9 +60,13 @@ class TabsComponent extends React.Component<TabsComponentProps<typeof styles>> {
                         className={classes.tabBar}
                         fullWidth
                     >
-                        {Object.values(pages.todos.tabs).map((tab) => {
+                        {Object.entries(pages.todos.tabs).map(([key, tab]) => {
                             return <Tab
                                 label={tab.title}
+                                icon={
+                                    <Badge color="secondary" badgeContent={this.model.getCount()[key]}>
+                                        {tab.icon}
+                                    </Badge>}
                                 key={tab.title}
                                 {...{to: tab.url}}
                                 component={createLink}

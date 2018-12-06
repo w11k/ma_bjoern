@@ -16,6 +16,13 @@ export type ItemUpdate = {
     completed?: boolean;
 }
 
+export type Count = {
+    active: number;
+    completed: number;
+    all: number;
+    [key: string]: number;
+}
+
 export enum ListTypes {
     ALL = 'all',
     ACTIVE = 'active',

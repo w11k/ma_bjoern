@@ -1,6 +1,6 @@
 import {setStorage, storage} from 'react-easy-params';
 import {store} from 'react-easy-state';
-import {Item, ItemUpdate, Storage} from './typings';
+import {Count, Item, ItemUpdate, Storage} from './typings';
 
 export class Model {
     private storage: Storage;
@@ -44,17 +44,17 @@ export class Model {
         this.storage.items = [...this.storage.items.slice(0, index), ...this.storage.items.slice(index + 1)]; // immutable splice
     };
 
-    getCount() {
+    getCount(): Count {
         return this.storage.items.reduce((count, item) => {
             return {
                 active: count.active + +!item.completed,
                 completed: count.completed + +item.completed,
-                total: ++count.total
+                all: ++count.all
             };
         }, {
             active: 0,
             completed: 0,
-            total: 0
+            all: 0
         });
     };
 }

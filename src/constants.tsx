@@ -1,4 +1,10 @@
-import {Info as InfoIcon, List as ListIcon, Settings as SettingsIcon} from '@material-ui/icons';
+import {
+    CheckBoxOutlineBlank as CheckBoxOutlineBlankIcon,
+    CheckBox as CheckBoxIcon,
+    Info as InfoIcon,
+    List as ListIcon,
+    Settings as SettingsIcon
+} from '@material-ui/icons';
 import React from 'react';
 import {ListTypes} from './typings';
 
@@ -18,12 +24,12 @@ export const pages = {
             [ListTypes.ACTIVE]: {
                 url: `/todos/${ListTypes.ACTIVE}`,
                 title: 'Active',
-                icon: <ListIcon/>
+                icon: <CheckBoxOutlineBlankIcon/>
             },
             [ListTypes.COMPLETED]: {
                 url: `/todos/${ListTypes.COMPLETED}`,
                 title: 'Completed',
-                icon: <ListIcon/>
+                icon: <CheckBoxIcon/>
             }
         }
     },
