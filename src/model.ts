@@ -1,4 +1,4 @@
-import {setStorage, storage} from 'react-easy-params';
+import {storage} from 'react-easy-params';
 import {store} from 'react-easy-state';
 import {Count, Item, ItemUpdate, Storage} from './typings';
 

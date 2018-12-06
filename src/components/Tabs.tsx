@@ -6,15 +6,16 @@ import {Route} from 'react-router';
 import SwipeableRoutes from 'react-swipeable-routes';
 import {pages} from '../constants';
 import model, {Model} from '../model';
-import {ListTypes, TabsComponentProps} from '../typings';
+import {ListTypes, TabsComponentProps, TabsComponentState} from '../typings';
+import Dialog from './Dialog';
 import createLink from './Link';
 import List from './List';
 
 const styles = (theme: Theme) =>
     createStyles({
         tabBar: {
-            'background-color': 'white',
-            'border-bottom': '1px solid rgba(0, 0, 0, 0.12)'
+            backgroundColor: 'white',
+            borderBottom: '1px solid rgba(0, 0, 0, 0.12)'
         },
         fab: {
             position: 'absolute',
@@ -23,7 +24,11 @@ const styles = (theme: Theme) =>
         }
     });
 
-class TabsComponent extends React.Component<TabsComponentProps<typeof styles>> {
+class TabsComponent extends React.Component<TabsComponentProps<typeof styles>, TabsComponentState> {
+    state: TabsComponentState = {
+        activeTab: 0,
+        dialogOpened: false
+    };
     private model: Model;
 
     constructor(props: TabsComponentProps<typeof styles>) {
@@ -31,13 +36,20 @@ class TabsComponent extends React.Component<TabsComponentProps<typeof styles>> {
         this.model = model as unknown as Model;
     }
 
-    state: any = {
-        activeTab: 0
-    };
-
     componentDidMount() {
         this.props.setTitle(this.props.title);
     }
+
+    handleDialogOpen = () => {
+        this.setState({dialogOpened: true});
+    };
+
+    handleDialogClose = (value: string = '') => {
+        this.setState({dialogOpened: false});
+        if (value.trim().length > 0) {
+            this.model.createItem(value);
+        }
+    };
 
     handleChange = (event: React.ChangeEvent<{}>, value: number) => {
         this.handleChangeIndex(value);
@@ -82,9 +94,10 @@ class TabsComponent extends React.Component<TabsComponentProps<typeof styles>> {
                     <Route path={pages.todos.tabs[ListTypes.COMPLETED].url}
                            render={(props) => <List type={ListTypes.COMPLETED} {...props}/>}/>
                 </SwipeableRoutes>
-                <Fab className={classes.fab} color="secondary">
+                <Fab className={classes.fab} color="secondary" onClick={this.handleDialogOpen}>
                     <AddIcon/>
                 </Fab>
+                <Dialog handleClose={this.handleDialogClose} opened={this.state.dialogOpened} title="Create Item"/>
             </div>
         );
     }

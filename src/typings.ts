@@ -55,7 +55,23 @@ export type AppComponentState = {
     title: string;
 };
 
+export type DialogComponentState = {
+    value: string;
+};
+
+export type TabsComponentState = {
+    activeTab: number;
+    dialogOpened: boolean;
+};
+
 export type TitleProps = {
     setTitle: (title: string) => void;
     title: string;
+}
+
+export type DialogComponentProps = {
+    title: string;
+    defaultValue?: string;
+    opened: boolean;
+    handleClose: (value?: string) => void;
 }

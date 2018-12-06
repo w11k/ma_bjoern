@@ -5,7 +5,6 @@ import {
     ListItem,
     ListItemSecondaryAction,
     ListItemText,
-    Theme,
     withStyles
 } from '@material-ui/core';
 import React from 'react';
@@ -16,7 +15,9 @@ import {Item, ListComponentProps, ListTypes} from '../typings';
 const styles = () =>
     createStyles({
         list: {
-            'background-color': 'white'
+            backgroundColor: 'white',
+            maxHeight: 'calc(100vh - 137px)',
+            overflowY: 'auto'
         },
         secondaryAction: {
             position: 'inherit',

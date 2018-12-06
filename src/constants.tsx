@@ -1,6 +1,6 @@
 import {
-    CheckBoxOutlineBlank as CheckBoxOutlineBlankIcon,
     CheckBox as CheckBoxIcon,
+    CheckBoxOutlineBlank as CheckBoxOutlineBlankIcon,
     Info as InfoIcon,
     List as ListIcon,
     Settings as SettingsIcon

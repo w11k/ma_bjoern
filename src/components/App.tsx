@@ -32,7 +32,7 @@ class AppComponent extends React.Component<WithStyles<typeof styles>, AppCompone
     };
 
     handleDrawerClose = () => {
-        this.setState((state: AppComponentState) => ({mobileOpen: false}));
+        this.setState({mobileOpen: false});
     };
 
     setTitle = (title: string) => {
