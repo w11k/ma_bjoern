@@ -5,11 +5,8 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {MaterialModule} from './material.module';
+import {WebComponentsModule} from './web-components.module';
 import {MenuComponent} from './menu/menu.component';
-import {ActionSheetComponent} from './modals/action-sheet.component';
-import {ModalsModule} from './modals/modals.module';
-import {TitlePromptComponent} from './modals/title-prompt.component';
 import {ModelService} from './model.service';
 import {StoreService} from './store.service';
 
@@ -23,8 +20,7 @@ import {StoreService} from './store.service';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
-    ModalsModule,
+    WebComponentsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [
@@ -32,10 +28,6 @@ import {StoreService} from './store.service';
     StoreService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  entryComponents: [
-    ActionSheetComponent,
-    TitlePromptComponent
-  ],
   bootstrap: [
     AppComponent,
     MenuComponent

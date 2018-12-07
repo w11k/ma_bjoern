@@ -2,8 +2,7 @@ import {CommonModule} from '@angular/common';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import {MaterialModule} from '../material.module';
-import {ModalsModule} from '../modals/modals.module';
+import {WebComponentsModule} from '../web-components.module';
 
 import {ListComponent} from './list.component';
 
@@ -11,8 +10,7 @@ import {ListComponent} from './list.component';
   imports: [
     CommonModule,
     FormsModule,
-    MaterialModule,
-    ModalsModule,
+    WebComponentsModule,
     RouterModule.forChild([
       {
         path: '',

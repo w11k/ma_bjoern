@@ -11,13 +11,13 @@ import {ITodoCount, ListType} from '../typings';
   styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent implements OnInit, OnDestroy {
+  currentTab: Observable<-1 | 0 | 1 | 2>;
   private subscription: Subscription;
   private count: ITodoCount = {
     active: 0,
     completed: 0,
     total: 0
   };
-  currentTab: Observable<-1|0|1|2>;
 
   constructor(private model: ModelService, private changeRef: ChangeDetectorRef, route: ActivatedRoute) {
     this.currentTab = route.url

@@ -5,7 +5,7 @@
   "short_name": "Todo",
   "description": "This is a Todo-App.",
   "start_url": "https://w11k.github.io/ma_bjoern/angular-wc/",
-  "scope": "/",
+  "scope": "/ma_bjoern/angular-wc/",
   "display": "standalone",
   "orientation": "portrait",
   "theme_color": "#0129c7",

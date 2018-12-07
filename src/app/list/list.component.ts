@@ -1,9 +1,8 @@
 import {ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
-import {ActionSheetComponent} from '../modals/action-sheet.component';
 import {ModelService} from '../model.service';
-import {ITodo, ListType, TodoActions} from '../typings';
+import {ITodo, ListType} from '../typings';
 
 @Component({
   selector: 'app-list',
@@ -12,11 +11,10 @@ import {ITodo, ListType, TodoActions} from '../typings';
   encapsulation: ViewEncapsulation.ShadowDom
 })
 export class ListComponent implements OnInit, OnDestroy {
+  @ViewChildren('menu', {read: ElementRef}) menus: QueryList<ElementRef>;
   private type: ListType = ListType.NONE;
   private todos: Array<ITodo> = [];
   private subscription: Subscription;
-
-  @ViewChildren('menu', {read: ElementRef}) menus: QueryList<ElementRef>;
 
   constructor(private model: ModelService, private route: ActivatedRoute, private changeRef: ChangeDetectorRef) {
   }
@@ -61,10 +59,6 @@ export class ListComponent implements OnInit, OnDestroy {
     this.model.updateItem(id, {completed: !!(<any>event.srcElement).checked});
   }
 
-  private deleteItem(id: number) {
-    this.model.removeItem(id);
-  }
-
   presentAlertPrompt(item?: ITodo) {
     const oldTitle = !!item ? item.title : '';
     setTimeout(() => {
@@ -82,6 +76,10 @@ export class ListComponent implements OnInit, OnDestroy {
         this.model.createItem(newTitle);
       }
     }, 300);
+  }
+
+  private deleteItem(id: number) {
+    this.model.removeItem(id);
   }
 
   private setContextMenuRenderer(menus: Array<ElementRef>): void {
