@@ -493,6 +493,23 @@ module.exports = {
         // public/ and not a SPA route
         new RegExp('/[^/]+\\.[^/]+$'),
       ],
+      globDirectory: '.',
+      globPatterns: [
+        'build/apple-touch-icon.png',
+        'build/browserconfig.xml',
+        'build/favicon.ico',
+        'build/manifest.json'
+      ],
+      runtimeCaching: [
+        {
+          urlPattern: '/ma_bjoern/react-fw/assets/',
+          handler: 'staleWhileRevalidate'
+        },
+        {
+          urlPattern: 'https://fonts.googleapis.com/',
+          handler: 'staleWhileRevalidate'
+        }
+      ]
     }),
     // TypeScript type checking
     fs.existsSync(paths.appTsConfig) &&
