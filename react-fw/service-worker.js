@@ -26,19 +26,19 @@ workbox.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "build/apple-touch-icon.png",
+    "url": "/ma_bjoern/react-fw/apple-touch-icon.png",
     "revision": "b4d0a128e681954979d6b1f7a7a713f6"
   },
   {
-    "url": "build/browserconfig.xml",
+    "url": "/ma_bjoern/react-fw/browserconfig.xml",
     "revision": "00ea8cc2445cf6bceb8c5e6b6020a303"
   },
   {
-    "url": "build/favicon.ico",
+    "url": "/ma_bjoern/react-fw/favicon.ico",
     "revision": "c674b958d2e6cee819f853a9cdcf9648"
   },
   {
-    "url": "build/manifest.json",
+    "url": "/ma_bjoern/react-fw/manifest.json",
     "revision": "45bfba5a2b82496bf1637f4942ffda8a"
   }
 ].concat(self.__precacheManifest || []);
