@@ -25,7 +25,7 @@ export default function (props) {
             </Panel>
 
             {/* Main View */}
-            <View id="main-view" url="/todos/" main className="ios-edges" pushState={true}/>
+            <View id="main-view" url="/todos/" main className="ios-edges" pushState pushStateRoot={process.env.PUBLIC_URL} pushStateSeparator=""/>
         </App>
     );
 };
