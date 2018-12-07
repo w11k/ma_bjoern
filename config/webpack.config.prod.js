@@ -493,6 +493,9 @@ module.exports = {
         // public/ and not a SPA route
         new RegExp('/[^/]+\\.[^/]+$'),
       ],
+      modifyUrlPrefix: {
+        'build/': '/ma_bjoern/react-fw/'
+      },
       globDirectory: '.',
       globPatterns: [
         'build/apple-touch-icon.png',
