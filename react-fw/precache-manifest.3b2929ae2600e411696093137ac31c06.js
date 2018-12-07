@@ -4,15 +4,15 @@ self.__precacheManifest = [
     "url": "/ma_bjoern/react-fw/static/js/runtime~main.6a231638.js"
   },
   {
-    "revision": "e08079dd36116780a6c2",
-    "url": "/ma_bjoern/react-fw/static/js/main.e08079dd.chunk.js"
+    "revision": "be2712fa23ee77bb5cca",
+    "url": "/ma_bjoern/react-fw/static/js/main.be2712fa.chunk.js"
   },
   {
     "revision": "f5f4c6ec3d947a918681",
     "url": "/ma_bjoern/react-fw/static/js/1.f5f4c6ec.chunk.js"
   },
   {
-    "revision": "7fc7f892f797f2f78d941de1500b7057",
+    "revision": "e846d532c8d720ee25585f9cb5e00e4b",
     "url": "/ma_bjoern/react-fw/index.html"
   }
 ];
