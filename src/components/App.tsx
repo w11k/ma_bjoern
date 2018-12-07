@@ -1,6 +1,6 @@
 import {createStyles, CssBaseline, Theme, withStyles, WithStyles} from '@material-ui/core';
 import React from 'react';
-import {HashRouter, Redirect, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 import {pages} from '../constants';
 import {AppComponentState} from '../typings';
 import withRoot from '../withRoot';
@@ -42,7 +42,7 @@ class AppComponent extends React.Component<WithStyles<typeof styles>, AppCompone
     render() {
         const {classes} = this.props;
         return (
-            <HashRouter>
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <div className={classes.root}>
                     <CssBaseline/>
                     <AppBar toggleDrawer={this.handleDrawerToggle} title={this.state.title}/>
@@ -63,7 +63,7 @@ class AppComponent extends React.Component<WithStyles<typeof styles>, AppCompone
                         </Switch>
                     </main>
                 </div>
-            </HashRouter>
+            </BrowserRouter>
         );
     }
 }
