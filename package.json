@@ -79,6 +79,7 @@
     "@types/node": "*",
     "@types/react-router": "^4.4.1",
     "@types/react-router-dom": "^4.3.1",
+    "gh-pages": "^2.0.1",
     "node-sass": "^4.10.0",
     "typescript": "latest"
   },
