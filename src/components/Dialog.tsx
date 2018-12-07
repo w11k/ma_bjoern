@@ -6,7 +6,7 @@ class DialogComponent extends React.Component<DialogComponentProps> {
     input: React.RefObject<HTMLInputElement> = React.createRef<HTMLInputElement>();
 
     handleClose = () => {
-        this.props.handleClose((this.input.current || {value: ''}).value);
+        this.props.handleClose((this.input.current || {value: ''}).value, this.props.id);
     };
 
     render() {

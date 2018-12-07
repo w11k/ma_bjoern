@@ -30,6 +30,12 @@ export enum ListTypes {
     NONE = 'none'
 }
 
+export enum SheetActions {
+    EDIT = 'Edit',
+    DELETE = 'Delete',
+    CANCEL = 'Cancel'
+}
+
 export type AppBarComponentProps<T extends string | StyleRulesCallback = string> = WithStyles<T> & {
     toggleDrawer: (event: React.MouseEvent<HTMLElement>) => void;
     title: string;
@@ -55,13 +61,18 @@ export type AppComponentState = {
     title: string;
 };
 
-export type DialogComponentState = {
-    value: string;
-};
-
 export type TabsComponentState = {
     activeTab: number;
     dialogOpened: boolean;
+};
+
+export type ListComponentState = {
+    sheetOpened: number;
+    dialogState: {
+        opened: boolean;
+        id: number;
+        value: string;
+    };
 };
 
 export type TitleProps = {
@@ -71,7 +82,13 @@ export type TitleProps = {
 
 export type DialogComponentProps = {
     title: string;
-    defaultValue?: string;
     opened: boolean;
-    handleClose: (value?: string) => void;
+    id?: number;
+    defaultValue?: string;
+    handleClose: (value?: string, id?: number) => void;
+}
+
+export type SheetComponentProps = {
+    opened: number;
+    handleClose: (action: SheetActions, value: number) => void;
 }

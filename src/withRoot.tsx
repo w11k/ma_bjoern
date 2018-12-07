@@ -12,6 +12,15 @@ const theme = createMuiTheme({
     },
     typography: {
         useNextVariants: true
+    },
+    overrides: {
+        MuiDrawer: {
+            paperAnchorBottom: {
+                maxWidth: 500,
+                marginLeft: 'auto',
+                marginRight: 'auto'
+            }
+        }
     }
 });
 
