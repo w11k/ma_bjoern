@@ -6,4 +6,4 @@ import {register} from './serviceWorker';
 ReactDOM.render(<App/>, document.querySelector('#root'));
 
 
-register({scope: '/ma_bjoern/react-fw/'});
+register({scope: '/ma_bjoern/react-wc/'});

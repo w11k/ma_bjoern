@@ -4,20 +4,20 @@
     "name": "Todo-App",
     "short_name": "Todo",
     "description": "This is a Todo-App.",
-    "start_url": "https://w11k.github.io/ma_bjoern/react-fw/",
-    "scope": "/ma_bjoern/react-fw/",
+    "start_url": "https://w11k.github.io/ma_bjoern/react-wc/",
+    "scope": "/ma_bjoern/react-wc/",
     "display": "standalone",
     "orientation": "portrait",
     "theme_color": "#0129c7",
     "background_color": "#FFFFFF",
     "icons": [
         {
-            "src": "/ma_bjoern/react-fw/assets/images/android-chrome-192x192.png",
+            "src": "/ma_bjoern/react-wc/assets/images/android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/ma_bjoern/react-fw/assets/images/splash-512x512.png",
+            "src": "/ma_bjoern/react-wc/assets/images/splash-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         }

@@ -494,7 +494,7 @@ module.exports = {
         new RegExp('/[^/]+\\.[^/]+$'),
       ],
       modifyUrlPrefix: {
-        'build/': '/ma_bjoern/react-fw/'
+        'build/': '/ma_bjoern/react-wc/'
       },
       globDirectory: '.',
       globPatterns: [
@@ -505,7 +505,7 @@ module.exports = {
       ],
       runtimeCaching: [
         {
-          urlPattern: '/ma_bjoern/react-fw/assets/',
+          urlPattern: '/ma_bjoern/react-wc/assets/',
           handler: 'staleWhileRevalidate'
         },
         {
