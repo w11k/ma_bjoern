@@ -507,10 +507,6 @@ module.exports = {
         {
           urlPattern: '/ma_bjoern/react-wc/assets/',
           handler: 'staleWhileRevalidate'
-        },
-        {
-          urlPattern: 'https://fonts.googleapis.com/',
-          handler: 'staleWhileRevalidate'
         }
       ]
     }),

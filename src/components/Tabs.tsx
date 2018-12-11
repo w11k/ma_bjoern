@@ -1,37 +1,21 @@
-import {AppBar, Badge, createStyles, Fab, Tab, Tabs, Theme, withStyles} from '@material-ui/core';
-import {Add as AddIcon} from '@material-ui/icons';
 import React from 'react';
 import {view} from 'react-easy-state';
-import {Route} from 'react-router';
+import {Route, withRouter} from 'react-router-dom';
 import SwipeableRoutes from 'react-swipeable-routes';
 import {pages} from '../constants';
 import model, {Model} from '../model';
 import {ListTypes, TabsComponentProps, TabsComponentState} from '../typings';
 import Dialog from './Dialog';
-import createLink from './Link';
 import List from './List';
 
-const styles = (theme: Theme) =>
-    createStyles({
-        tabBar: {
-            backgroundColor: 'white',
-            borderBottom: '1px solid rgba(0, 0, 0, 0.12)'
-        },
-        fab: {
-            position: 'absolute',
-            bottom: theme.spacing.unit * 2,
-            right: theme.spacing.unit * 2
-        }
-    });
-
-class TabsComponent extends React.Component<TabsComponentProps<typeof styles>, TabsComponentState> {
+class TabsComponent extends React.Component<TabsComponentProps, TabsComponentState> {
     state: TabsComponentState = {
         activeTab: 0,
         dialogOpened: false
     };
     private model: Model;
 
-    constructor(props: TabsComponentProps<typeof styles>) {
+    constructor(props: TabsComponentProps) {
         super(props);
         this.model = model as unknown as Model;
     }
@@ -60,32 +44,20 @@ class TabsComponent extends React.Component<TabsComponentProps<typeof styles>, T
     };
 
     render() {
-        const {classes} = this.props;
+        const {history} = this.props;
+        const tabs = Object.entries(pages.todos.tabs).map(([key, tab]) => (
+            <paper-tab key={tab.title} onClick={() => history.push(tab.url)}>
+                <iron-icon icon={tab.icon} id={'tab' + [key]}/>
+                <span>{tab.title}</span>
+                <paper-badge label={this.model.getCount()[key]}
+                             for={'tab' + [key]}/>
+            </paper-tab>
+        ));
         return (
-            <div>
-                <AppBar position="static" color="default">
-                    <Tabs
-                        value={this.state.activeTab}
-                        onChange={this.handleChange}
-                        indicatorColor="primary"
-                        textColor="primary"
-                        className={classes.tabBar}
-                        fullWidth
-                    >
-                        {Object.entries(pages.todos.tabs).map(([key, tab]) => {
-                            return <Tab
-                                label={tab.title}
-                                icon={
-                                    <Badge color="secondary" badgeContent={this.model.getCount()[key]}>
-                                        {tab.icon}
-                                    </Badge>}
-                                key={tab.title}
-                                {...{to: tab.url}}
-                                component={createLink}
-                            />;
-                        })}
-                    </Tabs>
-                </AppBar>
+            <div className="tab-container">
+                <paper-tabs selected="0">
+                    {tabs}
+                </paper-tabs>
                 <SwipeableRoutes index={this.state.activeTab} onChangeIndex={this.handleChangeIndex}>
                     <Route path={pages.todos.tabs[ListTypes.ALL].url}
                            render={(props) => <List type={ListTypes.ALL} {...props}/>}/>
@@ -94,13 +66,11 @@ class TabsComponent extends React.Component<TabsComponentProps<typeof styles>, T
                     <Route path={pages.todos.tabs[ListTypes.COMPLETED].url}
                            render={(props) => <List type={ListTypes.COMPLETED} {...props}/>}/>
                 </SwipeableRoutes>
-                <Fab className={classes.fab} color="secondary" onClick={this.handleDialogOpen}>
-                    <AddIcon/>
-                </Fab>
+                <paper-fab icon="add" onClick={this.handleDialogOpen}/>
                 <Dialog handleClose={this.handleDialogClose} opened={this.state.dialogOpened} title="Create Item"/>
             </div>
         );
     }
 }
 
-export default withStyles(styles)(view(TabsComponent));
+export default view(withRouter(TabsComponent));

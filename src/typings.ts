@@ -1,5 +1,6 @@
 import {StyleRulesCallback, WithStyles, WithTheme} from '@material-ui/core';
 import React from 'react';
+import {RouteComponentProps} from 'react-router';
 
 export type Storage = {
     items: Array<Item>
@@ -41,8 +42,8 @@ export type AppBarComponentProps<T extends string | StyleRulesCallback = string>
     title: string;
 };
 
-export type MenuComponentProps<T extends string | StyleRulesCallback = string> = WithStyles<T> & {
-    closeDrawer: (event: React.MouseEvent<HTMLElement>) => void;
+export type MenuComponentProps = RouteComponentProps & {
+    closeDrawer: () => void;
 };
 
 export type DrawerComponentProps<T extends string | StyleRulesCallback = string> = WithStyles<T> & WithTheme & {
@@ -54,11 +55,11 @@ export type ListComponentProps<T extends string | StyleRulesCallback = string> =
     type: string;
 };
 
-export type TabsComponentProps<T extends string | StyleRulesCallback = string> = WithStyles<T> & TitleProps;
+export type TabsComponentProps = TitleProps & RouteComponentProps;
 
 export type AppComponentState = {
-    mobileOpen: boolean;
     title: string;
+    drawerPersistent: boolean;
 };
 
 export type TabsComponentState = {

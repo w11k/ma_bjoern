@@ -1,38 +1,38 @@
-import {createStyles, CssBaseline, Theme, withStyles, WithStyles} from '@material-ui/core';
+import {AppDrawerLayoutElement} from '@polymer/app-layout/app-drawer-layout/app-drawer-layout';
+import {AppDrawerElement} from '@polymer/app-layout/app-drawer/app-drawer';
 import React from 'react';
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 import {pages} from '../constants';
 import {AppComponentState} from '../typings';
-import withRoot from '../withRoot';
 import About from './About';
-import AppBar from './AppBar';
-import Drawer from './Drawer';
+import Menu from './Menu';
 import Settings from './Settings';
 import Tabs from './Tabs';
 
-const styles = (theme: Theme) =>
-    createStyles({
-        root: {
-            display: 'flex'
-        },
-        toolbar: theme.mixins.toolbar,
-        content: {
-            flexGrow: 1
-        }
-    });
-
-class AppComponent extends React.Component<WithStyles<typeof styles>, AppComponentState> {
+class AppComponent extends React.Component<{}, AppComponentState> {
     state: AppComponentState = {
-        mobileOpen: false,
-        title: 'Todos'
+        title: 'Todos',
+        drawerPersistent: true
     };
 
-    handleDrawerToggle = () => {
-        this.setState((state: AppComponentState) => ({mobileOpen: !state.mobileOpen}));
+    private drawer: React.RefObject<AppDrawerElement> = React.createRef<AppDrawerElement>();
+    private layout: React.RefObject<AppDrawerLayoutElement> = React.createRef<AppDrawerLayoutElement>();
+
+    componentDidMount(): void {
+        if (this.layout.current) {
+            this.state.drawerPersistent = !this.layout.current.narrow;
+            this.layout.current.addEventListener('narrow-changed', this.handleLayoutChange as EventListener);
+        }
+    }
+
+    handleLayoutChange = (event: CustomEvent) => {
+        this.setState({drawerPersistent: !event.detail.value});
     };
 
     handleDrawerClose = () => {
-        this.setState({mobileOpen: false});
+        if (this.drawer.current && !this.state.drawerPersistent) {
+            this.drawer.current.close();
+        }
     };
 
     setTitle = (title: string) => {
@@ -40,32 +40,38 @@ class AppComponent extends React.Component<WithStyles<typeof styles>, AppCompone
     };
 
     render() {
-        const {classes} = this.props;
         return (
             <BrowserRouter basename={process.env.PUBLIC_URL}>
-                <div className={classes.root}>
-                    <CssBaseline/>
-                    <AppBar toggleDrawer={this.handleDrawerToggle} title={this.state.title}/>
-                    <Drawer mobileOpen={this.state.mobileOpen} closeDrawer={this.handleDrawerClose}/>
-                    <main className={classes.content}>
-                        <div className={classes.toolbar}/>
-                        <Switch>
-                            <Route path={pages.todos.url} render={(props) => <Tabs {...props}
-                                                                                   title={pages.todos.title}
-                                                                                   setTitle={this.setTitle}/>}/>
-                            <Route path={pages.settings.url} render={(props) => <Settings {...props}
-                                                                                          title={pages.settings.title}
-                                                                                          setTitle={this.setTitle}/>}/>
-                            <Route path={pages.about.url} render={(props) => <About {...props}
-                                                                                    title={pages.about.title}
-                                                                                    setTitle={this.setTitle}/>}/>
-                            <Redirect to={pages.todos.tabs.all.url}/>
-                        </Switch>
-                    </main>
+                <div>
+                    <app-drawer-layout forceNarrow={true} ref={this.layout}>
+                        <app-drawer slot="drawer" swipe-open="true" ref={this.drawer}>
+                            <Menu closeDrawer={() => this.handleDrawerClose()}/>
+                        </app-drawer>
+                        <app-header-layout>
+                            <app-header effects="waterfall" reveals slot="header">
+                                <app-toolbar>
+                                    {!this.state.drawerPersistent && <paper-icon-button drawer-toggle icon="menu"/>}
+                                    <div main-title="true">{this.state.title}</div>
+                                </app-toolbar>
+                            </app-header>
+                            <Switch>
+                                <Route path={pages.todos.url} render={(props) => <Tabs {...props}
+                                                                                       title={pages.todos.title}
+                                                                                       setTitle={this.setTitle}/>}/>
+                                <Route path={pages.settings.url} render={(props) => <Settings {...props}
+                                                                                              title={pages.settings.title}
+                                                                                              setTitle={this.setTitle}/>}/>
+                                <Route path={pages.about.url} render={(props) => <About {...props}
+                                                                                        title={pages.about.title}
+                                                                                        setTitle={this.setTitle}/>}/>
+                                <Redirect to={pages.todos.tabs.all.url}/>
+                            </Switch>
+                        </app-header-layout>
+                    </app-drawer-layout>
                 </div>
             </BrowserRouter>
         );
     }
 }
 
-export default withRoot(withStyles(styles)(AppComponent));
+export default AppComponent;

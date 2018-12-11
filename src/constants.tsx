@@ -15,35 +15,35 @@ export const pages = {
     todos: {
         url: '/todos',
         title: 'Todos',
-        icon: <ListIcon/>,
+        icon: 'list',
         tabs: {
             [ListTypes.ALL]: {
                 url: `/todos/${ListTypes.ALL}`,
                 title: 'All',
-                icon: <ListIcon/>
+                icon: 'list'
             },
             [ListTypes.ACTIVE]: {
                 url: `/todos/${ListTypes.ACTIVE}`,
                 title: 'Active',
-                icon: <CheckBoxOutlineBlankIcon/>
+                icon: 'check-box-outline-blank'
             },
             [ListTypes.COMPLETED]: {
                 url: `/todos/${ListTypes.COMPLETED}`,
                 title: 'Completed',
-                icon: <CheckBoxIcon/>
+                icon: 'check-box'
             }
         }
     },
     settings: {
         url: '/settings',
         title: 'Settings',
-        icon: <SettingsIcon/>
+        icon: 'settings'
     }
     ,
     about: {
         url: '/about',
         title: 'About',
-        icon: <InfoIcon/>
+        icon: 'info'
     }
 };
 
