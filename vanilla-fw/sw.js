@@ -11,11 +11,11 @@ var serviceWorkerOption = {
     "./assets/images/mstile-70x70.png?ca2592ec6246bddc42e4aa98f61147f0",
     "./assets/images/safari-pinned-tab.svg?ec5301be624ff7b9e87297fea15a208b",
     "./assets/images/splash-512x512.png?9e38b25e0a53416b7b986a4e8c7843df",
-    "./browserconfig.xml?3c890a46f84b2272f8e9e83e75acc8c6",
+    "./browserconfig.xml?5d3e4032eb107cd260da3d1216105916",
     "./favicon.ico?c674b958d2e6cee819f853a9cdcf9648",
-    "./site.webmanifest?13d048262cef59040f6ab5ffafb1228f",
+    "./site.webmanifest?7b1abf778babb8631dc1a4d440047d46",
     "./style.a18f7564bd20181b781c.css",
-    "./main.ccf9b36fa1c5b4be0ca6.js",
+    "./main.52c1fdf1a9836dec81b9.js",
     "./index.html"
   ]
 };
