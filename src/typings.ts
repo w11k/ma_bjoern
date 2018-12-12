@@ -1,5 +1,3 @@
-import {StyleRulesCallback, WithStyles, WithTheme} from '@material-ui/core';
-import React from 'react';
 import {RouteComponentProps} from 'react-router';
 
 export type Storage = {
@@ -37,22 +35,12 @@ export enum SheetActions {
     CANCEL = 'Cancel'
 }
 
-export type AppBarComponentProps<T extends string | StyleRulesCallback = string> = WithStyles<T> & {
-    toggleDrawer: (event: React.MouseEvent<HTMLElement>) => void;
-    title: string;
-};
-
 export type MenuComponentProps = RouteComponentProps & {
     closeDrawer: () => void;
 };
 
-export type DrawerComponentProps<T extends string | StyleRulesCallback = string> = WithStyles<T> & WithTheme & {
-    mobileOpen?: boolean;
-    closeDrawer: (event: React.MouseEvent<HTMLElement>) => void;
-};
-
-export type ListComponentProps<T extends string | StyleRulesCallback = string> = WithStyles<T> & {
-    type: string;
+export type ListComponentProps = {
+    type: ListTypes;
 };
 
 export type TabsComponentProps = TitleProps & RouteComponentProps;
@@ -64,16 +52,6 @@ export type AppComponentState = {
 
 export type TabsComponentState = {
     activeTab: number;
-    dialogOpened: boolean;
-};
-
-export type ListComponentState = {
-    sheetOpened: number;
-    dialogState: {
-        opened: boolean;
-        id: number;
-        value: string;
-    };
 };
 
 export type TitleProps = {
@@ -81,15 +59,12 @@ export type TitleProps = {
     title: string;
 }
 
-export type DialogComponentProps = {
-    title: string;
-    opened: boolean;
-    id?: number;
-    defaultValue?: string;
-    handleClose: (value?: string, id?: number) => void;
+export type ListItemComponentProps = {
+    onChange: (c: boolean) => void;
+    onSheetAction: (a: SheetActions) => void;
+    item: Item;
 }
 
-export type SheetComponentProps = {
-    opened: number;
-    handleClose: (action: SheetActions, value: number) => void;
+export type ContextMenuElement = HTMLElement & {
+    renderer: (root: HTMLElement) => void
 }

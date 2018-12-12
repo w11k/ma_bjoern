@@ -1,56 +1,20 @@
-import {
-    Checkbox,
-    createStyles,
-    List,
-    ListItem,
-    ListItemSecondaryAction,
-    ListItemText,
-    withStyles
-} from '@material-ui/core';
 import React from 'react';
 import {view} from 'react-easy-state';
 import model, {Model} from '../model';
-import {Item, ListComponentProps, ListComponentState, ListTypes, SheetActions} from '../typings';
-import Dialog from './Dialog';
-import Sheet from './Sheet';
+import {Item, ListComponentProps, ListTypes, SheetActions} from '../typings';
+import ListItem from './ListItem';
 
-const styles = () =>
-    createStyles({
-        list: {
-            backgroundColor: 'white',
-            maxHeight: 'calc(100vh - 137px)',
-            overflowY: 'auto',
-            padding: 0
-        },
-        secondaryAction: {
-            position: 'inherit',
-            transform: 'none'
-        },
-        checkbox: {
-            padding: 6
-        }
-    });
-
-class ListComponent extends React.Component<ListComponentProps<typeof styles>, ListComponentState> {
-    private listType: string;
+class ListComponent extends React.Component<ListComponentProps> {
+    private listType: ListTypes;
     private model: Model;
-    state = {
-        sheetOpened: -1,
-        dialogState: {
-            opened: false,
-            id: -1,
-            value: ''
-        }
-    };
 
-    constructor(props: ListComponentProps<typeof styles>) {
+    constructor(props: ListComponentProps) {
         super(props);
         this.model = model as unknown as Model;
         this.listType = this.props.type;
     }
 
     render() {
-        const {classes} = this.props;
         const list = this.model.getAllItems()
             .filter((item: Item) => {
                 switch (this.listType) {
@@ -66,52 +30,29 @@ class ListComponent extends React.Component<ListComponentProps<typeof styles>, L
                 }
             })
             .map((item: Item) => (
-                <ListItem button key={item.id} onClick={(e) => {
-                    if ((e.target as any).nodeName !== 'INPUT') {
-                        this.setState({sheetOpened: item.id});
-                    }
-                }}>
-                    <ListItemSecondaryAction className={classes.secondaryAction}>
-                        <Checkbox className={classes.checkbox}
-                                  checked={item.completed}
-                                  onChange={(e: React.ChangeEvent, c: boolean) => this.model.updateItem(item.id, {completed: c})}/>
-                    </ListItemSecondaryAction>
-                    <ListItemText primary={item.title}/>
-                </ListItem>
+                <ListItem
+                    item={item}
+                    key={item.id}
+                    onChange={(c: boolean) => this.model.updateItem(item.id, {completed: c})}
+                    onSheetAction={(a: SheetActions) => this.handleSheetClose(a, item)}
+                />
             ));
         return (
             <div>
-                <List className={classes.list}>
+                <div className="list-container">
                     {list}
-                </List>
-                <Sheet opened={this.state.sheetOpened} handleClose={this.handleSheetClose}/>
-                <Dialog title="Edit Item"
-                        opened={this.state.dialogState.opened}
-                        id={this.state.dialogState.id}
-                        defaultValue={this.state.dialogState.value}
-                        handleClose={this.handleDialogClose}/>
+                </div>
             </div>
         );
     }
 
-    handleSheetClose = (action: SheetActions, id: number) => {
-        this.setState({sheetOpened: -1});
-        const item = this.model.getItem(id);
-        if (!item) {
-            return;
-        }
+    private handleSheetClose = (action: SheetActions, item: Item) => {
         switch (action) {
             case SheetActions.EDIT:
-                this.setState({
-                    dialogState: {
-                        opened: true,
-                        id: id,
-                        value: item.title
-                    }
-                });
+                this.presentAlertPrompt(item);
                 break;
             case SheetActions.DELETE:
-                this.model.deleteItem(id);
+                this.model.deleteItem(item.id);
                 break;
             case SheetActions.CANCEL:
             default:
@@ -119,21 +60,20 @@ class ListComponent extends React.Component<ListComponentProps<typeof styles>, L
         }
     };
 
-    private handleDialogClose = (value: string = '', id: number = -2) => {
-        this.setState({
-            dialogState: {
-                opened: false,
-                id: -1,
-                value: ''
+
+    private presentAlertPrompt = (item: Item) => {
+        setTimeout(() => {
+            const newTitle = window.prompt('Edit Item', item.title);
+            if (typeof newTitle !== 'string') {
+                return;
+            } else if (newTitle.trim() === '') {
+                return window.alert('No input!');
+            } else if (item.title === newTitle) {
+                return window.alert('No change!');
             }
-        });
-        const item = this.model.getItem(id);
-        const title = value.trim();
-        if (!item || item.title === title || title.length === 0) {
-            return;
-        }
-        this.model.updateItem(id, {title});
+            this.model.updateItem(item.id, {title: newTitle});
+        }, 300);
     };
 }
 
-export default withStyles(styles)(view(ListComponent));
+export default view(ListComponent);

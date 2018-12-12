@@ -33,6 +33,9 @@ declare global {
             'paper-tab': any;
             'paper-badge': any;
             'paper-fab': any;
+            'vaadin-context-menu': any;
+            'template': any;
+            'paper-checkbox': any;
         }
     }
 }

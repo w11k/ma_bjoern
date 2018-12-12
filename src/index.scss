@@ -56,3 +56,17 @@ paper-fab {
 .tab-container {
   height: calc(100vh - 64px);
 }
+
+.list-container {
+  height: calc(100vh - 64px - 49px);
+}
+
+.list-container paper-item {
+  border-bottom: 1px solid #eee;
+  background-color: #ffffff;
+}
+
+vaadin-context-menu-overlay paper-item {
+  --paper-item-min-height: 32px;
+  cursor: pointer;
+}

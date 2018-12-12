@@ -501,11 +501,20 @@ module.exports = {
         'build/apple-touch-icon.png',
         'build/browserconfig.xml',
         'build/favicon.ico',
-        'build/manifest.json'
+        'build/manifest.json',
+        'build/vendor/**'
       ],
       runtimeCaching: [
         {
-          urlPattern: '/ma_bjoern/react-wc/assets/',
+          urlPattern: '/ma_bjoern/react-wc/assets/(.*)',
+          handler: 'staleWhileRevalidate'
+        },
+        {
+          urlPattern: 'https://fonts.googleapis.com/(.*)',
+          handler: 'staleWhileRevalidate'
+        },
+        {
+          urlPattern: 'https://fonts.gstatic.com/(.*)',
           handler: 'staleWhileRevalidate'
         }
       ]

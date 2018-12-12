@@ -5,13 +5,11 @@ import SwipeableRoutes from 'react-swipeable-routes';
 import {pages} from '../constants';
 import model, {Model} from '../model';
 import {ListTypes, TabsComponentProps, TabsComponentState} from '../typings';
-import Dialog from './Dialog';
 import List from './List';
 
 class TabsComponent extends React.Component<TabsComponentProps, TabsComponentState> {
     state: TabsComponentState = {
-        activeTab: 0,
-        dialogOpened: false
+        activeTab: 0
     };
     private model: Model;
 
@@ -23,21 +21,6 @@ class TabsComponent extends React.Component<TabsComponentProps, TabsComponentSta
     componentDidMount() {
         this.props.setTitle(this.props.title);
     }
-
-    handleDialogOpen = () => {
-        this.setState({dialogOpened: true});
-    };
-
-    handleDialogClose = (value: string = '') => {
-        this.setState({dialogOpened: false});
-        if (value.trim().length > 0) {
-            this.model.createItem(value);
-        }
-    };
-
-    handleChange = (event: React.ChangeEvent<{}>, value: number) => {
-        this.handleChangeIndex(value);
-    };
 
     handleChangeIndex = (value: number) => {
         this.setState({activeTab: value});
@@ -55,7 +38,7 @@ class TabsComponent extends React.Component<TabsComponentProps, TabsComponentSta
         ));
         return (
             <div className="tab-container">
-                <paper-tabs selected="0">
+                <paper-tabs selected={this.state.activeTab}>
                     {tabs}
                 </paper-tabs>
                 <SwipeableRoutes index={this.state.activeTab} onChangeIndex={this.handleChangeIndex}>
@@ -66,11 +49,23 @@ class TabsComponent extends React.Component<TabsComponentProps, TabsComponentSta
                     <Route path={pages.todos.tabs[ListTypes.COMPLETED].url}
                            render={(props) => <List type={ListTypes.COMPLETED} {...props}/>}/>
                 </SwipeableRoutes>
-                <paper-fab icon="add" onClick={this.handleDialogOpen}/>
-                <Dialog handleClose={this.handleDialogClose} opened={this.state.dialogOpened} title="Create Item"/>
+                <paper-fab icon="add" onClick={this.presentAlertPrompt}/>
             </div>
         );
     }
+
+
+    private presentAlertPrompt = () => {
+        setTimeout(() => {
+            const newTitle = window.prompt('Create Item');
+            if (typeof newTitle !== 'string') {
+                return;
+            } else if (newTitle.trim() === '') {
+                return window.alert('No input!');
+            }
+            this.model.createItem(newTitle);
+        }, 300);
+    };
 }
 
-export default view(withRouter(TabsComponent));
+export default withRouter(view(TabsComponent));
