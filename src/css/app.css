@@ -1,22 +1,22 @@
 /* Your app styles here */
 .bg-color-primary {
-    background-color: #0129C7 !important;
+    background-color: #222195 !important;
 }
 .bd-color-primary {
-    border-color: #0129C7 !important;
+    border-color: #222195 !important;
 }
 
 .md .checkbox input[type=checkbox]:checked~i, .md label.item-checkbox input[type=checkbox]:checked~* .icon-checkbox, .md label.item-checkbox input[type=checkbox]:checked~.icon-checkbox {
-    background-color: #0129C7 !important;
-    border-color: #0129C7 !important;
+    background-color: #222195 !important;
+    border-color: #222195 !important;
 }
 
 .md .dialog-button {
-    color: #0129C7 !important;
+    color: #222195 !important;
 }
 
 .md .input-focused:after, .md .item-input-focused .item-input-wrap:after {
-    background: #0129C7 !important;
+    background: #222195 !important;
 }
 
 .text-color-primary {
