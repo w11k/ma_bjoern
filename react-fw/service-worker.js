@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/ma_bjoern/react-fw/precache-manifest.3b2929ae2600e411696093137ac31c06.js"
+  "/ma_bjoern/react-fw/precache-manifest.a0d636b228702835f3d64bfe86dd1f5d.js"
 );
 
 workbox.clientsClaim();
@@ -50,5 +50,6 @@ workbox.routing.registerNavigationRoute("/ma_bjoern/react-fw/index.html", {
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
 
-workbox.routing.registerRoute("/ma_bjoern/react-fw/assets/", workbox.strategies.staleWhileRevalidate(), 'GET');
-workbox.routing.registerRoute("https://fonts.googleapis.com/", workbox.strategies.staleWhileRevalidate(), 'GET');
+workbox.routing.registerRoute("/ma_bjoern/react-fw/assets/(.*)", workbox.strategies.staleWhileRevalidate(), 'GET');
+workbox.routing.registerRoute("https://fonts.googleapis.com/(.*)", workbox.strategies.staleWhileRevalidate(), 'GET');
+workbox.routing.registerRoute("https://fonts.gstatic.com/(.*)", workbox.strategies.staleWhileRevalidate(), 'GET');
