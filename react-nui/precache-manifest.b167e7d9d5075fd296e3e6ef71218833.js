@@ -1,10 +1,10 @@
 self.__precacheManifest = [
   {
-    "revision": "e79bfd88537def476913f3ed52f4f4b3",
-    "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.e79bfd88.eot"
+    "revision": "570eb83859dc23dd0eec423a49e147fe",
+    "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.570eb838.woff2"
   },
   {
-    "revision": "f43b0d3751a052726e98",
+    "revision": "4fcb660a41802d87e629",
     "url": "/ma_bjoern/react-nui/static/css/main.b3705085.chunk.css"
   },
   {
@@ -20,28 +20,28 @@ self.__precacheManifest = [
     "url": "/ma_bjoern/react-nui/static/js/runtime~main.5ce2ec60.js"
   },
   {
-    "revision": "570eb83859dc23dd0eec423a49e147fe",
-    "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.570eb838.woff2"
+    "revision": "e79bfd88537def476913f3ed52f4f4b3",
+    "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.e79bfd88.eot"
   },
   {
     "revision": "012cf6a10129e2275d79d6adac7f3b02",
     "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.012cf6a1.woff"
   },
   {
-    "revision": "f43b0d3751a052726e98",
-    "url": "/ma_bjoern/react-nui/static/js/main.f43b0d37.chunk.js"
+    "revision": "4fcb660a41802d87e629",
+    "url": "/ma_bjoern/react-nui/static/js/main.4fcb660a.chunk.js"
   },
   {
-    "revision": "a37b0c01c0baf1888ca812cc0508f6e2",
-    "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.a37b0c01.ttf"
+    "revision": "ea912ff15c9f2a41ac98a723471afef0",
+    "url": "/ma_bjoern/react-nui/static/media/Framework7Icons-Regular.ea912ff1.woff2"
   },
   {
     "revision": "df27d9863abee94e1012e147536ea8f3",
     "url": "/ma_bjoern/react-nui/static/media/Framework7Icons-Regular.df27d986.eot"
   },
   {
-    "revision": "ea912ff15c9f2a41ac98a723471afef0",
-    "url": "/ma_bjoern/react-nui/static/media/Framework7Icons-Regular.ea912ff1.woff2"
+    "revision": "a37b0c01c0baf1888ca812cc0508f6e2",
+    "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.a37b0c01.ttf"
   },
   {
     "revision": "cf0ac81df2df1cdcb5c6838d34837d68",
@@ -52,7 +52,7 @@ self.__precacheManifest = [
     "url": "/ma_bjoern/react-nui/static/css/1.1cfcd5f9.chunk.css"
   },
   {
-    "revision": "e777801e1f1259e2fa1c4bee8f11852c",
+    "revision": "5df7400a00354ab0b73577479509cf0d",
     "url": "/ma_bjoern/react-nui/index.html"
   }
 ];
