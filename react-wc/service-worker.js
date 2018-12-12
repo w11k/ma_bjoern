@@ -58,4 +58,4 @@ workbox.routing.registerNavigationRoute("/ma_bjoern/react-wc/index.html", {
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
 
-workbox.routing.registerRoute("/ma_bjoern/react-wc/assets/", workbox.strategies.staleWhileRevalidate(), 'GET');
+workbox.routing.registerRoute("/ma_bjoern/react-wc/assets/(.*)", workbox.strategies.staleWhileRevalidate(), 'GET');
