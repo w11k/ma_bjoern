@@ -7,7 +7,7 @@ import * as React from 'react';
 // It's optional.
 const theme = createMuiTheme({
     palette: {
-        primary: {main: '#0129c7'},
+        primary: {main: '#222195'},
         secondary: pink
     },
     typography: {
