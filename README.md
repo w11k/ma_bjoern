@@ -18,4 +18,6 @@
 
 [React with native UI (Framework7)](./react-nui)
 
+[React with Web Components](./react-wc)
+
 [React with popular UI Framework (Material-UI)](./react-fw)
