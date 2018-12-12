@@ -8,4 +8,4 @@ import './web-components';
 ReactDOM.render(<App/>, document.querySelector('#root'));
 
 
-register({scope: '/ma_bjoern/react-wc/'});
+register({scope: process.env.PUBLIC_URL + '/'});
