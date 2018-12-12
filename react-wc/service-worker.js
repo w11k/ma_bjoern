@@ -59,3 +59,5 @@ workbox.routing.registerNavigationRoute("/ma_bjoern/react-wc/index.html", {
 });
 
 workbox.routing.registerRoute("/ma_bjoern/react-wc/assets/(.*)", workbox.strategies.staleWhileRevalidate(), 'GET');
+workbox.routing.registerRoute("https://fonts.googleapis.com/(.*)", workbox.strategies.staleWhileRevalidate(), 'GET');
+workbox.routing.registerRoute("https://fonts.gstatic.com/(.*)", workbox.strategies.staleWhileRevalidate(), 'GET');
