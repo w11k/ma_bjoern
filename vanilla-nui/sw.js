@@ -1,17 +1,17 @@
 var serviceWorkerOption = {
   "assets": [
-    "./assets/fonts/ionicons.woff2",
     "./assets/fonts/ionicons.eot",
     "./assets/fonts/ionicons.woff",
+    "./assets/fonts/ionicons.woff2",
     "./assets/fonts/ionicons.ttf",
-    "./assets/fonts/fontawesome-webfont.woff2",
-    "./assets/fonts/ionicons.svg",
-    "./assets/fonts/fontawesome-webfont.woff",
-    "./assets/fonts/fontawesome-webfont.eot",
     "./assets/fonts/Material-Design-Iconic-Font.woff2",
     "./assets/fonts/Material-Design-Iconic-Font.woff",
-    "./assets/fonts/fontawesome-webfont.ttf",
     "./assets/fonts/Material-Design-Iconic-Font.ttf",
+    "./assets/fonts/ionicons.svg",
+    "./assets/fonts/fontawesome-webfont.eot",
+    "./assets/fonts/fontawesome-webfont.woff2",
+    "./assets/fonts/fontawesome-webfont.woff",
+    "./assets/fonts/fontawesome-webfont.ttf",
     "./assets/fonts/fontawesome-webfont.svg",
     "./apple-touch-icon.png?b4d0a128e681954979d6b1f7a7a713f6",
     "./assets/images/android-chrome-192x192.png?aa99ec603501cde76bd6a93f254ccaa3",
@@ -25,11 +25,11 @@ var serviceWorkerOption = {
     "./assets/images/safari-pinned-tab.svg?ec5301be624ff7b9e87297fea15a208b",
     "./assets/fonts/safari-pinned-tab.svg",
     "./assets/images/splash-512x512.png?9e38b25e0a53416b7b986a4e8c7843df",
-    "./browserconfig.xml?3c890a46f84b2272f8e9e83e75acc8c6",
+    "./browserconfig.xml?4f4c65063b4938f4f53d1452e324fee7",
     "./favicon.ico?c674b958d2e6cee819f853a9cdcf9648",
-    "./site.webmanifest?02a7e1d9a537923ff3042394eaa74a25",
+    "./site.webmanifest?afeac57aeca0f774641b4edd7c5485d6",
     "./style.46f7bab7e6728269f54d.css",
-    "./main.cc92f3278709985ea75f.js",
+    "./main.8582ffc599e160d3adcb.js",
     "./index.html"
   ]
 };
