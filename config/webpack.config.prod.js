@@ -504,7 +504,7 @@ module.exports = {
         'build/manifest.json'
       ],
       runtimeCaching: [{
-        urlPattern: '/ma_bjoern/react-nui/assets/',
+        urlPattern: '/ma_bjoern/react-nui/assets/(.*)',
         handler: 'staleWhileRevalidate'
       }]
     }),
