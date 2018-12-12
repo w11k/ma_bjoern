@@ -505,11 +505,15 @@ module.exports = {
       ],
       runtimeCaching: [
         {
-          urlPattern: '/ma_bjoern/react-fw/assets/',
+          urlPattern: '/ma_bjoern/react-fw/assets/(.*)',
           handler: 'staleWhileRevalidate'
         },
         {
-          urlPattern: 'https://fonts.googleapis.com/',
+          urlPattern: 'https://fonts.googleapis.com/(.*)',
+          handler: 'staleWhileRevalidate'
+        },
+        {
+          urlPattern: 'https://fonts.gstatic.com/(.*)',
           handler: 'staleWhileRevalidate'
         }
       ]
