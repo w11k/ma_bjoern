@@ -179,7 +179,7 @@
         "/ma_bjoern/angular-nui/main.b00c2e3646e04ae043cd.js",
         "/ma_bjoern/angular-nui/polyfills.937ddcaeb135ae7991ac.js",
         "/ma_bjoern/angular-nui/runtime.c668f7062bcb058b1f2c.js",
-        "/ma_bjoern/angular-nui/styles.842b6e55daaedfa5dfb9.css"
+        "/ma_bjoern/angular-nui/styles.f0f051e0aa948b3fb383.css"
       ],
       "patterns": []
     },
@@ -1080,11 +1080,11 @@
     "/ma_bjoern/angular-nui/assets/images/splash-512x512.png": "7dd68f046d5686272fc3af6321922ad6b061cea9",
     "/ma_bjoern/angular-nui/common.af102ab75855e3fb3a03.js": "645a16273ed5e2e1303dc4a3b2257e22d432a36e",
     "/ma_bjoern/angular-nui/favicon.ico": "d08d6acd3fe0f0b8895d174acac2c702c89ac986",
-    "/ma_bjoern/angular-nui/index.html": "3d8b59617d9802116e5b28ec178e5fd618066b87",
+    "/ma_bjoern/angular-nui/index.html": "dcc320ef8501ffa964084765b9317661e44406f3",
     "/ma_bjoern/angular-nui/main.b00c2e3646e04ae043cd.js": "46d5960c5bb2a8e48fcd5a5f29777a7d6fe941e2",
     "/ma_bjoern/angular-nui/polyfills.937ddcaeb135ae7991ac.js": "8181dda6fd40090083ee622e74ac8de5c683ab45",
     "/ma_bjoern/angular-nui/runtime.c668f7062bcb058b1f2c.js": "40aedcd5a629dc6cf176d145c33d7e4503c95094",
-    "/ma_bjoern/angular-nui/styles.842b6e55daaedfa5dfb9.css": "6e92197fa9b930f90fb4ed3f62143510cd0ae3bf",
+    "/ma_bjoern/angular-nui/styles.f0f051e0aa948b3fb383.css": "809062537811e521acfc7485dda8c2521cd8eeb5",
     "/ma_bjoern/angular-nui/svg/ios-add-circle-outline.svg": "04f25ce593bf38525d544693239147602359a550",
     "/ma_bjoern/angular-nui/svg/ios-add-circle.svg": "2fe356e13c37ae40745edffc298e06aefa447f10",
     "/ma_bjoern/angular-nui/svg/ios-add.svg": "cd88f173a031124e18807b6cde9028519a0be26d",
