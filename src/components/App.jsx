@@ -1,5 +1,6 @@
 import {App, Panel, Statusbar, View} from 'framework7-react';
 import React from 'react';
+import {BrowserRouter, HashRouter, Redirect, Route, Switch} from 'react-router-dom';
 
 import routes from '../routes';
 
@@ -24,8 +25,16 @@ export default function (props) {
                 <View url="/menu/"/>
             </Panel>
 
-            {/* Main View */}
-            <View id="main-view" url="/todos/" main className="ios-edges" pushState pushStateRoot={process.env.PUBLIC_URL} pushStateSeparator=""/>
+            <BrowserRouter basename="/">
+                <Switch>
+                    <Route strict path={process.env.PUBLIC_URL + '/'}>
+                        {/* Main View */}
+                        <View id="main-view" url="/todos/" main className="ios-edges" pushState
+                              pushStateRoot={process.env.PUBLIC_URL + '/'} pushStateSeparator="#"/>
+                    </Route>
+                    <Redirect to={process.env.PUBLIC_URL + '/'}/>
+                </Switch>
+            </BrowserRouter>
         </App>
     );
 };
