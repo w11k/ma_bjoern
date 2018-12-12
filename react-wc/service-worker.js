@@ -40,6 +40,14 @@ self.__precacheManifest = [
   {
     "url": "/ma_bjoern/react-wc/manifest.json",
     "revision": "1df0aaea2045440728ff1b4c4948056e"
+  },
+  {
+    "url": "/ma_bjoern/react-wc/vendor/custom-elements-es5-adapter.js",
+    "revision": "ab073ba059d1e990f93247eacbc4fba4"
+  },
+  {
+    "url": "/ma_bjoern/react-wc/vendor/webcomponents-bundle.js",
+    "revision": "ba9bab8c93719b2338f3be99d38a4857"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
