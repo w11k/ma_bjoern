@@ -9,7 +9,7 @@ class NavigatorElement extends HTMLElement {
         const styles = `
             :host {
                 display: block;
-                height: 100%;
+                height: calc(100vh - 64px);
             }
             
             iron-pages {
@@ -24,9 +24,6 @@ class NavigatorElement extends HTMLElement {
                 <div id="page_about">Test2</div>
             </iron-pages>
         `;
-
-        this.parentNode.$.wrapper.style.height = '100%';
-        this.parentNode.$.contentContainer.style.height = 'calc(100% - 64px)';
 
         this.$pages = qs('iron-pages', this.shadowRoot);
     }

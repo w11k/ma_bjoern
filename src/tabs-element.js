@@ -54,6 +54,7 @@ class TabsElement extends HTMLElement {
                 right: 20px;
                 left: auto;
                 position: absolute;
+                position: fixed;
             }
         `;
         this.shadowRoot.innerHTML = `
