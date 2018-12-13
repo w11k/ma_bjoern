@@ -18,7 +18,7 @@ const styles = (theme: Theme) =>
             borderBottom: '1px solid rgba(0, 0, 0, 0.12)'
         },
         fab: {
-            position: 'absolute',
+            position: 'fixed',
             bottom: theme.spacing.unit * 2,
             right: theme.spacing.unit * 2
         }
