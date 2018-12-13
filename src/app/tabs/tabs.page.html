@@ -6,6 +6,9 @@
         <ion-title>
             Todos
         </ion-title>
+        <ion-buttons (click)="presentAlertPrompt()" *ngIf="isIOS" slot="end">
+            <ion-icon name="add" slot="icon-only"></ion-icon>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
@@ -18,12 +21,12 @@
                 <ion-label>All</ion-label>
             </ion-tab-button>
             <ion-tab-button tab="active" href="/todos/(active:active)">
-                <ion-icon name="square-outline"></ion-icon>
+                <ion-icon ios="ios-radio-button-off" md="md-square-outline"></ion-icon>
                 <ion-badge color="danger">{{getCount().active}}</ion-badge>
                 <ion-label>Active</ion-label>
             </ion-tab-button>
             <ion-tab-button tab="completed" href="/todos/(completed:completed)">
-                <ion-icon name="checkbox-outline"></ion-icon>
+                <ion-icon ios="ios-checkmark-circle" md="md-checkbox-outline"></ion-icon>
                 <ion-badge color="danger">{{getCount().completed}}</ion-badge>
                 <ion-label>Completed</ion-label>
             </ion-tab-button>

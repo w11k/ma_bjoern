@@ -5,3 +5,8 @@ ion-checkbox {
 ion-label {
   cursor: pointer;
 }
+
+ion-list {
+  overflow-y: auto;
+  margin: 0;
+}

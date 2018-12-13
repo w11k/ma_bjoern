@@ -1,10 +1,11 @@
 <ion-list>
-    <ion-item *ngFor="let item of getItems()" (click)="presentActionSheet(item)">
-        <ion-checkbox slot="start" [ngModel]="item.completed" (ionChange)="toggleItem(item.id, $event)" (click)="$event.stopPropagation()"></ion-checkbox>
+    <ion-item (click)="presentActionSheet(item)" *ngFor="let item of getItems()">
+        <ion-checkbox (click)="$event.stopPropagation()" (ionChange)="toggleItem(item.id, $event)" [ngModel]="item.completed"
+                      slot="start"></ion-checkbox>
         <ion-label>{{item.title}}</ion-label>
     </ion-item>
 </ion-list>
-<ion-fab horizontal="end" vertical="bottom">
+<ion-fab *ngIf="!isIOS" horizontal="end" vertical="bottom">
     <ion-fab-button color="secondary" (click)="presentAlertPrompt()">
         <ion-icon name="add"></ion-icon>
     </ion-fab-button>

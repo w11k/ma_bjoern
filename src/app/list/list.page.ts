@@ -1,7 +1,8 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {ActionSheetController, AlertController} from '@ionic/angular';
-import {noop, Subscription} from 'rxjs';
+import {ActionSheetController, Platform} from '@ionic/angular';
+import {Subscription} from 'rxjs';
+import {DialogService} from '../dialog.service';
 import {ModelService} from '../model.service';
 import {ITodo, ListType} from '../typings';
 
@@ -11,11 +12,12 @@ import {ITodo, ListType} from '../typings';
     styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit, OnDestroy {
+    public isIOS = this.platform.is('ios');
     private type: ListType = ListType.NONE;
     private todos: Array<ITodo> = [];
     private subscription: Subscription;
 
-    constructor(private model: ModelService, private route: ActivatedRoute, public actionSheetController: ActionSheetController, public alertController: AlertController, private changeRef: ChangeDetectorRef) {
+    constructor(private model: ModelService, private route: ActivatedRoute, public actionSheetController: ActionSheetController, public dialogService: DialogService, private changeRef: ChangeDetectorRef, private platform: Platform) {
     }
 
     ngOnInit(): void {
@@ -84,40 +86,12 @@ export class ListPage implements OnInit, OnDestroy {
     }
 
     presentAlertPrompt(item?: ITodo) {
-        this.alertController
-            .create({
-                header: !!item ? 'Edit Item' : 'Create Item',
-                inputs: [
-                    {
-                        name: 'title',
-                        type: 'text',
-                        value: !!item ? item.title : '',
-                        placeholder: 'Title'
-                    }
-                ],
-                buttons: [
-                    {
-                        text: 'Cancel',
-                        role: 'cancel',
-                        cssClass: 'secondary'
-                    }, {
-                        text: 'Ok',
-                        cssClass: 'submit',
-                        handler: (result) => {
-                            if (!!item) {
-                                this.model.updateItem(item.id, {title: result.title});
-                            } else {
-                                this.model.createItem(result.title);
-                            }
-                        }
-                    }
-                ]
-            })
-            .then((alert: HTMLIonAlertElement) => alert.present().then(() => {
-                const input = alert.querySelector('input');
-                const button = alert.querySelector('button.submit') as HTMLButtonElement;
-                input.addEventListener('keypress', (event) => event.which === 13 ? button.click() : noop);
-                input.focus();
-            }));
+        this.dialogService.presentAlertPrompt(item).subscribe((title: string) => {
+            if (!!item) {
+                this.model.updateItem(item.id, {title});
+            } else {
+                this.model.createItem(title);
+            }
+        });
     }
 }

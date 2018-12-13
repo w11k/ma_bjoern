@@ -1,5 +1,7 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {Platform} from '@ionic/angular';
 import {Subscription} from 'rxjs';
+import {DialogService} from '../dialog.service';
 import {ModelService} from '../model.service';
 import {ITodoCount} from '../typings';
 
@@ -9,6 +11,7 @@ import {ITodoCount} from '../typings';
     styleUrls: ['tabs.page.scss']
 })
 export class TabsPage implements OnInit, OnDestroy {
+    public isIOS = this.platform.is('ios');
     private subscription: Subscription;
     private count: ITodoCount = {
         active: 0,
@@ -16,7 +19,7 @@ export class TabsPage implements OnInit, OnDestroy {
         total: 0
     };
 
-    constructor(private model: ModelService, private changeRef: ChangeDetectorRef) {
+    constructor(private model: ModelService, private changeRef: ChangeDetectorRef, private dialogService: DialogService, private platform: Platform) {
     }
 
     ngOnInit(): void {
@@ -32,5 +35,11 @@ export class TabsPage implements OnInit, OnDestroy {
 
     getCount(): ITodoCount {
         return this.count;
+    }
+
+    presentAlertPrompt() {
+        this.dialogService.presentAlertPrompt().subscribe((title: string) => {
+            this.model.createItem(title);
+        });
     }
 }
