@@ -1,8 +1,8 @@
 /* Your app styles here */
-.bg-color-primary {
+.md .bg-color-primary {
     background-color: #222195 !important;
 }
-.bd-color-primary {
+.md .bd-color-primary {
     border-color: #222195 !important;
 }
 

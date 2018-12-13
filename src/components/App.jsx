@@ -1,6 +1,6 @@
 import {App, Panel, Statusbar, View} from 'framework7-react';
 import React from 'react';
-import {BrowserRouter, HashRouter, Redirect, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 
 import routes from '../routes';
 

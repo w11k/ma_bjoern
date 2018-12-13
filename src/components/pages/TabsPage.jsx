@@ -1,10 +1,13 @@
-import {Badge, Fab, Icon, Link, Navbar, NavLeft, NavTitle, Page, Tab, Tabs, Toolbar} from 'framework7-react';
+import Framework7 from 'framework7';
+import {Badge, Fab, Icon, Link, Navbar, NavLeft, NavRight, NavTitle, Page, Tab, Tabs, Toolbar} from 'framework7-react';
 import React from 'react';
 import {view} from 'react-easy-state';
 import model from '../../model';
 import {ListTypes} from '../../routes';
 
 class TabsPage extends React.Component {
+    isIos = Framework7.prototype.device.ios === true;
+
     constructor(props) {
         super(props);
         this.model = model;
@@ -17,6 +20,9 @@ class TabsPage extends React.Component {
                     <Link iconIos="f7:menu" iconMd="material:menu" panelOpen="left"/>
                 </NavLeft>
                 <NavTitle>Todos</NavTitle>
+                {this.isIos && <NavRight onClick={() => this.openDialog()}>
+                    <Link iconF7="add"/>
+                </NavRight>}
             </Navbar>
             <Toolbar tabbar labels bgColor="primary">
                 <Link tabLink routeTabId={ListTypes.ALL} href="/todos/all" tabLinkActive>
@@ -44,9 +50,9 @@ class TabsPage extends React.Component {
                 <Tab id={ListTypes.ACTIVE}/>
                 <Tab id={ListTypes.COMPLETED}/>
             </Tabs>
-            <Fab position="right-bottom" slot="fixed" color="pink" onClick={() => this.openDialog()}>
-                <Icon ios="f7:add" md="material:add"/>
-            </Fab>
+            {!this.isIos && <Fab position="right-bottom" slot="fixed" color="pink" onClick={() => this.openDialog()}>
+                <Icon material="add"/>
+            </Fab>}
         </Page>;
     }
 
