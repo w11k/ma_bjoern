@@ -11677,7 +11677,8 @@ button.bmd-btn-fab {
   bottom: 20px;
   right: 20px;
   left: auto;
-  position: absolute; }
+  position: absolute;
+  position: fixed; }
 
 .nav-tabs, .todo-list-item {
   background-color: #FFFFFF;
