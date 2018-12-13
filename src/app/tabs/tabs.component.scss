@@ -1,5 +1,13 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
 nav {
   background-color: #FFFFFF;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
 }
 
 a.mat-tab-link {
