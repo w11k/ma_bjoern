@@ -11655,6 +11655,12 @@ html, body {
   margin: 0;
   padding: 0; }
 
+.bmd-layout-header {
+  position: fixed; }
+
+.bmd-layout-content {
+  margin-top: 56px; }
+
 .nav-tabs .nav-link.active, .nav-tabs .nav-link.active:focus, .nav-tabs .nav-link.active:hover {
   border-color: #222195; }
 
@@ -11664,6 +11670,11 @@ html, body {
 .nav-tabs .nav-link small {
   line-height: 1; }
 
+.nav-tabs {
+  position: fixed;
+  width: 100%;
+  z-index: 2; }
+
 .nav-tabs .nav-link > * {
   display: block; }
 
@@ -11672,7 +11683,11 @@ html, body {
   top: 5px;
   display: inline-block; }
 
+.tab-content {
+  padding-top: 54px; }
+
 button.bmd-btn-fab {
+  z-index: 2;
   top: auto;
   bottom: 20px;
   right: 20px;
