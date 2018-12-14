@@ -20,13 +20,13 @@
 
     <meta name="msapplication-TileColor" content="#0129c7">
     <meta name="msapplication-config" content="./browserconfig.xml">
-    <link rel="stylesheet" href="style.46f7bab7e6728269f54d.css?2eea4fb6ebc8d23bc111">
+    <link rel="stylesheet" href="style.7923f6b836aaa0c2f287.css?cb98f8212c10a8c07da1">
 </head>
 <body>
 <noscript>This page needs JavaScript!</noscript>
 <ons-page id="page_splitter">
     <ons-splitter>
-        <ons-splitter-side page="menu.html" side="left" collapse swipeable></ons-splitter-side>
+        <ons-splitter-side page="menu.html" collapse="(max-width: 600px)" width="30%" side="left" swipeable></ons-splitter-side>
         <ons-splitter-content>
             <ons-navigator></ons-navigator>
         </ons-splitter-content>
@@ -35,6 +35,9 @@
 
 <template id="menu.html">
     <ons-page id="page_menu">
+        <ons-toolbar>
+            <div class="center">Menu</div>
+        </ons-toolbar>
         <ons-list>
             <ons-list-item action="open-home" tappable>
                 Home
@@ -139,6 +142,6 @@
     </ons-page>
 </template>
 
-<script src="main.8582ffc599e160d3adcb.js?2eea4fb6ebc8d23bc111"></script>
+<script src="main.8582ffc599e160d3adcb.js?cb98f8212c10a8c07da1"></script>
 </body>
 </html>
