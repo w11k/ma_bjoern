@@ -60,6 +60,8 @@ paper-fab {
 
 .list-container {
   height: calc(100vh - 64px - 49px);
+  overflow-y: auto;
+  display: block;
 }
 
 .list-container paper-item {
