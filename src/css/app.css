@@ -37,3 +37,14 @@
 .list {
     margin: 0 !important;
 }
+
+.panel.panel-left {
+    border-right: solid 1px #eee;
+}
+
+
+@media (min-width: 600px) {
+    .navbar .left {
+        display: none;
+    }
+}

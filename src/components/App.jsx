@@ -12,7 +12,10 @@ export default function (props) {
         name: 'Todo', // App name
         theme: 'auto', // Automatic theme detection
         // App routes
-        routes
+        routes,
+        panel: {
+            leftBreakpoint: 600
+        }
     };
 
     return (
