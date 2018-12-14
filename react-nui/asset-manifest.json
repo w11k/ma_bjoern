@@ -1,16 +1,16 @@
 {
-  "main.css": "/ma_bjoern/react-nui/static/css/main.6b03c5de.chunk.css",
-  "main.js": "/ma_bjoern/react-nui/static/js/main.e2886f0f.chunk.js",
-  "main.js.map": "/ma_bjoern/react-nui/static/js/main.e2886f0f.chunk.js.map",
+  "main.css": "/ma_bjoern/react-nui/static/css/main.efdde970.chunk.css",
+  "main.js": "/ma_bjoern/react-nui/static/js/main.b47b6f64.chunk.js",
+  "main.js.map": "/ma_bjoern/react-nui/static/js/main.b47b6f64.chunk.js.map",
   "static/css/1.6e93eefc.chunk.css": "/ma_bjoern/react-nui/static/css/1.6e93eefc.chunk.css",
   "static/js/1.7508de72.chunk.js": "/ma_bjoern/react-nui/static/js/1.7508de72.chunk.js",
   "static/js/1.7508de72.chunk.js.map": "/ma_bjoern/react-nui/static/js/1.7508de72.chunk.js.map",
   "runtime~main.js": "/ma_bjoern/react-nui/static/js/runtime~main.5ce2ec60.js",
   "runtime~main.js.map": "/ma_bjoern/react-nui/static/js/runtime~main.5ce2ec60.js.map",
-  "static/media/icons.css": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.e79bfd88.eot",
+  "static/media/icons.css": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.012cf6a1.woff",
+  "static/css/main.efdde970.chunk.css.map": "/ma_bjoern/react-nui/static/css/main.efdde970.chunk.css.map",
   "static/css/1.6e93eefc.chunk.css.map": "/ma_bjoern/react-nui/static/css/1.6e93eefc.chunk.css.map",
-  "static/css/main.6b03c5de.chunk.css.map": "/ma_bjoern/react-nui/static/css/main.6b03c5de.chunk.css.map",
   "index.html": "/ma_bjoern/react-nui/index.html",
-  "precache-manifest.35d731771cb5629bace125d5aa7da15c.js": "/ma_bjoern/react-nui/precache-manifest.35d731771cb5629bace125d5aa7da15c.js",
+  "precache-manifest.03b6461bce317f899f74b92477b989fa.js": "/ma_bjoern/react-nui/precache-manifest.03b6461bce317f899f74b92477b989fa.js",
   "service-worker.js": "/ma_bjoern/react-nui/service-worker.js"
 }
