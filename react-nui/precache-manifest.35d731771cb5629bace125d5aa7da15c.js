@@ -1,10 +1,10 @@
 self.__precacheManifest = [
   {
-    "revision": "012cf6a10129e2275d79d6adac7f3b02",
-    "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.012cf6a1.woff"
+    "revision": "a37b0c01c0baf1888ca812cc0508f6e2",
+    "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.a37b0c01.ttf"
   },
   {
-    "revision": "46a900bdce044efb7d5a",
+    "revision": "e2886f0fa890d0465395",
     "url": "/ma_bjoern/react-nui/static/css/main.6b03c5de.chunk.css"
   },
   {
@@ -28,31 +28,31 @@ self.__precacheManifest = [
     "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.e79bfd88.eot"
   },
   {
-    "revision": "46a900bdce044efb7d5a",
-    "url": "/ma_bjoern/react-nui/static/js/main.46a900bd.chunk.js"
+    "revision": "e2886f0fa890d0465395",
+    "url": "/ma_bjoern/react-nui/static/js/main.e2886f0f.chunk.js"
   },
   {
-    "revision": "a37b0c01c0baf1888ca812cc0508f6e2",
-    "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.a37b0c01.ttf"
+    "revision": "012cf6a10129e2275d79d6adac7f3b02",
+    "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.012cf6a1.woff"
   },
   {
     "revision": "df27d9863abee94e1012e147536ea8f3",
     "url": "/ma_bjoern/react-nui/static/media/Framework7Icons-Regular.df27d986.eot"
   },
   {
-    "revision": "cf0ac81df2df1cdcb5c6838d34837d68",
-    "url": "/ma_bjoern/react-nui/static/media/Framework7Icons-Regular.cf0ac81d.woff"
-  },
-  {
     "revision": "ea912ff15c9f2a41ac98a723471afef0",
     "url": "/ma_bjoern/react-nui/static/media/Framework7Icons-Regular.ea912ff1.woff2"
+  },
+  {
+    "revision": "cf0ac81df2df1cdcb5c6838d34837d68",
+    "url": "/ma_bjoern/react-nui/static/media/Framework7Icons-Regular.cf0ac81d.woff"
   },
   {
     "revision": "7508de726da504fd4c88",
     "url": "/ma_bjoern/react-nui/static/css/1.6e93eefc.chunk.css"
   },
   {
-    "revision": "01e45db2a831b4b8fe794f57f744fd97",
+    "revision": "9666a5fdc8e473169aa8eec3cc03f334",
     "url": "/ma_bjoern/react-nui/index.html"
   }
 ];
