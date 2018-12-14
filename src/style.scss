@@ -19,3 +19,30 @@ ons-fab .ons-icon--ion {
     line-height: 0 !important;
     vertical-align: 0 !important;
 }
+
+ons-splitter-side {
+    border-right: solid 1px #eee;
+    min-width: 150px;
+}
+
+#page_menu .page__background {
+    background-color: #FFFFFF;
+}
+
+ons-toolbar .left {
+    display: none;
+}
+
+.toolbar--material__center {
+    margin-left: 16px;
+}
+
+@media (max-width: 600px) {
+    ons-toolbar .left {
+        display: block;
+    }
+
+    .toolbar--material__center {
+        margin-left: 0;
+    }
+}
