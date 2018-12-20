@@ -1,16 +1,20 @@
 PODS:
+  - BEMCheckBox (1.4.1)
   - KYDrawerController (2.1.0)
 
 DEPENDENCIES:
+  - BEMCheckBox
   - KYDrawerController
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - BEMCheckBox
     - KYDrawerController
 
 SPEC CHECKSUMS:
+  BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
   KYDrawerController: baad0e63b09c0cb564bd48f0f7f70f45d9176ebc
 
-PODFILE CHECKSUM: ea5f4c0f5eaddddae5d65c1dbdb57a39d1534c06
+PODFILE CHECKSUM: 51bd35e2f068f89d2958b6f87ca011d6e8d15059
 
 COCOAPODS: 1.5.3

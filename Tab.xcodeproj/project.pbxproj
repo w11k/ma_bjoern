@@ -10,6 +10,7 @@
 		11656E1221C8FB9300F19AE8 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11656E1121C8FB9300F19AE8 /* MenuViewController.swift */; };
 		11656E1421C8FE2300F19AE8 /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11656E1321C8FE2300F19AE8 /* TabsViewController.swift */; };
 		11656E1621C930B500F19AE8 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11656E1521C930B500F19AE8 /* EmptyViewController.swift */; };
+		118A4ED421CBC3540009274C /* ListViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118A4ED321CBC3540009274C /* ListViewItem.swift */; };
 		11AD589B21C24C76004CF5E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AD589A21C24C76004CF5E5 /* AppDelegate.swift */; };
 		11AD589D21C24C76004CF5E5 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AD589C21C24C76004CF5E5 /* ListViewController.swift */; };
 		11AD58A221C24C76004CF5E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11AD58A021C24C76004CF5E5 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 		11656E1121C8FB9300F19AE8 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		11656E1321C8FE2300F19AE8 /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
 		11656E1521C930B500F19AE8 /* EmptyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
+		118A4ED321CBC3540009274C /* ListViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewItem.swift; sourceTree = "<group>"; };
 		11AD589721C24C76004CF5E5 /* Tab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11AD589A21C24C76004CF5E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11AD589C21C24C76004CF5E5 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				11656E1521C930B500F19AE8 /* EmptyViewController.swift */,
 				11AD589A21C24C76004CF5E5 /* AppDelegate.swift */,
 				11AD589C21C24C76004CF5E5 /* ListViewController.swift */,
+				118A4ED321CBC3540009274C /* ListViewItem.swift */,
 				11AD58A021C24C76004CF5E5 /* Main.storyboard */,
 				11AD58A321C24C76004CF5E5 /* Assets.xcassets */,
 				11AD58A521C24C76004CF5E5 /* LaunchScreen.storyboard */,
@@ -175,12 +178,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Tab/Pods-Tab-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 				"${BUILT_PRODUCTS_DIR}/KYDrawerController/KYDrawerController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KYDrawerController.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,6 +225,7 @@
 				11656E1621C930B500F19AE8 /* EmptyViewController.swift in Sources */,
 				11AD589B21C24C76004CF5E5 /* AppDelegate.swift in Sources */,
 				11AD589D21C24C76004CF5E5 /* ListViewController.swift in Sources */,
+				118A4ED421CBC3540009274C /* ListViewItem.swift in Sources */,
 				11656E1221C8FB9300F19AE8 /* MenuViewController.swift in Sources */,
 				11656E1421C8FE2300F19AE8 /* TabsViewController.swift in Sources */,
 			);

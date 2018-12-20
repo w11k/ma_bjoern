@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BEMCheckBox
 
 enum ListType: String {
     case Active
@@ -40,6 +41,8 @@ class ListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         listType = ListType(rawValue: self.title!) ?? ListType.All
+        // self.tableView.register(ListViewItem.self, forCellReuseIdentifier: "TodoItem")
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
     // MARK: - Table view data source
@@ -49,9 +52,10 @@ class ListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoItem", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoItem", for: indexPath) as! ListViewItem
 
-        cell.textLabel?.text = filteredItems[indexPath.row].title
+        cell.titleLabel?.text = filteredItems[indexPath.row].title
+        cell.completedCheckbox?.on = filteredItems[indexPath.row].completed
 
         return cell
     }
