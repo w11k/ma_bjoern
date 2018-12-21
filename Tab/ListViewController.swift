@@ -15,21 +15,9 @@ enum ListType: String {
     case Completed
 }
 
-struct Item {
-    var id: Int
-    var title: String
-    var completed: Bool
-}
-
 class ListViewController: UITableViewController {
     var listType: ListType = ListType.All
-    var items = [
-        Item(id: 1, title: "test1", completed: false),
-        Item(id: 2, title: "test2", completed: false),
-        Item(id: 3, title: "test3", completed: true),
-        Item(id: 4, title: "test4", completed: false),
-        Item(id: 5, title: "test5", completed: true)
-    ]
+    var items: [Item] = []
     var filteredItems: [Item] {
         return items.filter{
             (listType == ListType.Active && $0.completed == false) ||
@@ -37,6 +25,7 @@ class ListViewController: UITableViewController {
             listType == ListType.All ? true : false
         }
     }
+    var model: Model = Model.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()

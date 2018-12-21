@@ -1,20 +1,33 @@
 PODS:
   - BEMCheckBox (1.4.1)
   - KYDrawerController (2.1.0)
+  - RxAtomic (4.4.0)
+  - RxCocoa (4.4.0):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
 
 DEPENDENCIES:
   - BEMCheckBox
   - KYDrawerController
+  - RxCocoa
+  - RxSwift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BEMCheckBox
     - KYDrawerController
+    - RxAtomic
+    - RxCocoa
+    - RxSwift
 
 SPEC CHECKSUMS:
   BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
   KYDrawerController: baad0e63b09c0cb564bd48f0f7f70f45d9176ebc
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
 
-PODFILE CHECKSUM: 51bd35e2f068f89d2958b6f87ca011d6e8d15059
+PODFILE CHECKSUM: d628ccb2da15bcae927ec9dad9425f32623b52ec
 
 COCOAPODS: 1.5.3

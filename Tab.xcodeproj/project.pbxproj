@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1107215321CCD7A7001DBF93 /* Tab.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1107215121CCD7A7001DBF93 /* Tab.xcdatamodeld */; };
+		1107215621CCF855001DBF93 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1107215521CCF855001DBF93 /* Extensions.swift */; };
 		11656E1221C8FB9300F19AE8 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11656E1121C8FB9300F19AE8 /* MenuViewController.swift */; };
 		11656E1421C8FE2300F19AE8 /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11656E1321C8FE2300F19AE8 /* TabsViewController.swift */; };
 		11656E1621C930B500F19AE8 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11656E1521C930B500F19AE8 /* EmptyViewController.swift */; };
 		118A4ED421CBC3540009274C /* ListViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118A4ED321CBC3540009274C /* ListViewItem.swift */; };
+		118A4ED621CBE3E80009274C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118A4ED521CBE3E80009274C /* Model.swift */; };
 		11AD589B21C24C76004CF5E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AD589A21C24C76004CF5E5 /* AppDelegate.swift */; };
 		11AD589D21C24C76004CF5E5 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AD589C21C24C76004CF5E5 /* ListViewController.swift */; };
 		11AD58A221C24C76004CF5E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11AD58A021C24C76004CF5E5 /* Main.storyboard */; };
@@ -22,10 +24,12 @@
 
 /* Begin PBXFileReference section */
 		1107215221CCD7A7001DBF93 /* Tab.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tab.xcdatamodel; sourceTree = "<group>"; };
+		1107215521CCF855001DBF93 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		11656E1121C8FB9300F19AE8 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		11656E1321C8FE2300F19AE8 /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
 		11656E1521C930B500F19AE8 /* EmptyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		118A4ED321CBC3540009274C /* ListViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewItem.swift; sourceTree = "<group>"; };
+		118A4ED521CBE3E80009274C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		11AD589721C24C76004CF5E5 /* Tab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11AD589A21C24C76004CF5E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11AD589C21C24C76004CF5E5 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -77,11 +81,13 @@
 				11AD589C21C24C76004CF5E5 /* ListViewController.swift */,
 				118A4ED321CBC3540009274C /* ListViewItem.swift */,
 				11AD58A021C24C76004CF5E5 /* Main.storyboard */,
+				118A4ED521CBE3E80009274C /* Model.swift */,
 				11AD58A321C24C76004CF5E5 /* Assets.xcassets */,
 				11AD58A521C24C76004CF5E5 /* LaunchScreen.storyboard */,
 				11AD58A821C24C76004CF5E5 /* Info.plist */,
 				11656E1121C8FB9300F19AE8 /* MenuViewController.swift */,
 				11656E1321C8FE2300F19AE8 /* TabsViewController.swift */,
+				1107215521CCF855001DBF93 /* Extensions.swift */,
 			);
 			path = Tab;
 			sourceTree = "<group>";
@@ -183,6 +189,9 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Tab/Pods-Tab-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 				"${BUILT_PRODUCTS_DIR}/KYDrawerController/KYDrawerController.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -190,6 +199,9 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KYDrawerController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -225,6 +237,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				118A4ED621CBE3E80009274C /* Model.swift in Sources */,
+				1107215621CCF855001DBF93 /* Extensions.swift in Sources */,
 				11656E1621C930B500F19AE8 /* EmptyViewController.swift in Sources */,
 				11AD589B21C24C76004CF5E5 /* AppDelegate.swift in Sources */,
 				11AD589D21C24C76004CF5E5 /* ListViewController.swift in Sources */,

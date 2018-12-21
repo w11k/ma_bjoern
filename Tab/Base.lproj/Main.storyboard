@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="w7V-Tg-s4L" userLabel="Footer">
+                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="w7V-Tg-s4L" userLabel="Footer">
                             <rect key="frame" x="0.0" y="72" width="414" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -91,7 +91,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="tCy-bp-kwV" userLabel="Footer">
+                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="tCy-bp-kwV" userLabel="Footer">
                             <rect key="frame" x="0.0" y="72" width="414" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -164,7 +164,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="k51-rP-XdE" userLabel="Footer">
+                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="k51-rP-XdE" userLabel="Footer">
                             <rect key="frame" x="0.0" y="72" width="414" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -370,7 +370,12 @@
                     <navigationItem key="navigationItem" title="Todos" id="h2h-zG-Met">
                         <barButtonItem key="leftBarButtonItem" title="Menu" image="Menu" id="5e0-5e-s8b">
                             <connections>
-                                <action selector="openDrawer:" destination="49e-Tb-3d3" id="Ctu-1L-x3F"/>
+                                <action selector="menuDidPress:" destination="49e-Tb-3d3" id="Ctu-1L-x3F"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="QeC-o2-dJS" userLabel="Add">
+                            <connections>
+                                <action selector="addDidPress:" destination="49e-Tb-3d3" id="QgI-1k-I4w"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
