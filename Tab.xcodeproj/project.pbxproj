@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1107215321CCD7A7001DBF93 /* Tab.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1107215121CCD7A7001DBF93 /* Tab.xcdatamodeld */; };
 		11656E1221C8FB9300F19AE8 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11656E1121C8FB9300F19AE8 /* MenuViewController.swift */; };
 		11656E1421C8FE2300F19AE8 /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11656E1321C8FE2300F19AE8 /* TabsViewController.swift */; };
 		11656E1621C930B500F19AE8 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11656E1521C930B500F19AE8 /* EmptyViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1107215221CCD7A7001DBF93 /* Tab.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tab.xcdatamodel; sourceTree = "<group>"; };
 		11656E1121C8FB9300F19AE8 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		11656E1321C8FE2300F19AE8 /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
 		11656E1521C930B500F19AE8 /* EmptyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			children = (
 				11656E1521C930B500F19AE8 /* EmptyViewController.swift */,
 				11AD589A21C24C76004CF5E5 /* AppDelegate.swift */,
+				1107215121CCD7A7001DBF93 /* Tab.xcdatamodeld */,
 				11AD589C21C24C76004CF5E5 /* ListViewController.swift */,
 				118A4ED321CBC3540009274C /* ListViewItem.swift */,
 				11AD58A021C24C76004CF5E5 /* Main.storyboard */,
@@ -228,6 +231,7 @@
 				118A4ED421CBC3540009274C /* ListViewItem.swift in Sources */,
 				11656E1221C8FB9300F19AE8 /* MenuViewController.swift in Sources */,
 				11656E1421C8FE2300F19AE8 /* TabsViewController.swift in Sources */,
+				1107215321CCD7A7001DBF93 /* Tab.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +433,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1107215121CCD7A7001DBF93 /* Tab.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1107215221CCD7A7001DBF93 /* Tab.xcdatamodel */,
+			);
+			currentVersion = 1107215221CCD7A7001DBF93 /* Tab.xcdatamodel */;
+			path = Tab.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 11AD588F21C24C76004CF5E5 /* Project object */;
 }
