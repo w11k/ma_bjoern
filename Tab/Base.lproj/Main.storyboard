@@ -72,10 +72,6 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="mC7-J3-8Qc" id="Ybx-xr-73i"/>
-                            <outlet property="delegate" destination="mC7-J3-8Qc" id="Xu7-tY-3nv"/>
-                        </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="All" image="List" badgeValue="0" id="Jj9-dR-RI9"/>
                 </tableViewController>
@@ -145,10 +141,6 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="r7x-rQ-Yeo" id="yeL-3P-D9I"/>
-                            <outlet property="delegate" destination="r7x-rQ-Yeo" id="M3R-W0-oTN"/>
-                        </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Active" image="Unchecked" badgeValue="0" id="vWZ-8O-t0Z"/>
                 </tableViewController>
@@ -218,10 +210,6 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="HxU-jt-FwO" id="p6y-uW-scT"/>
-                            <outlet property="delegate" destination="HxU-jt-FwO" id="aZz-7k-4Tm"/>
-                        </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Completed" image="Checked" badgeValue="0" id="xkr-Bs-3Ij"/>
                 </tableViewController>

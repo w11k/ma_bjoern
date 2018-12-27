@@ -11,12 +11,6 @@ import UIKit
 import KYDrawerController
 
 class MenuViewController: UITableViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let drawerController = navigationController?.parent as? KYDrawerController,
             let navController = drawerController.mainViewController as! UINavigationController?
@@ -43,5 +37,4 @@ class MenuViewController: UITableViewController {
         navController.setViewControllers([controller!], animated: true)
         drawerController.setDrawerState(.closed, animated: true)
     }
-    
 }

@@ -10,21 +10,15 @@ import CoreData
 import RxSwift
 
 class Model {
-    var subscription: Disposable?
     static let shared = Model()
     let itemsSubject = BehaviorSubject<[Item]>(value: [])
+    let disposeBag = DisposeBag()
     
     private init() {
         loadContext()
-        subscription = persistentContainer.viewContext.qk_objectsDidChange().subscribe(onNext: { notification in
+        persistentContainer.viewContext.qk_objectsDidChange().subscribe(onNext: { notification in
             self.loadContext()
-        })
-    }
-    
-    deinit {
-        if (subscription != nil) {
-            subscription!.dispose()
-        }
+        }).disposed(by: disposeBag)
     }
     
     func getData() -> Observable<[Item]> {
@@ -108,6 +102,7 @@ class Model {
     
     func updateItem(_ item: Item, key: String, value: Any) {
         item.setValue(value, forKey: key)
+        
         saveContext()
     }
 

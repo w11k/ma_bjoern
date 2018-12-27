@@ -12,11 +12,6 @@ import KYDrawerController
 class TabsViewController: UITabBarController {
     var model: Model = Model.shared
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-    
     @IBAction func menuDidPress(_ sender: UIBarButtonItem) {
         if let drawerController = navigationController?.parent as? KYDrawerController {
             drawerController.setDrawerState(.opened, animated: true)
