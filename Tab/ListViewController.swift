@@ -38,11 +38,18 @@ class ListViewController: UITableViewController {
                     (self.listType == ListType.All) ? true : false
                 }
             })
+            .delay(0.5, scheduler: MainScheduler.instance)
             .bind(to: tableView.rx.items(cellIdentifier: "TodoItem")) {
                 (index, item: Item, cell: ListViewItem) in
-                cell.titleLabel?.text = item.title
-                cell.completedCheckbox?.on = item.completed
+                cell.setupCell(item)
             }
+            .disposed(by: disposeBag)
+        
+        tableView.rx
+            .modelSelected(Item.self)
+            .subscribe(onNext:  { value in
+                print("tapped")
+            })
             .disposed(by: disposeBag)
     }
 }

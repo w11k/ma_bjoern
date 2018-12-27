@@ -9,6 +9,12 @@
 import CoreData
 import RxSwift
 
+struct ITodoCount {
+    let active: Int
+    let completed: Int
+    let total: Int
+}
+
 class Model {
     static let shared = Model()
     let itemsSubject = BehaviorSubject<[Item]>(value: [])
@@ -104,6 +110,25 @@ class Model {
         item.setValue(value, forKey: key)
         
         saveContext()
+    }
+    
+    func getCount() -> Observable<ITodoCount> {
+        return itemsSubject.asObservable().map{ (items: [Item]) -> ITodoCount in
+            return items.reduce(
+                ITodoCount(
+                    active: 0,
+                    completed: 0,
+                    total: 0
+                ),
+                { (count: ITodoCount, currentTodo: Item) -> ITodoCount in
+                    return ITodoCount(
+                        active: count.active + Int(truncating: NSNumber(value: !currentTodo.completed)),
+                        completed: count.completed + Int(truncating: NSNumber(value: currentTodo.completed)),
+                        total: count.total + 1
+                    )
+                }
+            )
+        }
     }
 
 }

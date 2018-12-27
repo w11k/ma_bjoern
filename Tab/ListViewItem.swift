@@ -10,29 +10,21 @@ import UIKit
 import BEMCheckBox
 
 class ListViewItem: UITableViewCell {
+    var model: Model = Model.shared
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var completedCheckbox: BEMCheckBox!
+    var item: Item!
     
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        if superview != nil {
-            completedCheckbox.onAnimationType = .fill;
-            completedCheckbox.offAnimationType = .fill;
-            
-            
-            
-        }
+    func setupCell(_ item: Item) {
+        self.item = item
+        titleLabel.text = item.title
+        completedCheckbox.on = item.completed
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBAction func didCheckboxChange(_ sender: BEMCheckBox) {
+        // DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+            self.model.updateItem(self.item, key: "completed", value: sender.on)
+        // }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    
 }
