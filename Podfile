@@ -4,4 +4,5 @@ target 'Tab' do
   pod 'BEMCheckBox'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'RxDataSources'
 end

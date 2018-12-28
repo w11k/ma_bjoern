@@ -10,12 +10,40 @@ import UIKit
 import BEMCheckBox
 import RxSwift
 import RxCocoa
+import RxDataSources
+
 
 enum ListType: String {
     case Active
     case All
     case Completed
 }
+
+extension Item: IdentifiableType {
+    public typealias Identity = Int32
+    public var identity: Identity {
+        return id
+    }
+    
+    static func ==(lhs: Item, rhs: Item) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+struct CustomSectionDataType {
+    var uniqueId: Int
+    var items: [Item]
+}
+extension CustomSectionDataType: AnimatableSectionModelType {
+    init(original: CustomSectionDataType, items: [Item]) {
+        self = original
+        self.items = items
+    }
+    typealias Identity = Int
+    var identity: Int {
+        return uniqueId
+    }
+}
+
 
 class ListViewController: UITableViewController {
     var model: Model = Model.shared
@@ -29,6 +57,12 @@ class ListViewController: UITableViewController {
         
         let listType = ListType(rawValue: self.title!) ?? ListType.All
         
+        let dataSource = RxTableViewSectionedAnimatedDataSource<CustomSectionDataType>(
+            configureCell: { dataSource, tableView, indexPath, item in
+                let cell = tableView.dequeueReusableCell(withIdentifier: "TodoItem", for: indexPath) as! ListViewItem
+                cell.setupCell(item)
+                return cell
+        })
         model.getData()
             .map { (items) -> [Item] in
                 return items.filter {
@@ -37,10 +71,10 @@ class ListViewController: UITableViewController {
                     (listType == ListType.All) ? true : false
                 }
             }
-            .bind(to: tableView.rx.items(cellIdentifier: "TodoItem")) {
-                (index, item: Item, cell: ListViewItem) in
-                cell.setupCell(item)
+            .map { (items) -> [CustomSectionDataType] in
+                return [CustomSectionDataType(uniqueId: 1, items: items)]
             }
+            .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
         tableView.rx
