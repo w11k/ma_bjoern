@@ -33,7 +33,7 @@ class TabsViewController: UITabBarController {
     }
     
     @IBAction func addDidPress(_ sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: "Enter details?", message: "Enter your name and email", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Create Item", message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Ok", style: .default) { (_) in
             let title = alertController.textFields?[0].text ?? ""
             if (!title.isEmpty) {
@@ -47,6 +47,6 @@ class TabsViewController: UITabBarController {
         alertController.addTextField { (textField) in
             textField.placeholder = "Title"
         }
-        self.present(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true)
     }
 }
