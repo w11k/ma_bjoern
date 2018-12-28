@@ -18,7 +18,6 @@ enum ListType: String {
 }
 
 class ListViewController: UITableViewController {
-    var listType: ListType = ListType.All
     var model: Model = Model.shared
     let disposeBag = DisposeBag()
     
@@ -28,17 +27,16 @@ class ListViewController: UITableViewController {
         self.tableView.delegate = nil
         self.tableView.dataSource = nil
         
-        listType = ListType(rawValue: self.title!) ?? ListType.All
+        let listType = ListType(rawValue: self.title!) ?? ListType.All
         
         model.getData()
-            .map({ (items) -> [Item] in
+            .map { (items) -> [Item] in
                 return items.filter {
-                    (self.listType == ListType.Active && $0.completed == false) ||
-                    (self.listType == ListType.Completed && $0.completed == true) ||
-                    (self.listType == ListType.All) ? true : false
+                    (listType == ListType.Active && $0.completed == false) ||
+                    (listType == ListType.Completed && $0.completed == true) ||
+                    (listType == ListType.All) ? true : false
                 }
-            })
-            .delay(0.5, scheduler: MainScheduler.instance)
+            }
             .bind(to: tableView.rx.items(cellIdentifier: "TodoItem")) {
                 (index, item: Item, cell: ListViewItem) in
                 cell.setupCell(item)

@@ -22,9 +22,9 @@ class ListViewItem: UITableViewCell {
     }
     
     @IBAction func didCheckboxChange(_ sender: BEMCheckBox) {
-        // DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
             self.model.updateItem(self.item, key: "completed", value: sender.on)
-        // }
+        }
     }
     
 }
