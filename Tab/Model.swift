@@ -81,7 +81,8 @@ class Model {
     private func loadContext() {
         let context = persistentContainer.viewContext
         do {
-            itemsSubject.onNext(try context.fetch(Item.fetchRequest()))
+            let items: [Item] = try context.fetch(Item.fetchRequest())
+            itemsSubject.onNext(items.sorted(by: { $0.id < $1.id }))
         } catch {
             print("Fetching Failed")
         }
