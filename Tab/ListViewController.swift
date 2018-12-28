@@ -26,7 +26,7 @@ extension Item: IdentifiableType {
     }
     
     static func ==(lhs: Item, rhs: Item) -> Bool {
-        return lhs.id == rhs.id
+        return lhs.title == rhs.title && lhs.completed == rhs.completed
     }
 }
 struct CustomSectionDataType {
@@ -72,7 +72,7 @@ class ListViewController: UITableViewController {
                 }
             }
             .map { (items) -> [CustomSectionDataType] in
-                return [CustomSectionDataType(uniqueId: 1, items: items)]
+                return [CustomSectionDataType(uniqueId: 0, items: items)]
             }
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
@@ -129,8 +129,6 @@ class ListViewController: UITableViewController {
     }
     
     func removeSelection() {
-        if let index = self.tableView.indexPathForSelectedRow{
-            self.tableView.deselectRow(at: index, animated: true)
-        }
+        self.tableView.reloadData()
     }
 }
