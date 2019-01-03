@@ -6,4 +6,5 @@
     <string name="tab_text_1">All</string>
     <string name="tab_text_2">Active</string>
     <string name="tab_text_3">Completed</string>
+    <string name="fragment_empty_text">test</string>
 </resources>

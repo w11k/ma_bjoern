@@ -53,11 +53,11 @@ public class ActivityMain extends AppCompatActivity
                 title  = "Todos";
                 break;
             case R.id.nav_settings:
-                // fragment = new EventsFragment();
+                fragment = new FragmentEmpty();
                 title = "Settings";
                 break;
             case R.id.nav_about:
-                // fragment = new EventsFragment();
+                fragment = new FragmentEmpty();
                 title = "About";
                 break;
         }
