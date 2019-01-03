@@ -12,9 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FragmentTabs extends Fragment {
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+import de.w11k.bsaja.todo.dummy.DummyContent;
 
+public class FragmentTabs extends Fragment implements FragmentList.OnListItemInteractionListener {
+    private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
     public FragmentTabs() {
@@ -39,11 +40,26 @@ public class FragmentTabs extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                onAddListItem(view);
             }
         });
         return view;
+    }
+
+    @Override
+    public void onSelectListItem(DummyContent.DummyItem item) {
+        Snackbar.make(null, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+    }
+
+    @Override
+    public void onChangeListItem(DummyContent.DummyItem item) {
+
+    }
+
+    public void onAddListItem(View view) {
+        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {

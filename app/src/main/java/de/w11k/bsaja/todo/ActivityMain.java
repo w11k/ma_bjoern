@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import de.w11k.bsaja.todo.dummy.DummyContent;
 
 public class ActivityMain extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, FragmentList.OnListItemInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,16 +74,6 @@ public class ActivityMain extends AppCompatActivity
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-
-    }
-
-    @Override
-    public void onListItemSelection(DummyContent.DummyItem item) {
-
-    }
-
-    @Override
-    public void onListItemChange(DummyContent.DummyItem item) {
 
     }
 }

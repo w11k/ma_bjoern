@@ -38,7 +38,7 @@ public class TodoItemRecyclerViewAdapter extends RecyclerView.Adapter<TodoItemRe
             @Override
             public void onClick(View v) {
                 if (null != mListener) {
-                    mListener.onListItemSelection(holder.mItem);
+                    mListener.onSelectListItem(holder.mItem);
                 }
             }
         });

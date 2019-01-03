@@ -56,10 +56,11 @@ public class FragmentList extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnListItemInteractionListener) {
-            mListener = (OnListItemInteractionListener) context;
+        Fragment parent = getParentFragment();
+        if (parent instanceof OnListItemInteractionListener) {
+            mListener = (OnListItemInteractionListener) parent;
         } else {
-            throw new RuntimeException(context.toString()
+            throw new RuntimeException(parent.toString()
                     + " must implement OnListItemInteractionListener");
         }
     }
@@ -71,7 +72,7 @@ public class FragmentList extends Fragment {
     }
 
     public interface OnListItemInteractionListener {
-        void onListItemSelection(DummyItem item);
-        void onListItemChange(DummyItem item);
+        void onSelectListItem(DummyItem item);
+        void onChangeListItem(DummyItem item);
     }
 }
