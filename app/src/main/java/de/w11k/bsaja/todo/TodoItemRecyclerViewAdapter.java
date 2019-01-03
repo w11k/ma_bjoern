@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import de.w11k.bsaja.todo.FragmentTodoItems.OnListFragmentInteractionListener;
+import de.w11k.bsaja.todo.FragmentList.OnListFragmentInteractionListener;
 import de.w11k.bsaja.todo.dummy.DummyContent.DummyItem;
 
 import java.util.List;
@@ -29,7 +29,7 @@ public class TodoItemRecyclerViewAdapter extends RecyclerView.Adapter<TodoItemRe
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_todoitem, parent, false);
+                .inflate(R.layout.fragment_item, parent, false);
         return new ViewHolder(view);
     }
 

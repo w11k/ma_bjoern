@@ -18,7 +18,7 @@ import de.w11k.bsaja.todo.dummy.DummyContent.DummyItem;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class FragmentTodoItems extends Fragment {
+public class FragmentList extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -33,15 +33,15 @@ public class FragmentTodoItems extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public FragmentTodoItems() {
+    public FragmentList() {
     }
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static FragmentTodoItems newInstance(int sectionNumber) {
-        FragmentTodoItems fragment = new FragmentTodoItems();
+    public static FragmentList newInstance(int sectionNumber) {
+        FragmentList fragment = new FragmentList();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -60,7 +60,7 @@ public class FragmentTodoItems extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_todoitem_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
