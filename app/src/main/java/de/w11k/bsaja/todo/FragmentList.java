@@ -15,11 +15,8 @@ import de.w11k.bsaja.todo.dummy.DummyContent.DummyItem;
 public class FragmentList extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    private int mSectionNumber = 0;
+    private ListType mListType = ListType.ALL;
     private OnListItemInteractionListener mListener;
-
-    public FragmentList() {
-    }
 
     public static FragmentList newInstance(int sectionNumber) {
         FragmentList fragment = new FragmentList();
@@ -34,7 +31,7 @@ public class FragmentList extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mSectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
+            mListType = ListType.values()[getArguments().getInt(ARG_SECTION_NUMBER)];
         }
     }
 
@@ -56,10 +53,14 @@ public class FragmentList extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Fragment parent = getParentFragment();
-        if (parent instanceof OnListItemInteractionListener) {
-            mListener = (OnListItemInteractionListener) parent;
-        } else {
+        final Fragment parent = getParentFragment();
+        try {
+            if (parent != null) {
+                mListener = (OnListItemInteractionListener) parent;
+            } else {
+                mListener = (OnListItemInteractionListener) context;
+            }
+        } catch (Exception e){
             throw new RuntimeException(parent.toString()
                     + " must implement OnListItemInteractionListener");
         }
@@ -74,5 +75,11 @@ public class FragmentList extends Fragment {
     public interface OnListItemInteractionListener {
         void onSelectListItem(DummyItem item);
         void onChangeListItem(DummyItem item);
+    }
+
+    public enum ListType {
+        ALL,
+        ACTIVE,
+        COMPLETED
     }
 }

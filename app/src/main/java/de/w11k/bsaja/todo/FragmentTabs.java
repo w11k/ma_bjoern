@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import de.w11k.bsaja.todo.dummy.DummyContent;
 
-public class FragmentTabs extends Fragment implements FragmentList.OnListItemInteractionListener {
+public class FragmentTabs extends Fragment implements FragmentList.OnListItemInteractionListener, FragmentBottomSheet.OnBottomSheetInteractionListener {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
@@ -48,8 +48,8 @@ public class FragmentTabs extends Fragment implements FragmentList.OnListItemInt
 
     @Override
     public void onSelectListItem(DummyContent.DummyItem item) {
-        Snackbar.make(null, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        FragmentBottomSheet bottomSheetFragment = new FragmentBottomSheet();
+        bottomSheetFragment.show(getChildFragmentManager(), bottomSheetFragment.getTag());
     }
 
     @Override
@@ -60,6 +60,11 @@ public class FragmentTabs extends Fragment implements FragmentList.OnListItemInt
     public void onAddListItem(View view) {
         Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
+    }
+
+    @Override
+    public void onSelectSheetItem(int position) {
+        System.out.println("dsfgsdfgsfdgsdfg");
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
