@@ -6,22 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import de.w11k.bsaja.todo.FragmentList.OnListFragmentInteractionListener;
-import de.w11k.bsaja.todo.dummy.DummyContent.DummyItem;
-
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
+import de.w11k.bsaja.todo.FragmentList.OnListItemInteractionListener;
+import de.w11k.bsaja.todo.dummy.DummyContent.DummyItem;
+
 public class TodoItemRecyclerViewAdapter extends RecyclerView.Adapter<TodoItemRecyclerViewAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final OnListItemInteractionListener mListener;
 
-    public TodoItemRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public TodoItemRecyclerViewAdapter(List<DummyItem> items, FragmentList.OnListItemInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -43,9 +38,7 @@ public class TodoItemRecyclerViewAdapter extends RecyclerView.Adapter<TodoItemRe
             @Override
             public void onClick(View v) {
                 if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onListItemSelection(holder.mItem);
                 }
             }
         });
@@ -65,8 +58,8 @@ public class TodoItemRecyclerViewAdapter extends RecyclerView.Adapter<TodoItemRe
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mIdView = view.findViewById(R.id.item_number);
+            mContentView = view.findViewById(R.id.content);
         }
 
         @Override
