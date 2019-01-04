@@ -1,6 +1,8 @@
 package de.w11k.bsaja.todo;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -17,6 +19,8 @@ import de.w11k.bsaja.todo.dummy.DummyContent;
 public class FragmentTabs extends Fragment implements FragmentList.OnListItemInteractionListener, FragmentBottomSheet.OnBottomSheetInteractionListener {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private ViewModelFactory mViewModelFactory;
+    private TodoViewModel mViewModel;
 
     public FragmentTabs() {
     }
@@ -44,6 +48,13 @@ public class FragmentTabs extends Fragment implements FragmentList.OnListItemInt
             }
         });
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mViewModelFactory = Injection.provideViewModelFactory(getContext());
+        mViewModel = ViewModelProviders.of(this, mViewModelFactory).get(TodoViewModel.class);
     }
 
     @Override
