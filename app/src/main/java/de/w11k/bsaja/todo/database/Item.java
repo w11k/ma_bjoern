@@ -6,9 +6,6 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-/**
- * Immutable model class for a Item
- */
 @Entity(tableName = "items")
 public class Item {
 
@@ -44,7 +41,15 @@ public class Item {
         return mTitle;
     }
 
+    public void setTitle(String title) {
+        mTitle = title;
+    }
+
     public Boolean getCompleted() {
         return mCompleted;
+    }
+
+    public void setCompleted(Boolean completed) {
+        mCompleted = completed;
     }
 }

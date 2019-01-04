@@ -9,14 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import de.w11k.bsaja.todo.dummy.DummyContent;
-import de.w11k.bsaja.todo.dummy.DummyContent.DummyItem;
+import java.util.List;
+
+import de.w11k.bsaja.todo.database.Item;
 
 public class FragmentList extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private ListType mListType = ListType.ALL;
-    private OnListItemInteractionListener mListener;
+    private OnListInteractionListener mListener;
+    private RecyclerView mRecyclerView;
 
     public static FragmentList newInstance(int sectionNumber) {
         FragmentList fragment = new FragmentList();
@@ -24,6 +26,10 @@ public class FragmentList extends Fragment {
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public ListType getListType() {
+        return mListType;
     }
 
     @Override
@@ -42,13 +48,29 @@ public class FragmentList extends Fragment {
 
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            recyclerView.setAdapter(new TodoItemRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            mRecyclerView = (RecyclerView) view;
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         }
         return view;
     }
 
+    public void updateViewAdapter(List<Item> items) {
+        if (mRecyclerView != null) {
+            mRecyclerView.setAdapter(new TodoItemRecyclerViewAdapter(items, mListener));
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mListener.onListViewStart(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mListener.onListViewStop(this);
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -56,13 +78,13 @@ public class FragmentList extends Fragment {
         final Fragment parent = getParentFragment();
         try {
             if (parent != null) {
-                mListener = (OnListItemInteractionListener) parent;
+                mListener = (OnListInteractionListener) parent;
             } else {
-                mListener = (OnListItemInteractionListener) context;
+                mListener = (OnListInteractionListener) context;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(parent.toString()
-                    + " must implement OnListItemInteractionListener");
+                    + " must implement OnListInteractionListener");
         }
     }
 
@@ -72,14 +94,29 @@ public class FragmentList extends Fragment {
         mListener = null;
     }
 
-    public interface OnListItemInteractionListener {
-        void onSelectListItem(DummyItem item);
-        void onChangeListItem(DummyItem item);
+    public enum ListType {
+        ALL(0),
+        ACTIVE(1),
+        COMPLETED(2);
+
+        private final int value;
+
+        private ListType(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
     }
 
-    public enum ListType {
-        ALL,
-        ACTIVE,
-        COMPLETED
+    public interface OnListInteractionListener {
+        void onSelectListItem(Item item);
+
+        void onChangeListItem(Item item);
+
+        void onListViewStart(FragmentList fragment);
+
+        void onListViewStop(FragmentList fragment);
     }
 }

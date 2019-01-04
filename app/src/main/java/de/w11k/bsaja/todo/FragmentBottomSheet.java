@@ -13,12 +13,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class FragmentBottomSheet extends BottomSheetDialogFragment {
+    private static final String ARG_ITEM_ID = "item_id";
     private OnBottomSheetInteractionListener mListener;
+    private String mItemId;
     private String[] mSheetItems = {
             "Edit",
             "Delete",
             "Cancel"
     };
+
+    public static FragmentBottomSheet newInstance(String itemID) {
+        final FragmentBottomSheet fragment = new FragmentBottomSheet();
+        final Bundle args = new Bundle();
+        args.putString(ARG_ITEM_ID, itemID);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Nullable
     @Override
@@ -29,6 +39,7 @@ public class FragmentBottomSheet extends BottomSheetDialogFragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        mItemId = getArguments().getString(ARG_ITEM_ID);
         final RecyclerView recyclerView = (RecyclerView) view;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new SheetItemAdapter());
@@ -52,7 +63,7 @@ public class FragmentBottomSheet extends BottomSheetDialogFragment {
     }
 
     public interface OnBottomSheetInteractionListener {
-        void onSelectSheetItem(int position);
+        void onSelectSheetItem(int position, String itemId);
     }
 
     private class ViewHolder extends RecyclerView.ViewHolder {
@@ -65,7 +76,7 @@ public class FragmentBottomSheet extends BottomSheetDialogFragment {
                 @Override
                 public void onClick(View v) {
                     if (mListener != null) {
-                        mListener.onSelectSheetItem(getAdapterPosition());
+                        mListener.onSelectSheetItem(getAdapterPosition(), mItemId);
                         dismiss();
                     }
                 }

@@ -11,8 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import de.w11k.bsaja.todo.dummy.DummyContent;
-
 public class ActivityMain extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -50,7 +48,7 @@ public class ActivityMain extends AppCompatActivity
         switch (viewId) {
             case R.id.nav_todos:
                 fragment = new FragmentTabs();
-                title  = "Todos";
+                title = "Todos";
                 break;
             case R.id.nav_settings:
                 fragment = new FragmentEmpty();

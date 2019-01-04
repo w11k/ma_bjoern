@@ -5,9 +5,8 @@ import android.arch.lifecycle.ViewModel;
 import java.util.List;
 
 import de.w11k.bsaja.todo.database.Item;
-import io.reactivex.Completable;
 import io.reactivex.Flowable;
-import io.reactivex.functions.Action;
+import io.reactivex.Single;
 import io.reactivex.functions.Function;
 
 public class TodoViewModel extends ViewModel {
@@ -21,22 +20,20 @@ public class TodoViewModel extends ViewModel {
         return mRepository.getItems();
     }
 
-    public Completable insertOrUpdateItem(final Item item) {
-        return Completable.fromAction(new Action() {
-            @Override
-            public void run() throws Exception {
-                mRepository.insertOrUpdateItem(item);
-            }
-        });
+    public Single<Item> getItemById(String itemId) {
+        return mRepository.getItemById(itemId);
     }
 
-    public Completable deleteAllItems() {
-        return Completable.fromAction(new Action() {
-            @Override
-            public void run() throws Exception {
-                mRepository.deleteAllItems();
-            }
-        });
+    public void insertOrUpdateItem(final Item item) {
+        mRepository.insertOrUpdateItem(item);
+    }
+
+    public void deleteAllItems() {
+        mRepository.deleteAllItems();
+    }
+
+    public void deleteItemById(String itemId) {
+        mRepository.deleteItemById(itemId);
     }
 
     public Flowable<Count> getCount() {

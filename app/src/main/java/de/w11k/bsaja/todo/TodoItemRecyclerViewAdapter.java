@@ -8,15 +8,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import de.w11k.bsaja.todo.FragmentList.OnListItemInteractionListener;
-import de.w11k.bsaja.todo.dummy.DummyContent.DummyItem;
+import de.w11k.bsaja.todo.FragmentList.OnListInteractionListener;
+import de.w11k.bsaja.todo.database.Item;
 
 public class TodoItemRecyclerViewAdapter extends RecyclerView.Adapter<TodoItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
-    private final OnListItemInteractionListener mListener;
+    private final List<Item> mValues;
+    private final OnListInteractionListener mListener;
 
-    public TodoItemRecyclerViewAdapter(List<DummyItem> items, FragmentList.OnListItemInteractionListener listener) {
+    public TodoItemRecyclerViewAdapter(List<Item> items, FragmentList.OnListInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -31,8 +31,7 @@ public class TodoItemRecyclerViewAdapter extends RecyclerView.Adapter<TodoItemRe
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mContentView.setText(mValues.get(position).getTitle());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,14 +50,12 @@ public class TodoItemRecyclerViewAdapter extends RecyclerView.Adapter<TodoItemRe
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public Item mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = view.findViewById(R.id.item_number);
             mContentView = view.findViewById(R.id.content);
         }
 
