@@ -79,7 +79,7 @@ public class FragmentTabs extends Fragment implements FragmentList.OnListInterac
 
     @Override
     public void onChangeListItem(Item item) {
-
+        mViewModel.insertOrUpdateItem(item);
     }
 
     @Override
