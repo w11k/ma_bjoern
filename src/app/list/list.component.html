@@ -1,11 +1,13 @@
 <mat-list role="list">
-  <mat-list-item role="listitem" *ngFor="let item of getItems()" (click)="presentActionSheet(item)">
-    <mat-checkbox [ngModel]="item.completed"
-                  (change)="toggleItem(item.id, $event)"
-                  (click)="$event.stopPropagation()">
-    </mat-checkbox>
-    <span class="label">{{item.title}}</span>
-  </mat-list-item>
+  <cdk-virtual-scroll-viewport itemSize="49" class="example-viewport">
+    <mat-list-item role="listitem" *cdkVirtualFor="let item of getItems()" (click)="presentActionSheet(item)">
+      <mat-checkbox [ngModel]="item.completed"
+                    (change)="toggleItem(item.id, $event)"
+                    (click)="$event.stopPropagation()">
+      </mat-checkbox>
+      <span class="label">{{item.title}}</span>
+    </mat-list-item>
+  </cdk-virtual-scroll-viewport>
 </mat-list>
 <button mat-fab (click)="presentAlertPrompt()">
   <mat-icon aria-label="Add todo">add</mat-icon>
