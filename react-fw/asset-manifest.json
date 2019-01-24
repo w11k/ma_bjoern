@@ -1,11 +1,13 @@
 {
-  "main.js": "/ma_bjoern/react-fw/static/js/main.5b432cbc.chunk.js",
-  "main.js.map": "/ma_bjoern/react-fw/static/js/main.5b432cbc.chunk.js.map",
-  "static/js/1.8268b0dd.chunk.js": "/ma_bjoern/react-fw/static/js/1.8268b0dd.chunk.js",
-  "static/js/1.8268b0dd.chunk.js.map": "/ma_bjoern/react-fw/static/js/1.8268b0dd.chunk.js.map",
+  "main.css": "/ma_bjoern/react-fw/static/css/main.3f151ca9.chunk.css",
+  "main.js": "/ma_bjoern/react-fw/static/js/main.21befb0b.chunk.js",
+  "main.js.map": "/ma_bjoern/react-fw/static/js/main.21befb0b.chunk.js.map",
+  "static/js/1.0e60287b.chunk.js": "/ma_bjoern/react-fw/static/js/1.0e60287b.chunk.js",
+  "static/js/1.0e60287b.chunk.js.map": "/ma_bjoern/react-fw/static/js/1.0e60287b.chunk.js.map",
   "runtime~main.js": "/ma_bjoern/react-fw/static/js/runtime~main.6a231638.js",
   "runtime~main.js.map": "/ma_bjoern/react-fw/static/js/runtime~main.6a231638.js.map",
+  "static/css/main.3f151ca9.chunk.css.map": "/ma_bjoern/react-fw/static/css/main.3f151ca9.chunk.css.map",
   "index.html": "/ma_bjoern/react-fw/index.html",
-  "precache-manifest.cd4ba813a1bedf35aa0aabdb6bc5db3e.js": "/ma_bjoern/react-fw/precache-manifest.cd4ba813a1bedf35aa0aabdb6bc5db3e.js",
+  "precache-manifest.66cb4565a6c281c0927df360ee391886.js": "/ma_bjoern/react-fw/precache-manifest.66cb4565a6c281c0927df360ee391886.js",
   "service-worker.js": "/ma_bjoern/react-fw/service-worker.js"
 }
