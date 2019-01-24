@@ -1,10 +1,55 @@
 <mat-list role="list">
   <mat-list-item role="listitem" *ngFor="let item of getItems()" (click)="presentActionSheet(item)">
-    <mat-checkbox [ngModel]="item.completed"
-                  (change)="toggleItem(item.id, $event)"
-                  (click)="$event.stopPropagation()">
-    </mat-checkbox>
-    <span class="label">{{item.title}}</span>
+    <div class="test-row">
+      <div class="test-column">
+        <div>
+          <div>
+            <div>
+              <div>
+                <input type="checkbox"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="test-column">
+        <div>
+          <div>
+            <div>
+              <div>
+                <div>
+                  <span class="label">Test</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="test-column">
+        <div>
+          <div>
+            <div>
+              <div>
+                <div class="animation-square"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="test-column">
+        <div>
+          <div>
+            <div>
+              <div>
+                <div>
+                  <img src="favicon.ico"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </mat-list-item>
 </mat-list>
 <button mat-fab (click)="presentAlertPrompt()">
