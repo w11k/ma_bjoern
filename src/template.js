@@ -6,35 +6,56 @@ import {TemplateGenerator} from './helper';
 export class Template {
     constructor() {
         this.defaultTemplate = TemplateGenerator(() => `
-            <vaadin-context-menu>
-                <template>
-                    <style>
-                        paper-item {
-                            --paper-item-min-height: 32px;
-                            cursor: pointer;
-                        }
-                    </style>
-                    <div role="listbox" class="menu_list">
-                        <paper-item data-id="0">
-                            Edit
-                            <paper-ripple></paper-ripple>
-                        </paper-item>
-                        <paper-item data-id="1">
-                            Delete
-                            <paper-ripple></paper-ripple>
-                        </paper-item>
-                        <hr>
-                        <paper-item data-id="2">
-                            Cancel
-                            <paper-ripple></paper-ripple>
-                        </paper-item>
-                    </div>
-                </template>
-                <paper-item data-id="${id}" class="${completed} border_bottom">
-                    <paper-checkbox ${checked}></paper-checkbox>
-                    <span class="label">${title}</span>
-                </paper-item>
-            </vaadin-context-menu>
+      <div class="test-row">
+        <div class="test-column">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <input type="checkbox"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="test-column">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    <span class="label">Test</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="test-column">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div class="animation-square"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="test-column">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    <img src="favicon.ico"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
         `);
     }
 
