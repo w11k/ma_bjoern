@@ -1,8 +1,55 @@
 <ion-list>
     <ion-item (click)="presentActionSheet(item)" *ngFor="let item of getItems()">
-        <ion-checkbox (click)="$event.stopPropagation()" (ionChange)="toggleItem(item.id, $event)" [ngModel]="item.completed"
-                      slot="start"></ion-checkbox>
-        <ion-label>{{item.title}}</ion-label>
+        <div class="test-row">
+            <div class="test-column">
+                <div>
+                    <div>
+                        <div>
+                            <div>
+                                <input type="checkbox"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="test-column">
+                <div>
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <span class="label">Test</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="test-column">
+                <div>
+                    <div>
+                        <div>
+                            <div>
+                                <div class="animation-square"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="test-column">
+                <div>
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <img src="favicon.ico"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ion-item>
 </ion-list>
 <ion-fab *ngIf="!isIOS" horizontal="end" vertical="bottom">
