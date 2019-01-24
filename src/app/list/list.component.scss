@@ -1,6 +1,6 @@
 :host {
   margin-top: 49px;
-  flex: 1 0 auto;
+  height: 100%;
 }
 
 span.label {
@@ -9,6 +9,11 @@ span.label {
 
 mat-list {
   padding-top: 0;
+}
+
+mat-list,
+cdk-virtual-scroll-viewport {
+  height: 100%;
 }
 
 mat-list-item {

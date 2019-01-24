@@ -1,5 +1,6 @@
 <mat-list role="list">
-  <mat-list-item role="listitem" *ngFor="let item of getItems()" (click)="presentActionSheet(item)">
+  <cdk-virtual-scroll-viewport itemSize="49">
+  <mat-list-item role="listitem" *cdkVirtualFor="let item of getItems()" (click)="presentActionSheet(item)">
     <div class="test-row">
       <div class="test-column">
         <div>
@@ -51,6 +52,7 @@
       </div>
     </div>
   </mat-list-item>
+  </cdk-virtual-scroll-viewport>
 </mat-list>
 <button mat-fab (click)="presentAlertPrompt()">
   <mat-icon aria-label="Add todo">add</mat-icon>
