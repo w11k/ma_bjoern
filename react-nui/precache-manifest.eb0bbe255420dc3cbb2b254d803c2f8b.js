@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "012cf6a10129e2275d79d6adac7f3b02",
-    "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.012cf6a1.woff"
+    "revision": "a37b0c01c0baf1888ca812cc0508f6e2",
+    "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.a37b0c01.ttf"
   },
   {
-    "revision": "1e69df4fdf964d0825df",
-    "url": "/ma_bjoern/react-nui/static/css/main.29666be7.chunk.css"
+    "revision": "1ae617ba61f4b26ac367",
+    "url": "/ma_bjoern/react-nui/static/css/main.bfeb3f48.chunk.css"
   },
   {
     "revision": "a21cd880069ba3c588bc1c0e34190c13",
@@ -24,24 +24,24 @@ self.__precacheManifest = [
     "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.570eb838.woff2"
   },
   {
+    "revision": "012cf6a10129e2275d79d6adac7f3b02",
+    "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.012cf6a1.woff"
+  },
+  {
+    "revision": "1ae617ba61f4b26ac367",
+    "url": "/ma_bjoern/react-nui/static/js/main.1ae617ba.chunk.js"
+  },
+  {
     "revision": "e79bfd88537def476913f3ed52f4f4b3",
     "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.e79bfd88.eot"
   },
   {
-    "revision": "1e69df4fdf964d0825df",
-    "url": "/ma_bjoern/react-nui/static/js/main.1e69df4f.chunk.js"
-  },
-  {
-    "revision": "a37b0c01c0baf1888ca812cc0508f6e2",
-    "url": "/ma_bjoern/react-nui/static/media/MaterialIcons-Regular.a37b0c01.ttf"
+    "revision": "df27d9863abee94e1012e147536ea8f3",
+    "url": "/ma_bjoern/react-nui/static/media/Framework7Icons-Regular.df27d986.eot"
   },
   {
     "revision": "ea912ff15c9f2a41ac98a723471afef0",
     "url": "/ma_bjoern/react-nui/static/media/Framework7Icons-Regular.ea912ff1.woff2"
-  },
-  {
-    "revision": "df27d9863abee94e1012e147536ea8f3",
-    "url": "/ma_bjoern/react-nui/static/media/Framework7Icons-Regular.df27d986.eot"
   },
   {
     "revision": "cf0ac81df2df1cdcb5c6838d34837d68",
@@ -52,7 +52,7 @@ self.__precacheManifest = [
     "url": "/ma_bjoern/react-nui/static/css/1.6e93eefc.chunk.css"
   },
   {
-    "revision": "59ee1d04d92acd81584da2f2d80d52fa",
+    "revision": "649d67dd4c23cc8131a27e99357d066b",
     "url": "/ma_bjoern/react-nui/index.html"
   }
 ];

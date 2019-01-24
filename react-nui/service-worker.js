@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/ma_bjoern/react-nui/precache-manifest.002bcd8fb5ecf9c8e95c1fa14bf0a548.js"
+  "/ma_bjoern/react-nui/precache-manifest.eb0bbe255420dc3cbb2b254d803c2f8b.js"
 );
 
 workbox.clientsClaim();
