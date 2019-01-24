@@ -71,12 +71,54 @@ class ListComponent extends React.Component<ListComponentProps<typeof styles>, L
                         this.setState({sheetOpened: item.id});
                     }
                 }}>
-                    <ListItemSecondaryAction className={classes.secondaryAction}>
-                        <Checkbox className={classes.checkbox}
-                                  checked={item.completed}
-                                  onChange={(e: React.ChangeEvent, c: boolean) => this.model.updateItem(item.id, {completed: c})}/>
-                    </ListItemSecondaryAction>
-                    <ListItemText primary={item.title}/>
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <div>
+                                        <input type="checkbox"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <div>
+                                        <div>
+                                            <span className="label">Test</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <div>
+                                        <div className="animation-square"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <div>
+                                        <div>
+                                            <img src="favicon.ico"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </ListItem>
             ));
         return (
