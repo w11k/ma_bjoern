@@ -11724,3 +11724,26 @@ button.bmd-btn-fab {
   overflow: hidden;
   background-color: #e5e5e5; }
 
+.animation-square {
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 4s linear infinite;
+  animation: spin 4s linear infinite;
+  background-color: red; }
+
+.test-row {
+  display: table;
+  width: 100%; }
+
+.test-column {
+  display: table-cell; }
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg); } }
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+

@@ -14,8 +14,8 @@ var serviceWorkerOption = {
     "./browserconfig.xml?5d3e4032eb107cd260da3d1216105916",
     "./favicon.ico?c674b958d2e6cee819f853a9cdcf9648",
     "./site.webmanifest?7b1abf778babb8631dc1a4d440047d46",
-    "./style.b8d80ac0af230bdd5006.css",
-    "./main.52c1fdf1a9836dec81b9.js",
+    "./style.abe1bff4fc66b499e7d3.css",
+    "./main.fcfa2b4f517a5bb07a8c.js",
     "./index.html"
   ]
 };
