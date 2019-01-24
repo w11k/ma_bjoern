@@ -3,14 +3,56 @@ import {TemplateGenerator} from './helper';
 export class Template {
     constructor() {
         this.defaultTemplate = TemplateGenerator(() => `
-            <ons-list-item data-id="${id}" tappable class="${completed}">
-                <div class="left">
-                    <ons-checkbox ${checked}></ons-checkbox>
+      <div class="test-row">
+        <div class="test-column">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <input type="checkbox"/>
                 </div>
-                <label class="center">
-                    ${title}
-                </label>
-            </ons-list-item>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="test-column">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    <span class="label">Test</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="test-column">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div class="animation-square"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="test-column">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    <img src="favicon.ico"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
         `);
     }
 
