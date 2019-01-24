@@ -7,13 +7,13 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "/ma_bjoern/angular-wc/4.9eb9d898a13c22053bde.js",
+        "/ma_bjoern/angular-wc/4.80d1ffbe4e00142696ce.js",
         "/ma_bjoern/angular-wc/5.35f41b7434777c5d4cd9.js",
         "/ma_bjoern/angular-wc/favicon.ico",
         "/ma_bjoern/angular-wc/index.html",
         "/ma_bjoern/angular-wc/main.66db4b3370c45dd6a6e5.js",
         "/ma_bjoern/angular-wc/polyfills.c6871e56cb80756a5498.js",
-        "/ma_bjoern/angular-wc/runtime.73e7b92a2fb4595e98d3.js",
+        "/ma_bjoern/angular-wc/runtime.63d1698a7cedacdf1cb1.js",
         "/ma_bjoern/angular-wc/styles.861fae5cabe38db02742.css"
       ],
       "patterns": []
@@ -43,7 +43,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/ma_bjoern/angular-wc/4.9eb9d898a13c22053bde.js": "85e35f04544125313987ba06bdac0b05864d8a36",
+    "/ma_bjoern/angular-wc/4.80d1ffbe4e00142696ce.js": "e1952b44b7a3ea66f15e584628ad07e1b462b011",
     "/ma_bjoern/angular-wc/5.35f41b7434777c5d4cd9.js": "7fb6e52d0fe4c38c9b25573331a93f1e3c6570a4",
     "/ma_bjoern/angular-wc/apple-touch-icon.png": "cfa2f7b2615451dddf2592110683a325aa552068",
     "/ma_bjoern/angular-wc/assets/images/android-chrome-192x192.png": "2541f5c7afde887f92e6138b1431fa59d4c63a42",
@@ -57,10 +57,10 @@
     "/ma_bjoern/angular-wc/assets/images/safari-pinned-tab.svg": "036c7153e1fd189151b73c43e9c2df014802ba15",
     "/ma_bjoern/angular-wc/assets/images/splash-512x512.png": "7dd68f046d5686272fc3af6321922ad6b061cea9",
     "/ma_bjoern/angular-wc/favicon.ico": "d08d6acd3fe0f0b8895d174acac2c702c89ac986",
-    "/ma_bjoern/angular-wc/index.html": "d55a70aae35aaee193e3a36b97c4aab8284bf93b",
+    "/ma_bjoern/angular-wc/index.html": "6cdff41ee9851ac8c5ff8ec66fd23ca214f7ac6f",
     "/ma_bjoern/angular-wc/main.66db4b3370c45dd6a6e5.js": "aa6c17647824867ca365f2dca5e06fdd0c07b82c",
     "/ma_bjoern/angular-wc/polyfills.c6871e56cb80756a5498.js": "ce68d153e9b9b6d26b625069c0ee99ae09c6f255",
-    "/ma_bjoern/angular-wc/runtime.73e7b92a2fb4595e98d3.js": "5d3b3a89eebfcadf5be77ef4874e86cf936bc810",
+    "/ma_bjoern/angular-wc/runtime.63d1698a7cedacdf1cb1.js": "0c6d4c5d5ea857fa17d5ebd3210cdb7e6b4d8bb3",
     "/ma_bjoern/angular-wc/styles.861fae5cabe38db02742.css": "984445201468de7dd25b42fe3afb452d7f8f1d69"
   },
   "navigationUrls": [
