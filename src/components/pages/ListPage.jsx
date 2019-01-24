@@ -30,12 +30,61 @@ class ListPage extends React.Component {
                 }
             })
             .map(item => (
-                <ListItem key={item.id} title={item.title} onClick={(e) => {
+                <ListItem key={item.id} onClick={(e) => {
                     if (e.target.className === 'item-inner') {
                         this.setState({sheetOpened: item.id});
                     }
                 }}>
-                    <Checkbox slot="media" checked={item.completed} onChange={(e) => this.toggleItem(item.id, e)}/>
+                    <div className="test-row">
+                        <div className="test-column">
+                            <div>
+                                <div>
+                                    <div>
+                                        <div>
+                                            <input type="checkbox"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="test-column">
+                            <div>
+                                <div>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <span className="label">Test</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="test-column">
+                            <div>
+                                <div>
+                                    <div>
+                                        <div>
+                                            <div className="animation-square"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="test-column">
+                            <div>
+                                <div>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <img src="favicon.ico"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </ListItem>
             ));
         return (
