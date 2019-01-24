@@ -405,3 +405,5 @@ THE SOFTWARE.
 @angular/material/tabs
 
 @angular/material/checkbox
+
+@angular/cdk/scrolling
