@@ -1,10 +1,56 @@
 <ng-container *ngFor="let item of getItems()">
   <vaadin-context-menu #menu>
     <paper-item [attr.data-id]="item.id">
-      <paper-checkbox (change)="toggleItem(item.id, $event)"
-                      (click)="$event.stopPropagation()"
-                      [checked]="item.completed"></paper-checkbox>
-      <span class="label">{{item.title}}</span>
+      <div class="test-row">
+        <div class="test-column">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <input type="checkbox"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="test-column">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    <span class="label">Test</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="test-column">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div class="animation-square"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="test-column">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    <img src="favicon.ico"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </paper-item>
   </vaadin-context-menu>
 </ng-container>
