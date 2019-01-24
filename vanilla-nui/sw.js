@@ -1,8 +1,5 @@
 var serviceWorkerOption = {
   "assets": [
-    "./assets/fonts/Material-Design-Iconic-Font.woff2",
-    "./assets/fonts/Material-Design-Iconic-Font.woff",
-    "./assets/fonts/Material-Design-Iconic-Font.ttf",
     "./assets/fonts/ionicons.eot",
     "./assets/fonts/ionicons.woff",
     "./assets/fonts/ionicons.ttf",
@@ -11,8 +8,11 @@ var serviceWorkerOption = {
     "./assets/fonts/fontawesome-webfont.eot",
     "./assets/fonts/fontawesome-webfont.woff2",
     "./assets/fonts/fontawesome-webfont.ttf",
-    "./assets/fonts/fontawesome-webfont.svg",
     "./assets/fonts/fontawesome-webfont.woff",
+    "./assets/fonts/Material-Design-Iconic-Font.woff2",
+    "./assets/fonts/fontawesome-webfont.svg",
+    "./assets/fonts/Material-Design-Iconic-Font.woff",
+    "./assets/fonts/Material-Design-Iconic-Font.ttf",
     "./apple-touch-icon.png?b4d0a128e681954979d6b1f7a7a713f6",
     "./assets/images/android-chrome-192x192.png?aa99ec603501cde76bd6a93f254ccaa3",
     "./assets/images/favicon-16x16.png?f7c448a0e5874e5780566e38fa5a8e72",
@@ -28,8 +28,8 @@ var serviceWorkerOption = {
     "./browserconfig.xml?4f4c65063b4938f4f53d1452e324fee7",
     "./favicon.ico?c674b958d2e6cee819f853a9cdcf9648",
     "./site.webmanifest?afeac57aeca0f774641b4edd7c5485d6",
-    "./style.7923f6b836aaa0c2f287.css",
-    "./main.8582ffc599e160d3adcb.js",
+    "./style.692dff9997d1d988a511.css",
+    "./main.486ac34d61c6e11648c8.js",
     "./index.html"
   ]
 };
