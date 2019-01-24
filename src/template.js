@@ -1,10 +1,56 @@
 export class Template {
     constructor() {
         this.defaultTemplate = TemplateGenerator(() => `
-            <div data-id="${id}" class="list-group-item todo-list-item ${completed}" data-toggle="context" data-target="#context-menu">
-                <input type="checkbox" ${checked}>
-                <span class="title">${title}</span>
+      <div class="test-row">
+        <div class="test-column">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <input type="checkbox"/>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+        <div class="test-column">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    <span class="label">Test</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="test-column">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div class="animation-square"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="test-column">
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    <img src="favicon.ico"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
         `);
     }
 
