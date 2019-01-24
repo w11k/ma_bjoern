@@ -71,14 +71,56 @@ class ListItemComponent extends React.Component<ListItemComponentProps> {
 
     render() {
         return (
-            <vaadin-context-menu ref={this.menu}>
-                <paper-item>
-                    <paper-checkbox
-                        ref={this.checkbox}
-                        {...this.props.item.completed ? {checked: true} : {}}/>
-                    <span className="label">{this.props.item.title}</span>
-                </paper-item>
-            </vaadin-context-menu>
+            <div className="test-row">
+                <div className="test-column">
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <input type="checkbox"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="test-column">
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <div>
+                                        <span className="label">Test</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="test-column">
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <div className="animation-square"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="test-column">
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <div>
+                                        <img src="favicon.ico"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
