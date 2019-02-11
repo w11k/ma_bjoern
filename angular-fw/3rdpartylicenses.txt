@@ -403,3 +403,5 @@ THE SOFTWARE.
 
 
 @angular/material/tabs
+
+@angular/cdk/scrolling
